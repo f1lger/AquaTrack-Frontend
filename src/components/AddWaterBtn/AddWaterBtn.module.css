@@ -1,0 +1,42 @@
+.addBtn {
+  display: flex;
+  padding: 14px 20px;
+  margin-left: auto;
+  margin-top: 162px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: auto;
+  border: none;
+  border-radius: 30px;
+  background-color: #323f47;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  transition: all 0.3s ease;
+}
+
+@media only screen and (min-width: 768px) {
+  .addBtn {
+    padding: 18px 30px;
+    margin-top: 219px;
+    width: 178px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .addBtn {
+    margin-top: 377px;
+  }
+}
+
+.addBtn:hover,
+.addBtn:focus {
+  transform: scale(1.1);
+  color: #9be1a0;
+}
