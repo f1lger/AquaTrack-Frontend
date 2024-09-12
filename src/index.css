@@ -1,26 +1,25 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 * {
   box-sizing: border-box;
+  font-family: "Poppins", system-ui;
+  font-weight: 700;
+  font-style: normal;
 }
 
 a {
-  font-weight: 500;
   text-decoration: none;
 }
+
 ul {
   list-style-type: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
 }
