@@ -1,17 +1,11 @@
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
-import WaterDailyNorma from "../../components/WaterDailyNorma/WaterDailyNorma";
-import WaterProgressBar from "../../components/WaterProgressBar/WaterProgressBar";
-import AddWaterBtn from "../../components/AddWaterBtn/AddWaterBtn";
+import styles from "./TrackerPage.module.css";
 
 const TrackerPage = () => {
   return (
-    <div>
-      <h1>Your tracker page</h1>
-      <WaterMainInfo
-        WaterDailyNorma={<WaterDailyNorma />}
-        WaterProgressBar={<WaterProgressBar />}
-        AddWaterBtn={<AddWaterBtn />}
-      />
+    <div className={styles.wrapper}>
+      <h1 className={styles.title}>AquaTrack</h1>
+      <WaterMainInfo />
     </div>
   );
 };

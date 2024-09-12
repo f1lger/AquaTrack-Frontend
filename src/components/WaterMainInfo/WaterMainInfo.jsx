@@ -5,7 +5,6 @@ import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
 const WaterMainInfo = () => {
   return (
     <div>
-      <h2>Water Main Info</h2>
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn />

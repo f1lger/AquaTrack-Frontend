@@ -1,0 +1,49 @@
+.normaWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 102px;
+  height: auto;
+  margin-top: 78px;
+  padding: 12px;
+  gap: 6px;
+  align-items: center;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (min-width: 768px) {
+  .normaWrapper {
+    width: 129px;
+    padding: 14px 18px;
+    margin-top: 101px;
+    gap: 4px;
+  }
+}
+
+.normaValue {
+  color: #323f47;
+  font-size: 14px;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .normaValue {
+    font-size: 15px;
+    line-height: 1.49;
+  }
+}
+
+.normaDesc {
+  color: rgba(47, 47, 47, 0.6);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .normaDesc {
+    font-size: 12px;
+    line-height: 1.87;
+  }
+}
