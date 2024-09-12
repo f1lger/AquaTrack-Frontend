@@ -23,17 +23,18 @@
 }
 
 .title {
-  color: #323f47;
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   line-height: 1.11;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  margin-bottom: 78px;
 }
 
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 24px;
     line-height: 1;
+    margin-bottom: 101px;
   }
 }
