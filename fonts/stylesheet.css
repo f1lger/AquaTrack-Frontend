@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 700;
+  font-style: normal;
+  src: local("Gilroy Bold"), local("Gilroy-Bold"),
+    url("./Gilroy-Bold.woff2") format("woff2"),
+    url("./Gilroy-Bold.woff") format("woff"),
+    url("./Gilroy-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 400;
+  font-style: normal;
+  src: local("Gilroy Regular"), local("Gilroy-Regular"),
+    url("./Gilroy-Regular.woff2") format("woff2"),
+    url("./Gilroy-Regular.woff") format("woff"),
+    url("./Gilroy-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-style: normal;
+  src: local("Poppins Bold"), local("Poppins-Bold"),
+    url("./Poppins-Bold.woff2") format("woff2"),
+    url("./Poppins-Bold.woff") format("woff"),
+    url("./Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("./Poppins-Regular.woff2") format("woff2"),
+    url("./Poppins-Regular.woff") format("woff"),
+    url("./Poppins-Regular.ttf") format("truetype");
+}
