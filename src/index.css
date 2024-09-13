@@ -1,8 +1,17 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+body {
   font-family: "Poppins", system-ui;
   font-weight: 700;
   font-style: normal;
+  display: flex;
+  margin: 0;
+  color: #323f47;
+  background-color: #fff;
 }
 
 h1,
@@ -38,15 +47,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-@media only screen and (min-width: 768px) {
-  .container {
-    padding: 32px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 16px;
-  }
 }
