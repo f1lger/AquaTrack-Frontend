@@ -23,7 +23,7 @@
 
 .customersContainer {
   position: absolute;
-  left: 32%;
+  left: 25%;
   top: 60%;
   transform: translate(-50%);
   height: 48px;
@@ -96,7 +96,7 @@
   display: flex;
   position: absolute;
   bottom: 32px;
-  right: 110px;
+  right: 25px;
   width: 168px;
   align-items: flex-start;
   align-content: flex-start;
