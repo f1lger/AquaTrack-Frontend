@@ -1,0 +1,166 @@
+.wrapper {
+  position: relative;
+  margin: 0 auto;
+}
+
+.mainImg {
+  width: 343px;
+  height: 353px;
+  border-radius: 30px;
+  background-image: url("../../photo/mob/drinking-woman-1x.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto 20px auto;
+}
+
+@media only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .mainImg {
+    background-image: url("../../photo/mob/drinking-woman-2x.webp");
+  }
+}
+
+.customersContainer {
+  position: absolute;
+  left: 32%;
+  top: 60%;
+  transform: translate(-50%);
+  height: 48px;
+  width: auto;
+  display: flex;
+  padding: 10px 14px;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #fff;
+  margin-left: 16px;
+  margin-right: 167px;
+
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+}
+
+.customersContainer p {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4px;
+  color: #323f47;
+
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.16;
+}
+
+.customersAvatars {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 62px;
+  height: 28px;
+}
+
+.avatar {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.avatar:nth-child(1) {
+  z-index: 3;
+}
+
+.avatar:nth-child(2) {
+  z-index: 2;
+  margin-left: -10px;
+}
+
+.avatar:nth-child(3) {
+  z-index: 1;
+  margin-left: -10px;
+}
+
+.accent {
+  color: #9be1a0;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.infoContainer {
+  display: flex;
+  position: absolute;
+  bottom: 32px;
+  right: 110px;
+  width: 168px;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.habit {
+  display: flex;
+  width: 81px;
+  height: 26px;
+  padding: 9px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 30px;
+  background-color: #323f47;
+  color: #fff;
+
+  text-align: center;
+  font-family: Poppins;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistics {
+  display: flex;
+  width: 83px;
+  height: 26px;
+  padding: 9px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 30px;
+  background-color: #9be1a0;
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rate {
+  display: flex;
+  width: 108px;
+  height: 26px;
+  padding: 9px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 30px;
+  background: #fff;
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+}
