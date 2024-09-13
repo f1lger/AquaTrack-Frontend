@@ -4,7 +4,7 @@
   padding: 14px 20px;
   margin-left: auto;
   gap: 10px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 140px;
   height: auto;
@@ -17,7 +17,19 @@
   font-weight: 700;
   line-height: 1.29;
   letter-spacing: -0.01em;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.addBtn:hover,
+.addBtn:focus {
+  transform: scale(1.1);
+  color: #9be1a0;
+}
+
+.addBtn:hover .iconPlus,
+.addBtn:focus .iconPlus {
+  fill: #9be1a0;
+  transition: fill 0.3s ease;
 }
 
 @media only screen and (min-width: 768px) {
@@ -29,14 +41,10 @@
   }
 }
 
-.addBtn:hover,
-.addBtn:focus {
-  transform: scale(1.1);
-  color: #9be1a0;
-}
-
 .iconPlus {
-  stroke: var(--color1, #fff);
+  fill: #fff;
+  width: 16px;
+  height: 16px;
 }
 
 @media only screen and (min-width: 768px) {

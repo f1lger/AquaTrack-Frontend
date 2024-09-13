@@ -1,12 +1,11 @@
 import styles from "./AddWaterBtn.module.css";
+import { FaPlus } from "react-icons/fa6";
 
 const AddWaterBtn = () => {
   return (
     <>
       <button type="button" className={styles.addBtn}>
-        <svg className={styles.iconPlus} width="16" height="16">
-          <use href="../../icons/symbol-defs.svg#icon-plus"></use>
-        </svg>
+        <FaPlus className={styles.iconPlus} />
         Add water
       </button>
     </>
