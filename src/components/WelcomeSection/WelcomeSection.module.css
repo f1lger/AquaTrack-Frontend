@@ -1,0 +1,83 @@
+.wrapper {
+  width: 343px;
+  border-radius: 30px;
+  background: #f0eff4;
+  padding: 24px 16px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.subTitle {
+  margin-top: 118px;
+  text-align: start;
+  color: #2f2f2f;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02;
+}
+
+.mainTitle {
+  margin-top: 16px;
+  color: #323f47;
+  text-align: start;
+  font-family: Poppins;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  list-style-type: none;
+  margin-top: 32px;
+  margin-bottom: 67px;
+}
+
+.button {
+  display: inline-flex;
+  padding: 14px 19px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #323f47;
+}
+
+.signUp {
+  background-color: #9be1a0;
+  border: none;
+}
+
+.signUpHover:hover {
+  background-color: #87d28d;
+}
+
+.signUpDisabled:disabled {
+  background-color: #e6e6e6;
+  color: #bcbcbc;
+}
+
+.signIn {
+  border: 1px solid #323f47;
+  background-color: transparent;
+  color: #323f47;
+}
+
+.signInHover:hover {
+  border-color: #87d28d;
+  color: #87d28d;
+}
+
+.signInDisabled:disabled {
+  border-color: #323f47;
+  color: #323f47;
+  opacity: 0.5;
+}
