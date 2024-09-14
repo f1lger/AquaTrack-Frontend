@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
     "react": "^18.3.1",

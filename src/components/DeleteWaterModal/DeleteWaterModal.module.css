@@ -48,12 +48,12 @@
     background-color: transparent;
 }
 
-.btnTransparent{
+.btnCancel{
     color: #bcbcbc;
     background-color:#f0eff4;
 }
 
-.btnTransparent:hover{
+.btnCancel:hover{
     color: #323f47;
 }
 

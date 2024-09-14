@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,7 +21,6 @@ const schema = yup.object().shape({
 const WaterForm = ({ closeWaterModal, operationType, item }) => {
     const dispatch = useDispatch();
 
-  // Начальные значения формы
   const defaultValues =
     operationType !== 'add' && item
       ? {
@@ -41,7 +40,6 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
           waterVolume: 50,
         };
 
-    // Инициализация useForm с yupResolver
   const {
     register,
     handleSubmit,
@@ -56,7 +54,7 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
     defaultValues,
     mode: 'onChange',
   });     
-  // Обновление формы при редактировании записи
+ 
   useEffect(() => {
     if (operationType !== 'add' && item) {
       reset({
@@ -71,7 +69,7 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
     }
   }, [operationType, item, reset]);
 
-  // Отправка данных формы
+
   const onSubmit = data => {
     const date = new Date(data.date);
     const [hours, minutes] = data.time.split(':');
@@ -108,22 +106,22 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
     }
   };
 
-  // Увеличение объема воды
+ 
   const plusWaterVolume = () => {
     const currentAmount = parseInt(getValues('waterVolume'), 10);
     setValue('waterVolume', currentAmount + 10);
     clearErrors('waterVolume');
   };
 
-  // Уменьшение объема воды
+
   const minusWaterVolume = () => {
     const currentAmount = parseInt(getValues('waterVolume'), 10);
     setValue('waterVolume', Math.max(50, currentAmount - 10));
     clearErrors('waterVolume');
   };
 
-  // Изменение объема воды вручную
-  const handleWaterVolumeChange = e => {
+  
+  const handleWaterVolumeChange = evt => {
     const value = Number(evt.target.value);
     setValue('waterVolume', value);
     if (value >= 50 && value <= 500) {
@@ -143,7 +141,7 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
           >
             <CiCircleMinus size={42} />
           </button>
-            <div className={css.waterAmount}>ml</div>
+          <div className={css.waterAmount}>{`${watch('waterVolume')} ml`}</div>
             <button
             type="button"
             className={css.waterCountBtn}
