@@ -1,0 +1,69 @@
+.waterForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.waterCounter {
+  display: flex;
+  margin: 8px 0 16px;
+  gap: 8px;
+}
+
+p,
+.saveBtn {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+
+.waterAmount {
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  color: #ffffff;
+  background-color: #323f47;
+}
+
+.waterCountBtn {
+  background-color: #ffffff;
+  padding: 0;
+  border: none;
+}
+
+.waterInput {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.timeInput,
+.valueInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 0 16px;
+  width: 303px;
+  height: 46px;
+  margin: 8px 0 24px;
+}
+
+.saveBtn {
+  border-radius: 30px;
+  width: 116px;
+  height: 46px;
+  background-color: #9be1a0;
+  color: #323f47;
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.saveBtn:hover {
+  background-color: #87d28d;
+}
