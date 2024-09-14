@@ -1,4 +1,4 @@
-// import Modal from "../Modal/Modal";
+
 import { useDispatch } from "react-redux";
 import { deleteWater } from "../../redux/water/operations";
 import css from "./DeleteWaterModal.module.css";
