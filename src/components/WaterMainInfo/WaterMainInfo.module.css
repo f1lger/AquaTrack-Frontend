@@ -1,0 +1,86 @@
+.wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 24px 16px 32px;
+  width: 343px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background-color: #9be1a0;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    width: 704px;
+    padding: 32px 32px 64px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    width: 672px;
+  }
+}
+
+.thumb {
+  background-size: cover;
+  background-image: url(../../photo/mob/bottle-with-water-1x.webp);
+  width: 262px;
+  height: 335px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 767.98px) and (min-resolution: 192dpi) {
+  .thumb {
+    background-image: url(../../photo/mob/bottle-with-water-2x.webp);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .thumb {
+    background-image: url(../../photo/tab/bottle-with-water-1x.webp);
+    width: 374px;
+    height: 477px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (min-resolution: 192dpi) {
+  .thumb {
+    background-image: url(../../photo/tab/bottle-with-water-2x.webp);
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .thumb {
+    background-image: url(../../photo/desk/bottle-with-water-1x.png);
+    width: 472px;
+    height: 604px;
+  }
+}
+
+@media only screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+  .thumb {
+    background-image: url(../../photo/desk/bottle-with-water-2x.webp);
+  }
+}
+
+.title {
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.11;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 78px;
+}
+
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 101px;
+  }
+}
