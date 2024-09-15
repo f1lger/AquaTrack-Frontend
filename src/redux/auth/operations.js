@@ -23,3 +23,14 @@ export const register = createAsyncThunk(
   }
 );
 
+export const fetchUser = createAsyncThunk(
+  "auth/fetchUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("/users/current");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
