@@ -5,8 +5,8 @@ const waterSlice = createSlice({
   name: "water",
   initialState: {
     waterInfo: {
+      total: 900,
       dailyRecords: [],
-      total: 0,
     },
     monthlyRecords: [],
     currentDay: new Date().toISOString().split('T')[0], 
