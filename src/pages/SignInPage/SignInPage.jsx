@@ -1,3 +1,7 @@
-export default function SignInPage() {
-  return <h1>You signin page</h1>;
-}
+import SignInForm from "../../components/SignInForm/SignInForm";
+
+const SignInPage = () => {
+  return <SignInForm />;
+};
+
+export default SignInPage;
