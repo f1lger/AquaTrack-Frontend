@@ -5,7 +5,7 @@ const waterSlice = createSlice({
   name: "water",
   initialState: {
     waterInfo: {
-      total: 0,
+      total: 900,
     },
     loading: false,
     error: null,
