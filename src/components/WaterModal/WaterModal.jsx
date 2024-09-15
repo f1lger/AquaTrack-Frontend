@@ -1,31 +1,17 @@
-import Modal from "../Modal/Modal";
-import WaterForm from "../WaterForm/WaterForm";
+/* eslint-disable react/prop-types */
+import WaterForm from "../WaterForm/WaterForm.jsx";
 import css from "./WaterModal.module.css";
 
-const WaterModal = ({
-  waterModalOpen,
-  closeWaterModal,
-  operationType,
-  item,
-}) => {
-  const title =
-    operationType === "add" ? "Add water" : "Edit the entered amount of water";
-  const value =
-    operationType === "add" ? "Choose a value:" : "Correct entered data:";
-
+export default function WaterModal({ title, secondTitle, onClose, isAddWater, item }) {
   return (
-    <Modal modalIsOpen={waterModalOpen} closeModal={closeWaterModal}>
-      <div className={css.waterModal}>
-        <p className={css.modalTitle}>{title}</p>
-        <p className={css.modalValue}>{value}</p>
-        <WaterForm
-          operationType={operationType}
-          closeWaterModal={closeWaterModal}
-          item={item}
-        />
-      </div>
-    </Modal>
+    <div className={css.waterModal}>
+      <h2 className={css.modalTitle}>{title}</h2>
+      <p className={css.modalValue}>{secondTitle}</p>
+      <WaterForm
+        closeWaterModal={onClose}
+        isAddWater={isAddWater}
+        item={item}
+      />
+    </div>
   );
-};
-
-export default WaterModal;
+}

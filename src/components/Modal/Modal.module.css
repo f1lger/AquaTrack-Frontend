@@ -1,6 +1,6 @@
-.modalContainer {
+.modal {
   padding: 40px 20px;
-  margin: 30% auto auto;
+  margin: 80px auto auto;
   position: relative;
   border-radius: 15px;
   background-color: white;
@@ -22,6 +22,7 @@
   animation: fadeIn 0.2s ease-in-out forwards;
 }
 .closeIcon{
+  cursor: pointer;
   position: absolute;
   top: 20px;
   right: 16px;

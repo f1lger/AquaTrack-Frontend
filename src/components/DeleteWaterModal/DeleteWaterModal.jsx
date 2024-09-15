@@ -3,11 +3,10 @@ import { deleteWater } from "../../redux/water/operations";
 import { selectWaterLoading } from "../../redux/water/selectors";
 import css from "./DeleteWaterModal.module.css";
 import toast from "react-hot-toast";
-import Modal from "../Modal/Modal";
 
-const DeleteWaterModal = ({ modalIsOpen, closeModal, waterId }) => {
+const DeleteWaterModal = ({ closeModal, waterId }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectWaterLoading); 
+  const isLoading = useSelector(selectWaterLoading);
 
   const handleDelete = () => {
     dispatch(deleteWater(waterId))
@@ -21,34 +20,28 @@ const DeleteWaterModal = ({ modalIsOpen, closeModal, waterId }) => {
       });
   };
 
-  const handleCancel = () => {
-    closeModal();
-  };
-
   const buttonColorClass = `${css.btn} ${css.btnColor}`;
   const buttonCancelClass = `${css.btn} ${css.btnCancel}`;
 
   return (
-    <Modal modalIsOpen={modalIsOpen} closeModal={closeModal}>
-      <div className={css.modal}>
-        <h3 className={css.modalHead}>Delete entry</h3>
-        <p className={css.modalText}>
-          Are you sure you want to delete the entry?
-        </p>
-        <div className={css.logOutButtons}>
-          <button
-            className={buttonColorClass}
-            onClick={handleDelete}
-            disabled={isLoading} 
-          >
-            {isLoading ? "Deleting..." : "Delete"}
-          </button>
-          <button className={buttonCancelClass} onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
+    <div className={css.modal}>
+      <h3 className={css.modalHead}>Delete entry</h3>
+      <p className={css.modalText}>
+        Are you sure you want to delete the entry?
+      </p>
+      <div className={css.logOutButtons}>
+        <button
+          className={buttonColorClass}
+          onClick={handleDelete}
+          disabled={isLoading}
+        >
+          {isLoading ? "Deleting..." : "Delete"}
+        </button>
+        <button className={buttonCancelClass} onClick={closeModal}>
+          Cancel
+        </button>
       </div>
-    </Modal>
+    </div>
   );
 };
 

@@ -1,78 +1,77 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
-import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
-import { addWater, updateWater } from '../../redux/water/operations';
-import css from './WaterForm.module.css';
+/* eslint-disable react/prop-types */
+// import { useEffect } from 'react';
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { addWater, updateWater } from "../../redux/water/operations";
+import css from "./WaterForm.module.css";
 
 const schema = yup.object().shape({
-  volumeOfWater: yup
+  waterVolume: yup
     .number()
     .typeError("Enter a valid amount of water")
     .min(50, "Minimum amount is 50 ml")
-    .max(500, "Maximum amount is 500 ml")
+    .max(3000, "Maximum amount is 500 ml")
     .required("Amount is required"),
   time: yup.string().required("Water consumption time is mandatory"),
 });
 
-const WaterForm = ({ closeWaterModal, operationType, item }) => {
-    const dispatch = useDispatch();
+export default function WaterForm({ closeWaterModal, isAddWater, item }) {
+  const dispatch = useDispatch();
 
-  const defaultValues =
-    operationType !== 'add' && item
-      ? {
-          date: item.date,
-          time: new Date(item.date).toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          waterVolume: item.waterVolume,
-        }
-      : {
-          date: new Date().toISOString(),
-          time: new Date().toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          waterVolume: 50,
-        };
-
+  const defaultValues = !isAddWater
+    ? {
+        date: item.date,
+        time: new Date(item.date).toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        waterVolume: item.waterVolume,
+      }
+    : {
+        date: new Date().toISOString(),
+        time: new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        waterVolume: 50,
+      };
   const {
     register,
-    handleSubmit,
-    formState: { errors },
-    watch,
     setValue,
     getValues,
+    watch,
+    handleSubmit,
+    formState: { errors },
     clearErrors,
-    reset,
+    // reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
-    mode: 'onChange',
-  });     
- 
-  useEffect(() => {
-    if (operationType !== 'add' && item) {
-      reset({
-        date: item.date,
-        time: new Date(item.date).toLocaleTimeString('en-GB', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        }),
-        waterVolume: item.waterVolume,
-      });
-    }
-  }, [operationType, item, reset]);
+    mode: "onChange",
+  });
 
+  // useEffect(() => {
+  //   if (operationType !== "add" && item) {
+  //     reset({
+  //       date: item.date,
+  //       time: new Date(item.date).toLocaleTimeString("en-GB", {
+  //         hour: "2-digit",
+  //         minute: "2-digit",
+  //         hour12: false,
+  //       }),
+  //       waterVolume: item.waterVolume,
+  //     });
+  //   }
+  // }, [operationType, item, reset]);
 
-  const onSubmit = data => {
+  const onSubmit = async (data) => {
+    console.log("You on submit");
+
     const date = new Date(data.date);
-    const [hours, minutes] = data.time.split(':');
+    const [hours, minutes] = data.time.split(":");
     date.setHours(hours);
     date.setMinutes(minutes);
 
@@ -81,52 +80,35 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
       date: date.toISOString(),
     };
 
-    if (operationType === 'add') {
-      dispatch(addWater(water))
-        .unwrap()
-        .then(() => {
-          toast.success('You successfully add a water record!');
-          console.log('Add Water:', water);
-          closeWaterModal();
-        })
-        .catch(error => {
-          toast.error('Failed to add water record!.');
-        });
-    } else {
-      dispatch(updateWater({ waterId: item._id, ...water }))
-        .unwrap()
-        .then(() => {
-          toast.success('You successfully update a water record!');
-          console.log('Edit Water:', water);
-          closeWaterModal();
-        })
-        .catch(error => {
-          toast.error('Failed to update water record!');
-        });
-    }
+    const response = isAddWater
+      ? await dispatch(addWater(water))
+      : await dispatch(updateWater([item._id, water]));
+    console.log(response);
+
+    response.meta.requestStatus === "fullfield"
+      ? closeWaterModal()
+      : alert("Failed to add water record!.");
   };
 
- 
   const plusWaterVolume = () => {
-    const currentAmount = parseInt(getValues('waterVolume'), 10);
-    setValue('waterVolume', currentAmount + 10);
-    clearErrors('waterVolume');
+    const currentAmount = parseInt(getValues("waterVolume"), 10);
+    setValue("waterVolume", currentAmount + 50);
+    clearErrors("waterVolume");
   };
-
 
   const minusWaterVolume = () => {
-    const currentAmount = parseInt(getValues('waterVolume'), 10);
-    setValue('waterVolume', Math.max(50, currentAmount - 10));
-    clearErrors('waterVolume');
+    const currentAmount = parseInt(getValues("waterVolume"), 10);
+    setValue("waterVolume", Math.max(0, currentAmount - 50));
+    clearErrors("waterVolume");
   };
 
-  
-  const handleWaterVolumeChange = evt => {
+  const handleWaterVolumeChange = (evt) => {
     const value = Number(evt.target.value);
-    setValue('waterVolume', value);
+    setValue("waterVolume", value);
     if (value >= 50 && value <= 500) {
-      clearErrors('waterVolume');
+      clearErrors("waterVolume");
     }
+    return;
   };
   return (
     <>
@@ -134,50 +116,48 @@ const WaterForm = ({ closeWaterModal, operationType, item }) => {
         <div>
           <p className={css.text}>Amount of water:</p>
           <div className={css.waterCounter}>
-          <button
-            type="button"
-            className={css.waterCountBtn}
-            onClick={minusWaterVolume}
-          >
-            <CiCircleMinus size={42} />
-          </button>
-          <div className={css.waterAmount}>{`${watch('waterVolume')} ml`}</div>
             <button
-            type="button"
-            className={css.waterCountBtn}
-            onClick={plusWaterVolume}
-          >
-            <CiCirclePlus size={42} />
-          </button>
+              type="button"
+              className={css.waterCountBtn}
+              onClick={minusWaterVolume}
+            >
+              <CiCircleMinus size={42} />
+            </button>
+            <div className={css.waterAmount}>{`${watch(
+              "waterVolume"
+            )} ml`}</div>
+            <button
+              type="button"
+              className={css.waterCountBtn}
+              onClick={plusWaterVolume}
+            >
+              <CiCirclePlus size={42} />
+            </button>
           </div>
           {errors.waterVolume && (
-          <p className={css.error}>{errors.waterVolume.message}</p>
-        )}
+            <p className={css.error}>{errors.waterVolume.message}</p>
+          )}
         </div>
         <p className={css.text}>Recording time</p>
-        <input
-        type="time"
-        className={css.timeInput}
-        {...register('time')}
-      />
-      {errors.time && <p className={css.error}>{errors.time.message}</p>}
+        <input type="time" className={css.timeInput} {...register("time")} />
+        {errors.time && <p className={css.error}>{errors.time.message}</p>}
 
         <p className={css.waterInput}>Enter the value of the water used:</p>
         <input
-        type="number"
-        className={css.amountInput}
-        {...register('waterVolume')}
-        onChange={handleWaterVolumeChange}
-      />
-      {errors.waterVolume && (
-        <p className={css.error}>{errors.waterVolume.message}</p>
-      )}
+          type="number"
+          step={50}
+          min={0}
+          className={css.amountInput}
+          {...register("waterVolume")}
+          onChange={handleWaterVolumeChange}
+        />
+        {errors.waterVolume && (
+          <p className={css.error}>{errors.waterVolume.message}</p>
+        )}
         <button className={css.saveBtn} type="submit">
-        Save
+          Save
         </button>
       </form>
     </>
   );
-};
-
-export default WaterForm;
+}
