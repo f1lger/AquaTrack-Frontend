@@ -1,0 +1,28 @@
+.modalContainer {
+  padding: 40px 20px;
+  margin: 30% auto auto;
+  position: relative;
+  border-radius: 15px;
+  background-color: white;
+  width: 100%;
+  max-width: 344px;
+}
+.overlay {
+  position: fixed;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  background-color: rgba(47, 47, 47, 0.6);
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+.closeIcon{
+  position: absolute;
+  top: 20px;
+  right: 16px;
+}
