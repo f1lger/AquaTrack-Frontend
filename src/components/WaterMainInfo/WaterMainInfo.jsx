@@ -8,21 +8,23 @@ import WaterProgressBar from "../WaterProgressBar/WaterProgressBar";
 import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
 import styles from "./WaterMainInfo.module.css";
 
-const WaterMainInfo = () => {
+
+const WaterMainInfo = ({ openWaterModal }) => {
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWater());
     dispatch(fetchUser());
   }, [dispatch]);
-
+  
   return (
     <div className={styles.wrapper}>
       <div className={styles.thumb} />
       <h1 className={styles.title}>AquaTrack</h1>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn />
+      <AddWaterBtn openWaterModal={openWaterModal} />
     </div>
   );
 };
