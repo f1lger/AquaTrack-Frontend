@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import ReactModal from "react-modal";
 import css from "./Modal.module.css";
 import { IoCloseSharp } from "react-icons/io5";
-export default function ModalCont({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children }) {
   return (
     <ReactModal
       isOpen={isOpen}
       onRequestClose={() => onClose()}
-      className={css.modalContainer}
+      className={css.modal}
       ariaHideApp={false}
       overlayClassName={css.overlay}
     >
