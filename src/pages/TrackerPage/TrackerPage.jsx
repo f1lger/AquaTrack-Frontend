@@ -2,6 +2,7 @@ import { useState } from "react";
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
 import Modal from "../../components/Modal/Modal.jsx";
 import WaterModal from "../../components/WaterModal/WaterModal";
+import { LogOutModal } from "../../components/LogOutModal/LogOutModal.jsx";
 
 const TrackerPage = () => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
@@ -33,6 +34,7 @@ const TrackerPage = () => {
       <Modal isOpen={isUserModalOpen} onClose={closeUserModal}></Modal>
 
       <Modal isOpen={isAuthModalOpen} onClose={closeAuthModal}></Modal>
+      <LogOutModal/>
     </div>
   );
 };
