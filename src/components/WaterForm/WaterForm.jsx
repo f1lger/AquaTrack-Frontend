@@ -21,8 +21,7 @@ const schema = yup.object().shape({
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const dispatch = useDispatch();
 
-  const defaultValues = !isAddWater
-    ? {
+  const defaultValues = !isAddWater && item ? {
         date: item.date,
         time: new Date(item.date).toLocaleTimeString("en-GB", {
           hour: "2-digit",
