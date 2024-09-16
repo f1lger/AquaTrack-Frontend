@@ -25,7 +25,7 @@ const TrackerPage = () => {
         <WaterModal
           title={"Add water"}
           secondTitle={"Correct entered data:"}
-          onClose={() => closeWaterModal}
+          onClose={closeWaterModal}
           isAddWater={true}
         />
       </Modal>
