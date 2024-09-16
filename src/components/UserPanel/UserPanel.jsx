@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { selectUser } from "../../redux/user/selectors";
 // import { login } from "../../redux/user/operations.js";
 import styles from "../UserPanel/UserPanel.module.css";
@@ -17,14 +16,6 @@ export const UserPanel = () => {
         <span className={styles.name}>{user.name ? user.name : "User"}!</span>
       </p>
       <UserBar />
-=======
-import styles from "./UserPanel.module.css";
-
-export const UserPanel = () => {
-  return (
-    <div className={styles.container}>
-      <p>UserName</p>
->>>>>>> Stashed changes
     </div>
   );
 };
