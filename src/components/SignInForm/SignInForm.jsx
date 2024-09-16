@@ -1,15 +1,18 @@
-import PropTypes from "prop-types"; // Імпорт проптайпів
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInFormSchema } from "../../validationSchemas/authFormSchema";
 import css from "./SignInForm.module.css";
 import clsx from "clsx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/operations.js";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 import Logo from "../Logo/Logo.jsx";
+import { toast } from "react-toastify";
+
+toast.configure();
 
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
@@ -22,8 +25,9 @@ AuthFormLayout.propTypes = {
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -38,20 +42,29 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
-    dispatch(login({ email: newEmail, password }));
-    reset();
+    try {
+      const response = await dispatch(login({ email: newEmail, password }));
+      if (response.errror) {
+        throw new Error(response.error.message);
+      }
+      navigate("/tracker");
+    } catch (error) {
+      toast.error("Failed to login" + error.message);
+    } finally {
+      reset();
+    }
   };
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
   return (
-      <AuthFormLayout className={css.layout}>
-       <Logo className={css.logo}></Logo>   
+    <AuthFormLayout className={css.layout}>
+      <Logo className={css.logo}></Logo>
       <div className={css.signInContainer}>
-        
         <h2 className={css.title}>Sign In</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.field}>
