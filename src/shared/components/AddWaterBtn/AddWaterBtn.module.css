@@ -1,0 +1,104 @@
+.btn {
+  width: 140px;
+  height: 46px;
+  border-radius: 30px;
+  border: none;
+  color: var(--main-white);
+  background-color: var(--main);
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: auto;
+  letter-spacing: -0.1px;
+  transition: all var(--transition);
+}
+
+.btnUa {
+  width: 140px;
+  height: 46px;
+  border-radius: 30px;
+  border: none;
+  color: var(--main-white);
+  background-color: var(--main);
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: auto;
+  letter-spacing: -0.1px;
+  transition: all var(--transition);
+}
+
+.btn:hover {
+  color: var(--accent);
+}
+.addBtnStyle {
+  background-color: transparent;
+  color: var(--main);
+  font-size: 14px;
+  width: 114px;
+  height: 30px;
+  padding: 0;
+  transition: all var(--transition);
+}
+
+.addBtnStyle:hover {
+  color: var(--main);
+}
+.addBtnStyle:hover .addIconStyle {
+  background-color: var(--main);
+}
+.icon {
+  stroke: var(--main-white);
+  transition: all var(--transition);
+}
+.addIconStyle {
+  box-sizing: border-box;
+  background-color: var(--accent);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  stroke: var(--main);
+  padding: 6px;
+}
+.btn:hover .icon {
+  stroke: var(--accent);
+}
+.addBtnStyle:hover .addIconStyle {
+  stroke: var(--main-white);
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    width: 178px;
+    height: 60px;
+    padding: 18px 30px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  .addBtnStyle {
+    width: 124px;
+    height: 30px;
+    padding: 0;
+  }
+  .addIconStyle {
+    background-color: var(--accent);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+}

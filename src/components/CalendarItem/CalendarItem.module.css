@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.button {
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  color: var(--main);
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -1%;
+  border: none;
+  background: #d5d9da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fullDayButton {
+  background-color: var(--main-white);
+}
+.activeButton {
+  background: var(--main);
+  color: var(--accent);
+}
+
+.label {
+  color: #2f2f2f99;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 10px;
+  letter-spacing: 0%;
+}
+@media screen and (min-width: 768px) {
+  .button {
+    height: 38px;
+    width: 38px;
+    font-size: 16px;
+  }
+  .label {
+    font-size: 12px;
+    line-height: 22.4px;
+  }
+  .container {
+    gap: 4px;
+  }
+}

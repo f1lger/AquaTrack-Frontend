@@ -1,0 +1,16 @@
+.daily_info_container {
+  height: auto;
+  width: 303px;
+}
+
+@media screen and (min-width: 768px) {
+  .daily_info_container {
+    width: 640px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .daily_info_container {
+    width: 608px;
+  }
+}

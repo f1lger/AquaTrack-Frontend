@@ -8,6 +8,16 @@
   margin: 0;
 }
 
+:root {
+  --font-family: "Poppins", system-ui;
+  --accent: #9be1a0;
+  --accent-hover: #87d28d;
+  --background: #f0eff4;
+  --main-white: #fff;
+  --main-dark: #2f2f2f;
+  --main-grey: #323f47;
+}
+
 h1,
 h2,
 h3,

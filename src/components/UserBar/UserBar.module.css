@@ -1,0 +1,95 @@
+.btn {
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  height: 50px;
+  gap: 8px;
+  background-color: var(--main);
+  border: none;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-white);
+  text-transform: capitalize;
+}
+
+.popover {
+  padding: 4px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: var(--main-white);
+  transition: all var(--transition);
+}
+.iconUp {
+  transition: all var(--transition);
+  transform: rotate(-180deg);
+}
+.iconAvatar {
+  width: 38px;
+  height: 38px;
+  color: var(--main-white);
+}
+.img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+.iconAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--main-white);
+}
+
+.settingsClose {
+  top: 20px;
+}
+
+/* ===============TABLET================ */
+
+@media screen and (min-width: 768px) {
+  .name {
+    font-size: 16px;
+    line-height: 150%;
+  }
+  .btn {
+    margin-left: auto;
+    width: 157px;
+    height: 56px;
+    gap: 10px;
+  }
+  .settingsClose {
+    top: 40px;
+    right: 20px;
+  }
+
+  .popover {
+    padding: 8px;
+  }
+  .iconAvatar {
+    width: 44px;
+    height: 44px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .img {
+    width: 44px;
+    height: 44px;
+  }
+  .iconAvatar {
+    width: 44px;
+    height: 44px;
+  }
+}
