@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup"; // Налаштовуємо yup для валідації
+import * as yup from "yup";
+import { NavLink } from "react-router-dom";
 import css from "./ForgotPassword.module.css";
 import clsx from "clsx";
 import { sendPasswordResetEmail } from "../../redux/auth/operations.js";
@@ -44,7 +45,23 @@ const ForgotPassword = () => {
           <p className={css.errorMessage}>{errors.email?.message}</p>
         </label>
         <button type="submit" className={css.submitbtn}>Send reset email</button>
-      </form>
+          </form>
+          <div className={css.questionOnLogIn}>
+          <p className={css.questionText}>
+            Don`t have an account?{" "}
+            <NavLink to="/signup" className={css.signUpLink}>
+              Sign Up
+            </NavLink>
+          </p>
+        </div>
+        <div className={css.questionOnLogIn}>
+          <p className={css.questionText}>
+            Have you got an account?
+          </p>
+            <NavLink to="/signin" className={css.signUpLink}>
+              Sign in
+            </NavLink>
+          </div>
     </div>
   );
 };

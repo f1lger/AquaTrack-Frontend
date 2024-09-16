@@ -7,11 +7,10 @@ import css from "./ResetPassword.module.css";
 import clsx from "clsx";
 import { resetPassword } from "../../redux/auth/operations.js";
 import { toast } from "react-toastify";
-import { useParams, useNavigate } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 
-// Yup схема для валідації форми
 const resetPasswordSchema = yup.object().shape({
   password: yup
     .string()
@@ -26,7 +25,7 @@ const resetPasswordSchema = yup.object().shape({
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = useParams(); // Отримуємо токен із URL
+  const { token } = useParams(); // токен із URL
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -56,7 +55,7 @@ const ResetPassword = () => {
     <div className={css.container}>
       <h2 className={css.title}>Reset Password</h2>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        {/* Поле для нового пароля */}
+        
         <label className={css.field}>
           <span className={css.label}>New Password: </span>
           <div className={css.inputField}>
@@ -86,7 +85,7 @@ const ResetPassword = () => {
           <p className={css.errorMessage}>{errors.password?.message}</p>
         </label>
 
-        {/* Поле для підтвердження пароля */}
+        
         <label className={css.field}>
           <span className={css.label}>Confirm Password: </span>
           <div className={css.inputField}>
@@ -122,6 +121,22 @@ const ResetPassword = () => {
           Reset Password
         </button>
       </form>
+      <div className={css.questionOnLogIn}>
+          <p className={css.questionText}>
+            Don`t have an account?{" "}
+            <NavLink to="/signup" className={css.signUpLink}>
+              Sign Up
+            </NavLink>
+          </p>
+        </div>
+        <div className={css.questionOnLogIn}>
+          <p className={css.questionText}>
+            Have you got an account?
+          </p>
+            <NavLink to="/signin" className={css.signUpLink}>
+              Sign in
+            </NavLink>
+          </div>
     </div>
   );
 };
