@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { registerUser } from "../../redux/auth/operations";
+import { register } from "../../redux/auth/operations";
 import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
@@ -33,8 +33,8 @@ function SignUpForm() {
         email: values.email,
         password: values.password,
       };
-      const result = await dispatch(registerUser(userInfo));
-      if (registerUser.fulfilled.match(result)) {
+      const result = await dispatch(register(userInfo));
+      if (register.fulfilled.match(result)) {
         console.log("registration succeed:", result.payload);
 		navigate('/tracker');
       } else {
