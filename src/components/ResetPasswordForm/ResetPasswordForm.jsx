@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import css from "./ResetPassword.module.css";
+import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { resetPassword } from "../../redux/auth/operations.js";
 import { toast } from "react-toastify";
@@ -22,7 +22,7 @@ const resetPasswordSchema = yup.object().shape({
     .required("Confirm password is required"),
 });
 
-const ResetPassword = () => {
+const ResetPasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token } = useParams(); // токен із URL
@@ -141,8 +141,8 @@ const ResetPassword = () => {
   );
 };
 
-ResetPassword.propTypes = {
+ResetPasswordForm.propTypes = {
   token: PropTypes.string.isRequired,
 };
 
-export default ResetPassword;
+export default ResetPasswordForm;

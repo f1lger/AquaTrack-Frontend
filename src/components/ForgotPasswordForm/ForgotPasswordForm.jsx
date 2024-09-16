@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { NavLink } from "react-router-dom";
-import css from "./ForgotPassword.module.css";
+import css from "./ForgotPasswordForm.module.css";
 import clsx from "clsx";
 import { sendPasswordResetEmail } from "../../redux/auth/operations.js";
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ const forgotPasswordSchema = yup.object().shape({
   email: yup.string().email("Invalid email format").required("Email is required"),
 });
 
-const ForgotPassword = () => {
+const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -66,8 +66,8 @@ const ForgotPassword = () => {
   );
 };
 
-ForgotPassword.propTypes = {
+ForgotPasswordForm.propTypes = {
   onSuccess: PropTypes.func,
 };
 
-export default ForgotPassword;
+export default ForgotPasswordForm;
