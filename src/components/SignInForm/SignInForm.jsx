@@ -47,9 +47,11 @@ const SignInForm = () => {
     const newEmail = email.toLowerCase();
     try {
       const response = await dispatch(login({ email: newEmail, password }));
-      if (response.errror) {
-        throw new Error(response.error.message);
+
+      if (response.error) {
+          throw new Error(response.error.message);
       }
+
       navigate("/tracker");
     } catch (error) {
       toast.error("Failed to login" + error.message);
@@ -61,6 +63,7 @@ const SignInForm = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <AuthFormLayout className={css.layout}>
       <Logo className={css.logo}></Logo>
