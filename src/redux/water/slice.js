@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addWater, deleteWater, fetchWater, updateWater } from "./operations";
+import {
+  addWater,
+  deleteWater,
+  fetchWater,
+  getMonthInfo,
+  updateWater,
+} from "./operations";
 
 const waterSlice = createSlice({
   name: "water",
@@ -50,7 +56,7 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         const index = state.waterInfo.dailyRecords.findIndex(
           (item) => item._id === action.payload.data._id
         );
@@ -59,23 +65,23 @@ const waterSlice = createSlice({
         }
       })
       .addCase(updateWater.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.loading = false;
+        state.error = action.error.message;
       })
       .addCase(deleteWater.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         const waterId = action.meta.arg;
         state.waterInfo.dailyRecords = state.waterInfo.dailyRecords.filter(
           (item) => item._id !== waterId
         );
       })
       .addCase(deleteWater.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.loading = false;
+        state.error = action.error.message;
       })
       .addCase(getMonthInfo.pending, (state) => {
         state.loading = true;
@@ -91,4 +97,4 @@ const waterSlice = createSlice({
 });
 
 export const waterReducer = waterSlice.reducer;
-export const { setActiveDay } = slice.actions;
+export const { setActiveDay } = waterSlice.actions;

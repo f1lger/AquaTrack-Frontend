@@ -9,10 +9,10 @@ import WaterModal from "../WaterModal/WaterModal.jsx";
 import Modal from "../Modal/Modal.jsx";
 // import DeleteWaterModal from " ";
 import { selectDailyRecords } from "../../redux/water/selectors.js";
-import Icon from "../../shared/Icon/icon.jsx";
 import { unixParser } from "../../shared/helpers/validationsHelper.js";
+import Icon from "../../shared/components/Icon/Icon.jsx";
 
-export const WaterItem = () => {
+export default function WaterItem() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedWaterId, setSelectedWaterId] = useState(null);
@@ -126,12 +126,12 @@ export const WaterItem = () => {
       )}
       {isDeleteModalOpen && (
         <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
-          <DeleteWaterModal
+          {/* <DeleteWaterModal
             onClose={handleCloseDeleteModal}
             waterId={selectedWaterId}
-          />
+          /> */}
         </Modal>
       )}
     </>
   );
-};
+}

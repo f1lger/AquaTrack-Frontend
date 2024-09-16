@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import instance from "../../API/axiosInstance";
 
 export const addWater = createAsyncThunk(
   "water/addWater",
-  async ({ amount, time }, { rejectWithValue }) => {
+  async ({ amount, date }, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/water", { amount, time });
+      const response = await axios.post("/water", { amount, date });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -43,7 +42,6 @@ export const deleteWater = createAsyncThunk(
   async (waterId, thunkAPI) => {
     try {
       const response = await axios.delete(`/water/${waterId}`);
-      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,11 +1,19 @@
 @import "../node_modules/modern-normalize/modern-normalize.css";
 @import url("../fonts/stylesheet.css");
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+body {
   font-family: "Poppins", system-ui;
   font-weight: 700;
   font-style: normal;
+  display: flex;
   margin: 0;
+  color: #323f47;
+  background-color: #fff;
 }
 
 :root {
@@ -53,6 +61,7 @@ a {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 img {

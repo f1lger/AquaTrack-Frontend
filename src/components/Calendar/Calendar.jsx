@@ -5,8 +5,9 @@ import { fetchWater } from "../../redux/water/operations";
 import { setActiveDay } from "../../redux/water/slice";
 
 import styles from "../Calendar/Calendar.module.css";
+import CalendarItem from "../CalendarItem/CalendarItem";
 
-export const Calendar = ({ dayslist }) => {
+const Calendar = ({ dayslist }) => {
   const currentDay = useSelector(selectCurrentDay);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,9 +28,9 @@ export const Calendar = ({ dayslist }) => {
     dispatch(setActiveDay(day));
   };
   return (
-    daysList?.length && (
+    dayslist?.length && (
       <ul className={styles.calendar}>
-        {daysList.map((i, index) => (
+        {dayslist.map((i, index) => (
           <li key={i.dateParam} onClick={() => handleClickOnDay(i.dateParam)}>
             <CalendarItem item={i} index={index} activeDay={activeDay} />
           </li>
@@ -38,3 +39,5 @@ export const Calendar = ({ dayslist }) => {
     )
   );
 };
+
+export default Calendar;

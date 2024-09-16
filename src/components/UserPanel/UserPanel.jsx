@@ -5,8 +5,9 @@ import UserBar from "../../components/UserBar/UserBar";
 
 import { useTranslation } from "react-i18next";
 import "../../translate/index.js";
+import { useSelector } from "react-redux";
 
-export const UserPanel = () => {
+const UserPanel = () => {
   const { t } = useTranslation();
   const user = useSelector(selectUser);
   return (
@@ -19,3 +20,5 @@ export const UserPanel = () => {
     </div>
   );
 };
+
+export default UserPanel;

@@ -17,7 +17,7 @@ function WelcomeSection() {
           <Link
             to="/signup"
             className={clsx(
-              css.button,
+              styles.button,
               styles.signUp,
               !isSignUpDisabled && styles.signUpHover,
               isSignUpDisabled && styles.signUpDisabled
@@ -30,8 +30,8 @@ function WelcomeSection() {
           <Link
             to="/signin"
             className={clsx(
-              css.button,
-              css.signIn,
+              styles.button,
+              styles.signIn,
               !isSignInDisabled && styles.signInHover,
               isSignInDisabled && styles.signInDisabled
             )}

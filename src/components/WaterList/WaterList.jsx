@@ -1,7 +1,7 @@
+import WaterItem from "../WaterItem/WaterItem";
 import styles from "../WaterList/WaterList.module.css";
-import WaterItem from "../../components/WaterItem/WaterItem";
 
-export const WaterList = () => {
+const WaterList = () => {
   return (
     <div className={styles.daily_info_container}>
       {" "}
@@ -9,3 +9,5 @@ export const WaterList = () => {
     </div>
   );
 };
+
+export default WaterList;

@@ -5,8 +5,9 @@ import Modal from "../Modal/Modal";
 import WaterModal from "../WaterModal/WaterModal";
 
 import styles from "../DailyInfo/DailyInfo.module.css";
+import WaterList from "../WaterList/WaterList";
 
-export const DailyInfo = () => {
+const DailyInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -25,3 +26,5 @@ export const DailyInfo = () => {
     </div>
   );
 };
+
+export default DailyInfo;

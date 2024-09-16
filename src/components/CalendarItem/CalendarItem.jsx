@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectDailyNorma } from "../../redux/auth/selectors";
 import styles from "../CalendarItem/CalendarItem.module.css";
 
-export const CalendarItem = ({ item, currentDay, index }) => {
+const CalendarItem = ({ item, currentDay, index }) => {
   const countWater = useSelector(selectDailyNorma);
   const calculateIntakePercentage = (totalDailyWater) => {
     if (!countWater) {
@@ -32,3 +32,5 @@ export const CalendarItem = ({ item, currentDay, index }) => {
     </div>
   );
 };
+
+export default CalendarItem;

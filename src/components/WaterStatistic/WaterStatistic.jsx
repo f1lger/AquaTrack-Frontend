@@ -7,7 +7,7 @@ import {
 } from "../../redux/water/selectors.js";
 import { useEffect, useState } from "react";
 import { getDayWaterAmount } from "../../API/apiOperations.js";
-import WaterLoader from "../../shared/components/WaterLoader/WaterLoader.jsx";
+import { WaterLoader } from "../../shared/components/WaterLoader/WaterLoader.jsx";
 
 export default function WaterStatistic() {
   const montWater = useSelector(selectMonthlyRecords);
