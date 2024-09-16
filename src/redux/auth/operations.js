@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
+axios.defaults.baseURL = 'http://localhost:5173/'
+/*"https://aquatrack-back-end.onrender.com/";*/
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -52,6 +53,34 @@ export const login = createAsyncThunk(
     } catch (err) {
       toast.error("Please sign up");
       return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+
+
+// Надсилання email для скидання пароля
+export const sendPasswordResetEmail = createAsyncThunk(
+  'auth/sendPasswordResetEmail',
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('/api/auth/forgot-password', { email });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Скидання пароля за токеном
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ token, password }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`/api/auth/reset-password/${token}`, { password });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );

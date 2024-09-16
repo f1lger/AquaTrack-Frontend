@@ -6,6 +6,9 @@ import SignInPage from "../../pages/SignInPage/SignInPage";
 import TrackerPage from "../../pages/TrackerPage/TrackerPage";
 import SharedLayout from "../SharedLayout/SharedLayout";
 
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import ResetPassword from '../ResetPassword/ResetPassword'
+
 function App() {
   return (
     <>
@@ -14,6 +17,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/tracker" element={<TrackerPage />} />
         </Routes>
       </SharedLayout>

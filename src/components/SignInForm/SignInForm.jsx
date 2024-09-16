@@ -110,6 +110,7 @@ const SignInForm = () => {
             </div>
             <p className={css.errorMessage}>{errors.password?.message}</p>
           </label>
+          
           <button type="submit" className={css.submit}>
             Sign in
           </button>
@@ -122,6 +123,14 @@ const SignInForm = () => {
             </NavLink>
           </p>
         </div>
+        <div className={css.forgotPasswordContainer}>
+          <p className={css.questionText}>
+            Forgot Password?
+          </p>
+            <NavLink to="/forgot-password" className={css.forgotPasswordLink}>
+              Reset
+            </NavLink>
+          </div>
       </div>
     </AuthFormLayout>
   );
