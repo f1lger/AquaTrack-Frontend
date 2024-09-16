@@ -9,8 +9,8 @@ const waterSlice = createSlice({
       dailyRecords: [],
     },
     monthlyRecords: [],
-    currentDay: new Date().toISOString().split('T')[0], 
-    currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`, 
+    currentDay: new Date().toISOString().split("T")[0],
+    currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
     loading: false,
     error: null,
   },
@@ -40,40 +40,39 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(updateWater.pending, state => {
+      .addCase(updateWater.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         const index = state.waterInfo.dailyRecords.findIndex(
-          item => item._id === action.payload.data._id,
+          (item) => item._id === action.payload.data._id
         );
         if (index !== -1) {
           state.waterInfo.dailyRecords[index] = action.payload.data;
         }
       })
       .addCase(updateWater.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.loading = false;
+        state.error = action.error.message;
       })
-      .addCase(deleteWater.pending, state => {
+      .addCase(deleteWater.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         const waterId = action.meta.arg;
         state.waterInfo.dailyRecords = state.waterInfo.dailyRecords.filter(
-          item => item._id !== waterId,
+          (item) => item._id !== waterId
         );
       })
-      .addCase(deleteWater.rejected,(state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-  }
+      .addCase(deleteWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const waterReducer = waterSlice.reducer;
-
