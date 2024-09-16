@@ -24,12 +24,12 @@ const authSlice = createSlice({
       })
       .addCase(fetchUser.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
-        state.user.dailyNorma = payload.dailyNorma || 1500;
+        state.user.dailyNorma = payload.dailyWater || 1500;
         state.loading = false;
       })
-      .addCase(fetchUser.rejected, (state, { payload }) => {
+      .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = payload;
+        state.error = action.error.message;
       });
   },
 });
