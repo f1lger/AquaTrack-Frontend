@@ -6,6 +6,7 @@ const initialState = {
     email: null,
     dailyNorma: 1500,
   },
+  isLogedIn: false,
   token: null,
   loading: false,
   error: null,
