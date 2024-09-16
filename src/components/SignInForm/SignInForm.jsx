@@ -12,8 +12,6 @@ import iconSprite from "../../icons/symbol-defs.svg";
 import Logo from "../Logo/Logo.jsx";
 import { toast } from "react-toastify";
 
-toast.configure();
-
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
 };
@@ -49,12 +47,12 @@ const SignInForm = () => {
       const response = await dispatch(login({ email: newEmail, password }));
 
       if (response.error) {
-          throw new Error(response.error.message);
+        throw new Error(response.error.message);
       }
 
       navigate("/tracker");
     } catch (error) {
-      toast.error("Failed to login" + error.message);
+      toast.error("Failed to login " + error.message);
     } finally {
       reset();
     }
@@ -97,6 +95,7 @@ const SignInForm = () => {
                 className={css.showPasswordBtn}
                 type="button"
                 onClick={handleClickShowPassword}
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
                   <svg className={css.icon}>
