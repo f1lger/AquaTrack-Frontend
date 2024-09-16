@@ -1,4 +1,3 @@
-import { WaterDetailedInfo } from "../../components/WaterDetailedInfo/WaterDetailedInfo";
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
 import Modal from "../../components/Modal/Modal.jsx";
 import WaterModal from "../../components/WaterModal/WaterModal";
