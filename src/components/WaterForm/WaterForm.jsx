@@ -147,7 +147,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
           type="number"
           step={50}
           min={0}
-          className={css.amountInput}
+          className={css.valueInput}
           {...register("waterVolume")}
           onChange={handleWaterVolumeChange}
         />
