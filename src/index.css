@@ -28,6 +28,14 @@ p {
   margin: 0;
 }
 
+:root {
+  --dark-accent: #2f2f2f;
+  --primary-dark: #323f47;
+  --accent-color: #9be1a0;
+  --light-background: #f0eff4;
+  --primary-white: #ffffff;
+}
+
 p:last-child {
   margin-bottom: 0;
 }

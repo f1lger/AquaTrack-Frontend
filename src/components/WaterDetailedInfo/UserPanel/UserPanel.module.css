@@ -1,0 +1,8 @@
+.container {
+  background-color: var(--primary-dark);
+  border-radius: 30px;
+}
+
+p {
+  color: var(--primary-white);
+}

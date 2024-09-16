@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .wrap {
   font-family: "Gilroy", sans-serif;
   font-weight: 400;
@@ -42,4 +43,13 @@
     flex-wrap: nowrap;
     justify-content: space-between;
   }
+=======
+.container {
+  background-color: var(--primary-dark);
+  border-radius: 30px;
+}
+
+p {
+  color: var(--primary-white);
+>>>>>>> Stashed changes
 }

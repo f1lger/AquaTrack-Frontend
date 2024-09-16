@@ -1,3 +1,4 @@
+import { WaterDetailedInfo } from "../../components/WaterDetailedInfo/WaterDetailedInfo";
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
 import Modal from "../../components/Modal/Modal.jsx";
 import WaterModal from "../../components/WaterModal/WaterModal";
@@ -5,6 +6,7 @@ import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedI
 
 const TrackerPage = () => {
   return (
+<<<<<<< Updated upstream
     <div>
       <WaterMainInfo openWaterModal={openWaterModal} />
 
@@ -22,6 +24,11 @@ const TrackerPage = () => {
       <Modal isOpen={isUserModalOpen} onClose={closeUserModal}></Modal>
 
       <Modal isOpen={isAuthModalOpen} onClose={closeAuthModal}></Modal>
+=======
+    <div className={styles.wrapper}>
+      <WaterMainInfo />
+      <WaterDetailedInfo />
+>>>>>>> Stashed changes
     </div>
   );
 };

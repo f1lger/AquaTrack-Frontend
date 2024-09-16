@@ -1,12 +1,9 @@
 .wrapper {
   display: flex;
-  flex-direction: column;
-  padding: 24px 16px 32px;
-  width: 343px;
+  flex-direction: row;
+  flex-wrap: wrap;
   height: auto;
   flex-shrink: 0;
-  border-radius: 30px;
-  background-color: #9be1a0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -19,22 +16,5 @@
 @media only screen and (min-width: 1440px) {
   .wrapper {
     width: 672px;
-  }
-}
-
-.title {
-  text-align: left;
-  font-size: 18px;
-  line-height: 1.11;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  margin-bottom: 78px;
-}
-
-@media only screen and (min-width: 768px) {
-  .title {
-    font-size: 24px;
-    line-height: 1;
-    margin-bottom: 101px;
   }
 }

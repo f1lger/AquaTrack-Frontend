@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .WaterDetailedInfoContainer {
   box-sizing: border-box;
   display: flex;
@@ -20,4 +21,12 @@
   .WaterDetailedInfoContainer {
     width: 672px;
   }
+=======
+.container {
+  /* display: flex; */
+  background-color: var(--light-background);
+  border-radius: 30px;
+  padding: 24px 16px 32px;
+  margin-left: 32px;
+>>>>>>> Stashed changes
 }
