@@ -7,15 +7,17 @@ axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
+const clearAuthHeader = (token) => {
+  axios.defaults.headers.common["Authorization"] = "";
+};
+
 export const register = createAsyncThunk(
   "auth/register",
   async (userInfo, thunkAPI) => {
     try {
       const response = await axios.post("users/register", userInfo);
       console.log("response data", response.data);
-      setAuthHeader(response.data.token);
-
-      return response.data;
+      return response.data.data;
     } catch (err) {
       console.error("Register error:", err);
       console.error("Register error status:", err.response?.status);
@@ -41,7 +43,7 @@ export const fetchUser = createAsyncThunk(
 
 export const requestSignIn = async (formData) => {
   const { data } = await axios.post("/users/login", formData);
-  setAuthHeader(data.token);
+  setAuthHeader(data.data.accessToken);
   return data;
 };
 
@@ -49,7 +51,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (formData, thunkAPI) => {
     try {
-      const data = await requestSignIn(formData);
+      const { data } = await requestSignIn(formData);
       return data;
     } catch (err) {
       toast.error("Please sign up");
