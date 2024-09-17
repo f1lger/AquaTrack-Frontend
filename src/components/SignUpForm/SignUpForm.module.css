@@ -1,0 +1,138 @@
+.wrapper {
+  margin: 126px auto 170px;
+}
+
+.title {
+  color: #323f47;
+  margin-bottom: 32px;
+
+  /* Mobile/H2 */
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 100% */
+  letter-spacing: -0.32px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.label {
+  display: inline-block;
+  color: #2f2f2f;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.inputField {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  font-family: Poppins, sans-serif;
+  color: rgba(47, 47, 47, 0.8);
+  outline: none;
+  background-color: transparent;
+}
+
+.inputLastField {
+  display: flex;
+  margin-bottom: 32px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  font-family: Poppins, sans-serif;
+  color: rgba(47, 47, 47, 0.8);
+  outline: none;
+  background-color: transparent;
+}
+
+.inputField::placeholder {
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.errorMessage {
+  color: #ef5050;
+  margin-bottom: 20px;
+  text-align:inherit;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.14px;
+}
+
+.errorMessageConfirm{
+	color: #ef5050;
+	margin-top: -12px;
+	margin-bottom: 20px;
+	text-align:inherit;
+  
+	font-family: Poppins;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 18px; /* 128.571% */
+	letter-spacing: -0.14px;
+  }
+
+.submitButton {
+  background-color: #9be1a0;
+  color: #323f47;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.16px;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #87d28d;
+}
+
+.redirectTitle {
+  color: rgba(47, 47, 47, 0.5);
+  text-align: center;
+  margin-top: 16px;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.14px;
+}
+
+.accent {
+  color: #2f2f2f;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  text-decoration-line: underline;
+}
