@@ -32,6 +32,7 @@ const handleFulfilled = (state, { payload }) => {
   state.user.avatar = payload.avatar;
   state.loading = false;
 };
+// console.log(handleFulfilled);
 
 const handleError = (state, { payload }) => {
   state.loading = false;
@@ -57,7 +58,7 @@ const authSlice = createSlice({
       .addCase(login.rejected, handleError)
       .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, (state) => {
-        state.token = null
+        state.token = null;
       })
       .addCase(logout.rejected, handleError);
   },

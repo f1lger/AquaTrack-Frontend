@@ -27,12 +27,14 @@ export const register = createAsyncThunk(
 
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
+      const state = thunkAPI.getState();
+      setAuthHeader(state.auth.token);
       const response = await axios.get("/users/info");
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
