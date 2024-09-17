@@ -5,6 +5,7 @@ import SignUpPage from "../../pages/SignUpPage/SignUpPage";
 import SignInPage from "../../pages/SignInPage/SignInPage";
 import TrackerPage from "../../pages/TrackerPage/TrackerPage";
 import SharedLayout from "../SharedLayout/SharedLayout";
+import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/tracker" element={<TrackerPage />} />
+          <Route path="/settings" element={<UserSettingsForm/>} />
         </Routes>
       </SharedLayout>
     </>

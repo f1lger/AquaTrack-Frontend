@@ -5,6 +5,8 @@ const initialState = {
   user: {
     email: null,
     dailyNorma: 1500,
+    avatar: '../../photo/desk/woman-avatar-2x.webp',
+    name: '',
   },
   isLogedIn: false,
   token: null,

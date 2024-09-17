@@ -57,3 +57,20 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.put("users/update", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
