@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
- import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { MdOutlineFileUpload } from "react-icons/md";
 import css from "./UserSettingsForm.module.css";
 import svg from "../../assets/react.svg";
@@ -11,15 +11,15 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
- import { ModalBtn } from "../ModalBtn/Modalbtn";
- import photo from "../../photo/desk/woman-avatar-2x.webp";
+import { ModalBtn } from "../ModalBtn/Modalbtn";
+import photo from "../../photo/desk/woman-avatar-2x.webp";
 import { useDispatch, useSelector } from "react-redux";
- import { updateUser } from "../../redux/auth/operations";
- import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
+import { updateUser } from "../../redux/auth/operations";
+import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
-
+// Схема валідації через yup
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
   gender: yup.string().oneOf(["male", "female"]).notRequired(),
@@ -51,7 +51,7 @@ const UserSettingsForm = ({ onClose }) => {
   const user = useSelector(selectUser);
   const avatarPhoto = useSelector(selectUserAvatar);
 
-  const [genderLocal, setGender] = useState("");
+  const [genderLocal, setGender] = useState(user?.gender || "");
   const [isAvatarSelected, setIsAvatarSelected] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState(
     avatarPhoto ? avatarPhoto : photo
@@ -67,23 +67,24 @@ const UserSettingsForm = ({ onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: user.name || "",
-      email: user.email || "",
-      gender: user.gender,
-      weight: user.weight || "",
-      sportsActivity: user.sportsActivity || "",
-      waterRate: user.waterRate || "",
+      name: user?.name || "",
+      email: user?.email || "",
+      gender: user?.gender || "",
+      weight: user?.weight || "",
+      sportsActivity: user?.sportsActivity || "",
+      waterRate: user?.waterRate || "",
     },
   });
 
+  // Оновлення форми після завантаження користувача
   useEffect(() => {
     reset({
-      name: user.name || "",
-      email: user.email || "",
-      gender: user.gender,
-      weight: user.weight || "",
-      sportsActivity: user.sportsActivity || "",
-      waterRate: user.waterRate || "",
+      name: user?.name || "",
+      email: user?.email || "",
+      gender: user?.gender || "",
+      weight: user?.weight || "",
+      sportsActivity: user?.sportsActivity || "",
+      waterRate: user?.waterRate || "",
     });
   }, [user, reset]);
 
@@ -150,13 +151,8 @@ const UserSettingsForm = ({ onClose }) => {
       }
     }
   };
-    
-UserSettingsForm.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
-    
-    
-return (
+
+  return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
         {avatarPreview && (
@@ -194,7 +190,7 @@ return (
         <p className={css.titleText}> Your gender identity</p>
         <RadioGroup
           row
-          value={genderLocal ? genderLocal : user.gender}
+          value={genderLocal}
           onChange={(e) => {
             setGender(e.target.value);
             setValue("gender", e.target.value);
@@ -306,6 +302,10 @@ return (
       <ModalBtn text={"Save"} />
     </form>
   );
+};
+
+UserSettingsForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default UserSettingsForm;
