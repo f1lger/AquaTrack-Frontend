@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-// import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -47,35 +45,17 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     handleSubmit,
     formState: { errors },
     clearErrors,
-    // reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
     mode: "onChange",
   });
 
-  // useEffect(() => {
-  //   if (operationType !== "add" && item) {
-  //     reset({
-  //       date: item.date,
-  //       time: new Date(item.date).toLocaleTimeString("en-GB", {
-  //         hour: "2-digit",
-  //         minute: "2-digit",
-  //         hour12: false,
-  //       }),
-  //       waterVolume: item.waterVolume,
-  //     });
-  //   }
-  // }, [operationType, item, reset]);
-
   const onSubmit = async (data) => {
-    console.log("You on submit");
-
     const date = new Date(data.date);
     const [hours, minutes] = data.time.split(":");
     date.setHours(hours);
     date.setMinutes(minutes);
-
     const water = {
       amount: data.waterVolume,
       date: date.toISOString(),
@@ -89,6 +69,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       closeWaterModal();
     } else {
       alert("Failed to add water record!");
+      closeWaterModal();
     }
   };
 
