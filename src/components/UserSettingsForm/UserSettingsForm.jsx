@@ -19,7 +19,7 @@ import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
-// Схема валідації через yup
+
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
   gender: yup.string().oneOf(["male", "female"]).notRequired(),
@@ -76,7 +76,7 @@ const UserSettingsForm = ({ onClose }) => {
     },
   });
 
-  // Оновлення форми після завантаження користувача
+
   useEffect(() => {
     reset({
       name: user?.name || "",
@@ -299,7 +299,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <ModalBtn text={"Save"} />
+      <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} />
     </form>
   );
 };
