@@ -7,9 +7,9 @@ axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
-const clearAuthHeader = (token) => {
-  axios.defaults.headers.common["Authorization"] = "";
-};
+// const clearAuthHeader = (token) => {
+//   axios.defaults.headers.common["Authorization"] = "";
+// };
 
 export const register = createAsyncThunk(
   "auth/register",
