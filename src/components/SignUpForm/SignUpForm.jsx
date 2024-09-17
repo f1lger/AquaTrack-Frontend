@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
@@ -27,7 +27,7 @@ function SignUpForm() {
       .required("Please, repeat your password"),
   });
 
-  const handleSignUp = async (values, { resetForm} ) => {
+  const handleSignUp = async (values, { resetForm }) => {
     try {
       const userInfo = {
         email: values.email,
@@ -36,7 +36,7 @@ function SignUpForm() {
       const result = await dispatch(register(userInfo));
       if (register.fulfilled.match(result)) {
         console.log("registration succeed:", result.payload);
-		navigate('/tracker');
+        navigate("/tracker");
       } else {
         console.log("registration failed:", result.payload);
 
@@ -120,7 +120,9 @@ function SignUpForm() {
       </Formik>
       <h3 className={styles.redirectTitle}>
         Already have an account?{" "}
-        {<span className={styles.accent}>Sign In</span>}
+        <NavLink to="/signin" className={styles.accent}>
+          Sign In
+        </NavLink>
       </h3>
     </div>
   );
