@@ -1,11 +1,11 @@
-import styles from "../WaterDetailedInfo/WaterDetailedInfo.module.css";
-import UserPanel from "../../components/UserPanel/UserPanel";
-import DailyInfo from "../../components/DailyInfo/DailyInfo";
-import MonthInfo from "../../components/MonthInfo/MonthInfo";
+import styles from "./WaterDetailedInfo.module.css";
+import MonthInfo from "../MonthInfo/MonthInfo";
+import DailyInfo from "../DailyInfo/DailyInfo";
+import UserPanel from "../UserPanel/UserPanel";
 
 export default function WaterDetailedInfo() {
   return (
-    <div className={styles.WaterDetailedInfoContainer}>
+    <div className={styles.WaterDetailedInfo}>
       <UserPanel />
       <DailyInfo />
       <MonthInfo />

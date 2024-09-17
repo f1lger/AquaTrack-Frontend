@@ -1,10 +1,10 @@
 import { useState } from "react";
 import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
-import ChooseDate from "../ChooseDate/ChooseDate";
+// import ChooseDate from "../Calendar/ChooseDate/ChooseDate";
 import Modal from "../Modal/Modal";
-import WaterModal from "../WaterModal/WaterModal";
+// import WaterModal from "../../WaterModal/WaterModal";
 
-import styles from "../DailyInfo/DailyInfo.module.css";
+import styles from "./DailyInfo.module.css";
 import WaterList from "../WaterList/WaterList";
 
 const DailyInfo = () => {
@@ -13,15 +13,11 @@ const DailyInfo = () => {
   return (
     <div className={styles.container}>
       <div className={styles.container_daily_info}>
-        <ChooseDate />
+        {/* <ChooseDate /> */}
         <AddWaterBtn WaterDetailedInfoStyles={true} addForActiveDay={true} />
       </div>
 
-      {isOpen && (
-        <Modal>
-          <WaterModal />
-        </Modal>
-      )}
+      {isOpen && <Modal>{/* <WaterModal /> */}</Modal>}
       <WaterList />
     </div>
   );

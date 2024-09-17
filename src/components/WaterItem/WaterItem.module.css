@@ -1,57 +1,37 @@
-.water_list {
-  display: flex;
-  gap: 17px;
-  overflow-x: auto;
-  padding-left: 0;
-  margin-bottom: 0;
-  padding-bottom: 24px;
-  margin-top: 24px;
-}
-
-.modalClsBtn {
-  top: 20px;
-}
-
-.water_item {
-  flex: none;
-  background-color: var(--main-white);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-shadow: 0 2px 4px var(--shadow);
-}
-
-.text_ {
-  font-family: var(--font-family);
-  color: var(--main-dark);
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.text_Ua {
-  font-family: var(--font-family);
-  color: var(--main-dark);
-  font-size: 14px;
-  line-height: 18px;
-}
-
 .water_item_content {
   display: flex;
+  width: 149px;
+  height: 74px;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  background-color: var(--main-white);
+  border-radius: 10px;
+  padding: 14px;
+  gap: 3px;
+}
+.water_info {
+  width: fit-content;
+}
+.water_amount {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
-.water_item strong {
-  font-size: 16px;
-  color: var(--main);
-}
-
-.date {
+.water_date {
   font-size: 12px;
-  color: var(--main-text);
-  margin-top: 5px;
+  line-height: 1;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.water_glass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  fill: var(--accent-hover);
 }
 
 .editButton,
@@ -59,65 +39,67 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+  transform: scale(1.1);
 }
 
 .container_buttons {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
-.icon-pen {
+.icon_action {
   fill: none;
-  stroke: var(--main);
-  stroke-width: 2px;
+  stroke: var(--main-grey);
 }
 
-.icon-trash {
+.icon_action {
   fill: none;
-  stroke: var(--main);
-  stroke-width: 2px;
+  stroke: var(--main-grey);
 }
 
-.icon_water_glass {
+.icon_action {
+  transition: opacity 0.3s ease;
+}
+
+.icon_action:hover {
+  opacity: 0.8;
+  fill: var(--accent);
+}
+.icon_water-glass {
   fill: var(--accent);
   stroke: var(--accent);
   stroke-width: 0;
 }
 
-.container_without_water {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 24px;
-  margin-bottom: 30px;
-  background-color: var(--main-white);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-shadow: 0 2px 4px var(--shadow);
-  height: 89px;
-}
-
-/* scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  transition: all var(--transition);
-}
-
-::-webkit-scrollbar-track {
-  background: var(--main-white);
-  border-radius: 10px;
-}
-
-/* thumb */
-::-webkit-scrollbar-thumb {
-  background: var(--main-dark);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--main-grey);
+@media screen and (min-width: 768px) {
+  .water_item_content {
+    width: 191px;
+    height: 86px;
+    padding: 0 20px;
+  }
+  .icon_water_glass {
+    width: 44px;
+    height: 45px;
+  }
+  .water_info {
+    width: fit-content;
+  }
+  .water_amount {
+    font-size: 15px;
+    line-height: 1.49;
+    margin-bottom: 0;
+  }
+  .water_date {
+    line-height: 1.87;
+  }
+  .icon_action {
+    width: 16px;
+    height: 16px;
+  }
 }

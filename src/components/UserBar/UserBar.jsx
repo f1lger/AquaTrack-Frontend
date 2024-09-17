@@ -1,8 +1,8 @@
-import { IoIosArrowDown } from "react-icons/io";
 import { Popover } from "react-tiny-popover";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import Icon from "../../shared/components/Icon/Icon";
 
 import { selectUser } from "../../redux/user/selectors";
 import { RxAvatar } from "react-icons/rx";
@@ -22,7 +22,7 @@ export default function UserBar() {
   const user = useSelector(selectUser);
 
   return (
-    <>
+    <div className={styles.userBarContainer}>
       <Popover
         isOpen={isPopoverOpen}
         positions={["bottom"]}
@@ -43,16 +43,23 @@ export default function UserBar() {
         >
           <p className={styles.name}>{user.name ? user.name : "User"}</p>
           {user.avatarURL ? (
-            <img className={styles.img} src={user.avatarURL} alt="avatar" />
+            <img
+              className={styles.img}
+              rc={user.avatarURL || "src/photo/desk/woman-avatar-1x.webp"}
+              alt="avatar"
+            />
           ) : (
             <RxAvatar className={styles.iconAvatar} />
           )}
-
-          <IoIosArrowDown
-            className={clsx(css.icon, isPopoverOpen && css.iconUp)}
+          <Icon
+            id="icon-arrow-down"
+            width="18"
+            height="18"
+            styles={styles.arrUpIcon}
           />
         </button>
       </Popover>
+
       {isSettingsModalOpen && (
         <Modal
           btnClassName={styles.settingsClose}
@@ -76,6 +83,6 @@ export default function UserBar() {
           <LogOutModal isModalOpen={setIsLogOutModalOpen} />
         </Modal>
       )}
-    </>
+    </div>
   );
 }

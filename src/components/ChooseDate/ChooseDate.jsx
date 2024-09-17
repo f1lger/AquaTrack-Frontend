@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-import { useTranslation } from "react-i18next";
-import "../../translate/index.js";
+// import { useTranslation } from "react-i18next";
 import { selectCurrentDay } from "../../redux/water/selectors";
-import styles from "../ChooseDate/ChooseDate.module.css";
+import styles from "./ChooseDate.module.css";
 
 export default function ChooseDate() {
   const [currentDate, setCurrentDate] = useState("");
@@ -29,8 +28,8 @@ export default function ChooseDate() {
     <div>
       {" "}
       <h2
-        className={clsx(css.currentDate, {
-          [css.currentDateUa]: i18n.language === "ua",
+        className={clsx(styles.currentDate, {
+          [styles.currentDateUa]: i18n.language === "ua",
         })}
       >
         {currentDate}

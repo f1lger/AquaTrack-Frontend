@@ -1,3 +1,21 @@
+.userBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* .userBarWrapper {
+  display: flex;
+  background-color: var(--main-grey);
+  border-radius: 30px;
+  min-width: 137px;
+  height: 50px;
+  align-items: center;
+  padding: 6px 12px;
+} */
+
 .btn {
   display: flex;
   border-radius: 30px;
@@ -6,7 +24,7 @@
   padding: 6px 12px;
   height: 50px;
   gap: 8px;
-  background-color: var(--main);
+  background-color: var(--main-grey);
   border: none;
 }
 

@@ -6,6 +6,7 @@ import {
   getMonthInfo,
   updateWater,
 } from "./operations";
+import { getISOStringDate } from "../../shared/helpers/getISOStringDate";
 
 const waterSlice = createSlice({
   name: "water",
@@ -15,6 +16,7 @@ const waterSlice = createSlice({
       dailyRecords: [],
     },
     monthlyRecords: [],
+    activeDay: getISOStringDate(),
     currentDay: new Date().toISOString().split("T")[0],
     currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
     loading: false,

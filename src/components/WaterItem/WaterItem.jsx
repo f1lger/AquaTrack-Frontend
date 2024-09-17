@@ -1,18 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-import { useTranslation } from "react-i18next";
-import "../../translate/index.js";
+import styles from "./WaterItem.module.css";
+import Icon from "../../shared/components/Icon/Icon";
+import Modal from "../Modal/Modal";
+import { selectDailyRecords } from "../../redux/water/selectors";
+import { unixParser } from "../../shared/helpers/validationsHelper";
 
-import styles from "../WaterItem/WaterItem.module.css";
-import WaterModal from "../WaterModal/WaterModal.jsx";
-import Modal from "../Modal/Modal.jsx";
-// import DeleteWaterModal from " ";
-import { selectDailyRecords } from "../../redux/water/selectors.js";
-import { unixParser } from "../../shared/helpers/validationsHelper.js";
-import Icon from "../../shared/components/Icon/Icon.jsx";
-
-export default function WaterItem() {
+const WaterItem = ({ water }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedWaterId, setSelectedWaterId] = useState(null);
@@ -42,15 +38,15 @@ export default function WaterItem() {
   return (
     <>
       {dataWaterOfDay.length > 0 ? (
-        <ul className={styles.water_list}>
+        <ul className={styles.list_water_items}>
           {dataWaterOfDay.map((water) => (
             <li key={water._id} className={styles.water_item}>
               <div className={styles.water_item_content}>
                 <Icon
-                  className={styles.icon_water_glass}
+                  className={styles.icon_glass_water}
                   width={44}
                   height={45}
-                  id="icon-water-glass-fill"
+                  id="icon-water-glass"
                 />
                 <div>
                   <strong>
@@ -93,14 +89,14 @@ export default function WaterItem() {
       ) : (
         <div className={styles.container_without_water}>
           <Icon
-            className={styles.icon_water_glass}
+            className={styles.water_glass}
             width={44}
             height={45}
             id="icon-water-glass-fill"
           />
           <p
-            className={clsx(css.text_, {
-              [css.text_Ua]: i18n.language === "ua",
+            className={clsx(styles.text_, {
+              [styles.text_Ua]: i18n.language === "ua",
             })}
           >
             {t("Not found")}
@@ -115,13 +111,13 @@ export default function WaterItem() {
             setIsEditModalOpen(false);
           }}
         >
-          <WaterModal
+          {/* <WaterModal
             operationType="edit"
             isOpen={setIsEditModalOpen}
             waterId={selectedWaterId}
             waterAmount={selectedWaterAmount}
             waterTime={selectedWaterTime}
-          />
+          /> */}
         </Modal>
       )}
       {isDeleteModalOpen && (
@@ -134,4 +130,6 @@ export default function WaterItem() {
       )}
     </>
   );
-}
+};
+
+export default WaterItem;

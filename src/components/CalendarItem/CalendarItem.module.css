@@ -8,14 +8,14 @@
   border-radius: 50%;
   height: 28px;
   width: 28px;
-  color: var(--main);
+  color: var(--main-grey);
   font-family: Poppins;
   font-size: 14px;
   font-weight: 700;
   line-height: 18px;
   letter-spacing: -1%;
   border: none;
-  background: #d5d9da;
+  background: #323f4720;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,12 +24,13 @@
   background-color: var(--main-white);
 }
 .activeButton {
-  background: var(--main);
+  background: var(--main-grey);
+  opacity: 100%;
   color: var(--accent);
 }
 
 .label {
-  color: #2f2f2f99;
+  color: var(--main-dark);
   font-size: 10px;
   font-weight: 400;
   line-height: 10px;

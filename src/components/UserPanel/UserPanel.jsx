@@ -11,9 +11,9 @@ const UserPanel = () => {
   const { t } = useTranslation();
   const user = useSelector(selectUser);
   return (
-    <div className={css.wrap}>
-      <p className={css.title}>
-        {t("Hello user")},{" "}
+    <div className={styles.wrap}>
+      <p className={styles.title}>
+        {t("Hello")},{" "}
         <span className={styles.name}>{user.name ? user.name : "User"}!</span>
       </p>
       <UserBar />

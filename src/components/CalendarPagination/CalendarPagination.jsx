@@ -1,58 +1,124 @@
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import clsx from "clsx";
 import styles from "./CalendarPagination.module.css";
 import Icon from "../../shared/components/Icon/Icon";
-import { useTranslation } from "react-i18next";
+import { fetchWater } from "../../redux/water/operations";
+import { setActiveDay } from "../../redux/water/slice";
+import { getISOStringDate } from "../../shared/helpers/getISOStringDate";
+import { selectActiveDay, selectCurrentDay } from "../../redux/water/selectors";
 
-import "../../translate/index.js";
-import clsx from "clsx";
+const CalendarPagination = ({ toggleChart }) => {
+  const dispatch = useDispatch();
+  const activeDay = useSelector(selectCurrentDay);
 
-export default function CalendarPagination({
-  isOpen,
-  setIsOpen,
-  handleNextMonth,
-  handlePrevMonth,
-  date,
-}) {
-  const { t, i18n } = useTranslation();
-  const isPrevMonthDisabled =
-    new Date(date).getTime() < new Date("2023-02-01T00:00:00.000Z").getTime();
-  const monthNames = [
-    t("Month january"),
-    t("Month february"),
-    t("Month march"),
-    t("Month april"),
-    t("Month may"),
-    t("Month june"),
-    t("Month july"),
-    t("Month august"),
-    t("Month september"),
-    t("Month october"),
-    t("Month november"),
-    t("Month december"),
-  ];
+  console.log(activeDay);
+
+  useEffect(() => {
+    const [activeFullDate] = activeDay.split("T");
+    const [activeYear, activeMonth, activeDay] = activeFullDate.split("-");
+
+    const date = `${activeYear}-${activeMonth}-${activeDay}`;
+    dispatch(fetchWater(date));
+  }, [activeDay]);
+
+  const convertedActiveDay = new Date(activeDay);
+
+  const handlePrevMonth = () => {
+    dispatch(
+      setActiveDay(
+        getISOStringDate(
+          new Date(
+            convertedActiveDay.setMonth(convertedActiveDay.getMonth() - 1)
+          )
+        )
+      )
+    );
+  };
+
+  const handleNextMonth = () => {
+    let nextDate = new Date(
+      convertedActiveDay.setMonth(convertedActiveDay.getMonth() + 1)
+    );
+
+    const currentDate = new Date();
+
+    const isValidDate =
+      nextDate.getFullYear() <= currentDate.getFullYear() &&
+      nextDate.getMonth() <= currentDate.getMonth() &&
+      nextDate.getDate() <= currentDate.getDate();
+
+    if (isValidDate) {
+      dispatch(setActiveDay(getISOStringDate(nextDate)));
+    } else {
+      dispatch(setActiveDay(getISOStringDate(currentDate)));
+    }
+  };
+
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+
+  const isLastMonth =
+    currentMonth === convertedActiveDay.getMonth() &&
+    currentYear === convertedActiveDay.getFullYear();
+
+  const getMonthName = (month) => {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return monthNames[month];
+  };
 
   return (
-    <div className={css.paginationContainer}>
-      <div className={css.buttonsContainer}>
+    <div className={styles.paginationContainer}>
+      <div className={styles.buttonsContainer}>
         <button
-          className={css.button}
-          disabled={isPrevMonthDisabled}
           onClick={handlePrevMonth}
+          type="button"
+          className={styles.button}
         >
-          <FaAngleLeft />
+          <Icon
+            className={clsx(styles.icon)}
+            id="icon-arrow-left"
+            height={20}
+            width={20}
+          />
         </button>
-        <p
-          className={clsx(css.title, { [css.titleUa]: i18n.language === "ua" })}
+
+        <h3 className={styles.title}>
+          {getMonthName(convertedActiveDay.getMonth())},{" "}
+          {convertedActiveDay.getFullYear()}
+        </h3>
+
+        <button
+          onClick={handleNextMonth}
+          type="button"
+          className={styles.button}
+          disabled={isLastMonth}
         >
-          {monthNames[date.getMonth()]}, {date.getFullYear()}
-        </p>
-        <button className={styles.button} onClick={handleNextMonth}>
-          <FaAngleRight />
+          <Icon
+            className={clsx(styles.icon)}
+            id="icon-arrow-right"
+            height={20}
+            width={20}
+          />
         </button>
       </div>
-      <button className={styles.button} type="button" onClick={setIsOpen}>
+
+      <button className={styles.button} type="button" onClick={toggleChart}>
         <Icon
-          className={clsx(css.icon, !isOpen && css.iconIsNotActive)}
+          className={clsx(styles.icon)}
           id="icon-pie-chart-02"
           height={20}
           width={20}
@@ -60,4 +126,6 @@ export default function CalendarPagination({
       </button>
     </div>
   );
-}
+};
+
+export default CalendarPagination;
