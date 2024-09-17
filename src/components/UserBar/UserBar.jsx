@@ -5,13 +5,21 @@ import { IoIosArrowDown } from "react-icons/io";
 import { selectAvatar } from "../../redux/auth/selectors";
 import defaultAvatar from "../../photo/mob/default-user-avatar-1x.webp";
 import { useRef, useState } from "react";
+import Modal from "../Modal/Modal";
 export default function UserBar({ userName }) {
   const userAvatar = useSelector(selectAvatar);
-  const userBar = useRef()
+  const userBar = useRef();
   const [popoverBarModal, setPopoverBarModal] = useState(false);
   const changePopoverBarModal = () =>
     setPopoverBarModal(popoverBarModal ? false : true);
+  const [settingModal, setSettingModal] = useState(false);
+  const [loguotModal, setLoguotModal] = useState(false);
 
+  const openSettingModal = () => setSettingModal(true);
+  const closeSettingModal = () => setSettingModal(false);
+
+  const openLoguotModal = () => setLoguotModal(true);
+  const closeLoguotModal = () => setLoguotModal(false);
   return (
     <div>
       <div
@@ -29,7 +37,11 @@ export default function UserBar({ userName }) {
       </div>
       <UserBarPopover
         openModal={popoverBarModal}
+        openLoguotModal={openLoguotModal}
+        openSettingModal={openSettingModal}
       />
+      <Modal isOpen={loguotModal} onClose={setLoguotModal}></Modal>
+      <Modal isOpen={settingModal} onClose={closeSettingModal}></Modal>
     </div>
   );
 }
