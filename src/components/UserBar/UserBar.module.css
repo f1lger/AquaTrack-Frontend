@@ -1,0 +1,13 @@
+.UserBar {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 30px;
+  background: #323F47;
+  color: #fff;
+  margin-bottom: 4px;
+  z-index: 1;
+}
