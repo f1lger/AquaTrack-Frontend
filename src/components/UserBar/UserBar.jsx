@@ -6,6 +6,7 @@ import { selectAvatar } from "../../redux/auth/selectors";
 import defaultAvatar from "../../photo/mob/default-user-avatar-1x.webp";
 import { useRef, useState } from "react";
 import Modal from "../Modal/Modal";
+import LogOutModal from "../LogOutModal/LogOutModal";
 export default function UserBar({ userName }) {
   const userAvatar = useSelector(selectAvatar);
   const userBar = useRef();
@@ -40,7 +41,9 @@ export default function UserBar({ userName }) {
         openLoguotModal={openLoguotModal}
         openSettingModal={openSettingModal}
       />
-      <Modal isOpen={loguotModal} onClose={setLoguotModal}></Modal>
+      <Modal isOpen={loguotModal} onClose={closeLoguotModal}>
+        <LogOutModal onClose={closeLoguotModal} />
+      </Modal>
       <Modal isOpen={settingModal} onClose={closeSettingModal}></Modal>
     </div>
   );
