@@ -23,13 +23,13 @@ const handlePending = (state) => {
 };
 
 const handleFulfilled = (state, { payload }) => {
-  state.user.email = payload.data.email;
-  state.user.dailyNorma = payload.data.Water || 1500;
-  state.user.name = payload.data.name;
-  state.user.gender = payload.data.gender;
-  state.user.weight = payload.data.weight;
-  state.user.sportTime = payload.data.sportTime;
-  state.user.avatar = payload.data.avatar;
+  state.user.email = payload.email;
+  state.user.dailyNorma = payload.dailyWater || 1500;
+  state.user.name = payload.name;
+  state.user.gender = payload.gender;
+  state.user.weight = payload.weight;
+  state.user.sportTime = payload.sportTime;
+  state.user.avatar = payload.avatar;
   state.loading = false;
 };
 
