@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register, login } from "../../redux/auth/operations";
@@ -132,7 +132,9 @@ function SignUpForm() {
       </Formik>
       <h3 className={styles.redirectTitle}>
         Already have an account?{" "}
-        {<span className={styles.accent}>Sign In</span>}
+        <NavLink to="/signin" className={styles.accent}>
+          Sign In
+        </NavLink>
       </h3>
     </div>
   );

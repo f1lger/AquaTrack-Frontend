@@ -7,7 +7,7 @@ axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
-const clearAuthHeader = (token) => {
+const clearAuthHeader = () => {
   axios.defaults.headers.common["Authorization"] = "";
 };
 
@@ -55,3 +55,12 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/users/logout");
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
