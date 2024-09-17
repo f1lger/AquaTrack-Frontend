@@ -38,6 +38,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         }),
         waterVolume: 50,
       };
+
   const {
     register,
     setValue,
@@ -76,20 +77,19 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     date.setMinutes(minutes);
 
     const water = {
-      waterVolume: data.waterVolume,
+      amount: data.waterVolume,
       date: date.toISOString(),
     };
 
     const response = isAddWater
       ? await dispatch(addWater(water))
-      : await dispatch(updateWater([item._id, water]));
-    console.log(response);
+      : await dispatch(updateWater({ waterId: item._id, ...water }));
 
-    response.meta.requestStatus === "fullfield"
-      ? closeWaterModal()
-      : alert("Failed to add water record!."),
+    if (response.meta.requestStatus === "fulfilled") {
       closeWaterModal();
-    return;
+    } else {
+      alert("Failed to add water record!");
+    }
   };
 
   const plusWaterVolume = () => {
@@ -111,6 +111,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       clearErrors("waterVolume");
     }
   };
+
   return (
     <>
       <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
