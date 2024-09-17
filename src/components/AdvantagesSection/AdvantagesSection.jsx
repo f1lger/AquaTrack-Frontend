@@ -38,7 +38,7 @@ function AdvantagesSection() {
           />
         </div>
         <p>
-          Our happy <span className={styles.accent}>customers</span>
+          Our <span className={styles.accent}>happy </span>customers
         </p>
       </div>
       <ul className={styles.infoContainer}>
