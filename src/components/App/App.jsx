@@ -5,7 +5,7 @@ import SignUpPage from "../../pages/SignUpPage/SignUpPage";
 import SignInPage from "../../pages/SignInPage/SignInPage";
 import TrackerPage from "../../pages/TrackerPage/TrackerPage";
 import SharedLayout from "../SharedLayout/SharedLayout";
-import AddWaterBtn from "../AddWaterBtn/AddWaterBtn";
+
 
 function App() {
   return (
@@ -16,10 +16,8 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/tracker" element={<TrackerPage />} />
-        </Routes>
-        
+        </Routes>       
       </SharedLayout>
-      <AddWaterBtn/>
     </>
   );
 }

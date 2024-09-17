@@ -21,7 +21,7 @@ const TrackerPage = () => {
     <div>
       <WaterMainInfo openWaterModal={openWaterModal} />
 
-      <Modal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
+      {/* <Modal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
         <WaterModal
           title={"Add water"}
           secondTitle={"Correct entered data:"}
@@ -32,7 +32,7 @@ const TrackerPage = () => {
 
       <Modal isOpen={isUserModalOpen} onClose={closeUserModal}></Modal>
 
-      <Modal isOpen={isAuthModalOpen} onClose={closeAuthModal}></Modal>
+      <Modal isOpen={isAuthModalOpen} onClose={closeAuthModal}></Modal> */}
     </div>
   );
 };
