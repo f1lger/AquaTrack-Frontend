@@ -90,7 +90,6 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         })
         .catch((error) => {
           toast.error("Failed to add water record!");
-          console.log("Failed to add:", waterRecord);
           console.error(error)
         });
 
