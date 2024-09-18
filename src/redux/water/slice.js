@@ -26,8 +26,9 @@ const waterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addWater.pending, waterPending)
-      .addCase(addWater.fulfilled, (state, action) => {
-        const { amount, date } = action.payload.data;
+      .addCase(addWater.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        const { amount, date } = payload;    
         state.waterInfo.dailyRecords.push({ amount, date });
         if (date.split("T")[0] === state.currentDay) {
           state.waterInfo.total += amount;
@@ -42,8 +43,8 @@ const waterSlice = createSlice({
       })
       .addCase(fetchWater.rejected, waterRejected)
       .addCase(updateWater.pending, waterPending)
-      .addCase(updateWater.fulfilled, (state, action) => {
-        const { waterId, waterRecord } = action.payload;
+      .addCase(updateWater.fulfilled, (state, { payload }) => {
+        const { waterId, waterRecord } = payload;
         const index = state.waterInfo.dailyRecords.findIndex(
           (record) => record._id === waterId
         );
