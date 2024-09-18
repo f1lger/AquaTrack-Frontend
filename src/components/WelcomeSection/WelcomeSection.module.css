@@ -1,3 +1,4 @@
+/* Mobile*/
 .wrapper {
   width: 343px;
   border-radius: 30px;
@@ -12,21 +13,19 @@
   margin-top: 118px;
   text-align: start;
   color: #2f2f2f;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.02;
+  letter-spacing: 0.02em;
 }
 
 .mainTitle {
   margin-top: 16px;
   color: #323f47;
   text-align: start;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -80,4 +79,56 @@
   border-color: #323f47;
   color: #323f47;
   opacity: 0.5;
+}
+
+/* Tablet*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .wrapper {
+    width: 704px;
+    height: 498px;
+    flex-shrink: 0;
+  }
+
+  .subTitle {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.96px;
+  }
+
+  .mainTitle {
+    font-size: 64px;
+    line-height: 70px;
+    letter-spacing: -0.64px;
+  }
+
+  .button {
+    padding: 18px 40px;
+    gap: 10px;
+  }
+}
+
+/* Desctop*/
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 672px;
+    height: 736px;
+    padding-left: 64px;
+    padding-right: 61px;
+  }
+  .subTitle {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.96px;
+  }
+
+  .mainTitle {
+    font-size: 80px;
+    line-height: 76px;
+    letter-spacing: -0.8px;
+  }
+
+  .button {
+    padding: 18px 40px;
+    gap: 10px;
+  }
 }

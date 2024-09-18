@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
 import ReactModal from "react-modal";
 import css from "./Modal.module.css";
 import { IoCloseSharp } from "react-icons/io5";
-
 export default function Modal({ isOpen, onClose, children }) {
   return (
     <ReactModal

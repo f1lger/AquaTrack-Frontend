@@ -1,24 +1,16 @@
-import { selectUser } from "../../redux/user/selectors";
-// import { login } from "../../redux/user/operations.js";
-import styles from "../UserPanel/UserPanel.module.css";
-import UserBar from "../../components/UserBar/UserBar";
-
-import { useTranslation } from "react-i18next";
-import "../../translate/index.js";
 import { useSelector } from "react-redux";
+import { selectName } from "../../redux/auth/selectors";
+import UserBar from "../UserBar/UserBar";
+import css from "./UserPanel.module.css"
 
-const UserPanel = () => {
-  const { t } = useTranslation();
-  const user = useSelector(selectUser);
+export default function UserPanel() {
+  const userName = useSelector(selectName);
   return (
-    <div className={styles.wrap}>
-      <p className={styles.title}>
-        {t("Hello")},{" "}
-        <span className={styles.name}>{user.name ? user.name : "User"}!</span>
-      </p>
-      <UserBar />
+    <div className={css.userPanelCont}>
+      <div className={css.welcomeTitle}>
+        Hello, <span>{userName ? userName : "user"}</span>
+      </div>
+      <UserBar userName={userName} />
     </div>
   );
-};
-
-export default UserPanel;
+}

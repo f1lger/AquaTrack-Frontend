@@ -42,9 +42,8 @@ const SignInForm = () => {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-    const newEmail = email.toLowerCase();
     try {
-      const response = await dispatch(login({ email: newEmail, password }));
+      const response = await dispatch(login({ email, password }));
 
       if (response.error) {
         throw new Error(response.error.message);
