@@ -310,3 +310,15 @@ input[type="file"] {
         padding: 16px;
     }
 }
+
+.banner{ 
+    fill: #9be1a0;
+    width: 18px;
+    height: 18px; }
+    
+        @media screen and (min-width: 768px) {
+            .banner {
+                width: 22px;
+                height: 22px;
+            }
+        }

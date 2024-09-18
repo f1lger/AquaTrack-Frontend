@@ -4,7 +4,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MdOutlineFileUpload } from "react-icons/md";
 import css from "./UserSettingsForm.module.css";
-import svg from "../../assets/react.svg";
+//  import svg from "../../assets/react.svg";
+import sprite from "../../icons/symbol-defs.svg";
+
 import {
   FormControl,
   FormControlLabel,
@@ -252,7 +254,12 @@ const UserSettingsForm = ({ onClose }) => {
             </p>
           </div>
           <div className={css.warningBox}>
-            <img src={svg} alt="banner" className={css.banner} />
+                      {/* <img src={svg} alt="banner" className={css.banner} /> */}
+                      
+<svg className={css.banner}>
+    <use href={`${sprite}#icon-exclamation`} />
+  </svg>
+
             <p className={css.radioText}>Active time in hours</p>
           </div>
         </div>
