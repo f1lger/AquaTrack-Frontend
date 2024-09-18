@@ -1,0 +1,42 @@
+.UserBarPopover {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-88%);
+  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  opacity: 0;
+  cursor: default;
+}
+.btnList {
+  z-index: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 14px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+}
+.UserBarPopover.open {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.logoutBtn,
+.settingBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: #323f47;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+.logoutBtn {
+  margin-top: 3px;
+  color: #323f4766;
+  transition: color 200ms ease-in-out;
+}
+.logoutBtn:hover {
+  color: #323f47;
+}

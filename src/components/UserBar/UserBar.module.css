@@ -1,0 +1,39 @@
+.UserBar {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 30px;
+  background: #323f47;
+  color: #fff;
+  margin-bottom: 4px;
+  z-index: 1;
+  cursor: pointer;
+}
+.icon {
+  transform: rotate(0);
+  transition: rotate 500ms ease-in-out;
+  animation: down-spin-animation 0.5s ease-in-out;
+}
+.icon.arrowIconUp {
+  animation: spin-animation 0.5s ease-in-out;
+  transform: rotate(180deg);
+}
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes down-spin-animation {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}

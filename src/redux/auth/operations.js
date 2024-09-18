@@ -8,39 +8,41 @@ axios.defaults.baseURL = 'http://localhost:5173/'
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
-/*
 const clearAuthHeader = () => {
   axios.defaults.headers.common["Authorization"] = "";
 };
-*/
+
 export const register = createAsyncThunk(
   "auth/register",
   async (userInfo, thunkAPI) => {
     try {
-      const response = await axios.post("users/signup", userInfo);
-      setAuthHeader(response.data.token);
-      return response.data;
-    } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      const response = await axios.post("users/register", userInfo);
+      return response.data.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(
+        err.response?.data?.message || err.message
+      );
     }
   }
 );
 
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/users/current");
+      const state = thunkAPI.getState();
+      setAuthHeader(state.auth.token);
+      const response = await axios.get("/users/info");
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const requestSignIn = async (formData) => {
   const { data } = await axios.post("/users/login", formData);
-  setAuthHeader(data.token);
+  setAuthHeader(data.data.accessToken);
   return data;
 };
 
@@ -48,7 +50,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (formData, thunkAPI) => {
     try {
-      const data = await requestSignIn(formData);
+      const { data } = await requestSignIn(formData);
       return data;
     } catch (err) {
       toast.error("Please sign up");
@@ -57,6 +59,7 @@ export const login = createAsyncThunk(
   }
 );
 
+<<<<<<< SignInPage
 
 
 // Надсилання email для скидання пароля
@@ -84,3 +87,13 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+=======
+export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/users/logout");
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
+>>>>>>> main
