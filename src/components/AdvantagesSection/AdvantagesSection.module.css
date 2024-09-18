@@ -1,3 +1,4 @@
+/* Mobile */
 .wrapper {
   position: relative;
   margin: 0 auto;
@@ -14,7 +15,10 @@
   margin: 0 auto 20px auto;
 }
 
-@media only screen and (min-resolution: 192dpi),
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .mainImg {
     background-image: url("../../photo/mob/drinking-woman-2x.webp");
@@ -35,7 +39,6 @@
   background-color: #fff;
   margin-left: 16px;
   margin-right: 167px;
-
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -44,10 +47,8 @@
   flex-direction: column;
   margin-left: 4px;
   color: #323f47;
-
   font-family: Poppins;
   font-size: 12px;
-  font-style: normal;
   font-weight: 700;
   line-height: 1.16;
 }
@@ -87,7 +88,6 @@
   color: #9be1a0;
   font-family: Poppins;
   font-size: 12px;
-  font-style: normal;
   font-weight: 700;
   line-height: 14px;
 }
@@ -112,17 +112,13 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-
   border-radius: 30px;
   background-color: #323f47;
   color: #fff;
-
-  text-align: center;
   font-family: Poppins;
   font-size: 8px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 1;
+  text-align: center;
 }
 
 .statistics {
@@ -133,16 +129,13 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   border-radius: 30px;
   background-color: #9be1a0;
   color: #323f47;
-  text-align: center;
   font-family: Poppins;
   font-size: 8px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 1;
+  text-align: center;
 }
 
 .rate {
@@ -153,14 +146,169 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   border-radius: 30px;
   background: #fff;
   color: #323f47;
-  text-align: center;
   font-family: Poppins;
   font-size: 8px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 1;
+  text-align: center;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .mainImg {
+    width: 704px;
+    height: 446px;
+    background-image: url("../../photo/tab/drinking-woman-1x.webp");
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    .mainImg {
+      background-image: url("../../photo/tab/drinking-woman-2x.webp");
+    }
+  }
+
+  .customersContainer {
+    position: absolute;
+    left: 25%;
+    top: 64%;
+    transform: translate(-50%);
+    display: inline-flex;
+    height: 67px;
+    padding: 10px 20px;
+    gap: 52px;
+  }
+
+  .customersContainer p {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100px;
+    font-size: 15px;
+    line-height: 22.4px;
+    margin-left: 14px;
+  }
+
+  .accent {
+    font-size: 15px;
+    margin-left: 5px;
+    line-height: 22.4px;
+  }
+
+  .avatar {
+    width: 47px;
+    height: 47px;
+  }
+
+  .infoContainer {
+    width: 242px;
+    gap: 10px;
+    position: absolute;
+    bottom: 32px;
+    right: 112px;
+  }
+
+  .habit {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .statistics {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .rate {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .mainImg {
+    width: 672px;
+    height: 736px;
+    background-image: url("../../photo/desk/drinking-woman-1x.webp");
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    .mainImg {
+      background-image: url("../../photo/desk/drinking-woman-2x.webp");
+    }
+  }
+
+  .customersContainer {
+    position: absolute;
+    left: 20%;
+    top: 70%;
+    transform: translate(-50%);
+    display: inline-flex;
+    justify-content: space-between;
+    width: auto;
+    height: 67px;
+  }
+
+  .customersContainer p {
+    font-size: 15px;
+    line-height: 22.4px;
+    margin-left: 14px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .accent {
+    font-size: 15px;
+    margin-left: 5px;
+    line-height: 22.4px;
+  }
+
+  .avatar {
+    width: 47px;
+    height: 47px;
+  }
+
+  .infoContainer {
+    width: 242px;
+    gap: 10px;
+    position: absolute;
+    bottom: 85px;
+    right: 30px;
+  }
+
+  .habit {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .statistics {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .rate {
+    width: auto;
+    height: 34px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
 }

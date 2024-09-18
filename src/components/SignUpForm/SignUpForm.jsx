@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { register } from "../../redux/auth/operations";
+import { register, login } from "../../redux/auth/operations";
+import { toast } from "react-toastify";
 import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
@@ -27,26 +28,37 @@ function SignUpForm() {
       .required("Please, repeat your password"),
   });
 
-  const handleSignUp = async (values, { resetForm} ) => {
+  const handleSignUp = async (values, { resetForm }) => {
     try {
       const userInfo = {
         email: values.email,
         password: values.password,
       };
-      const result = await dispatch(register(userInfo));
-      if (register.fulfilled.match(result)) {
-        console.log("registration succeed:", result.payload);
-		navigate('/tracker');
-      } else {
-        console.log("registration failed:", result.payload);
 
+      const registrationResult = await dispatch(register(userInfo));
+      if (register.fulfilled.match(registrationResult)) {
+        const { email, password } = userInfo;
+
+        const loginResult = await dispatch(login({ email, password }));
+        if (login.fulfilled.match(loginResult)) {
+          navigate("/tracker");
+        } else {
+          setError("login failed");
+          toast.error("Login error, try again");
+        }
+      } else {
         setError("registration failed");
+        toast.error("Registration error, try again");
       }
+
       resetForm();
       setError("");
     } catch (err) {
-      console.log("registration error catch:", err.message);
-      setError("Registration failed.Please try again");
+
+      const errorMessage = err.response?.data?.message || err.message;
+      
+      setError(errorMessage);
+      toast.error(`Registration failed: ${errorMessage}`);
     }
   };
 
@@ -120,7 +132,9 @@ function SignUpForm() {
       </Formik>
       <h3 className={styles.redirectTitle}>
         Already have an account?{" "}
-        {<span className={styles.accent}>Sign In</span>}
+        <NavLink to="/signin" className={styles.accent}>
+          Sign In
+        </NavLink>
       </h3>
     </div>
   );

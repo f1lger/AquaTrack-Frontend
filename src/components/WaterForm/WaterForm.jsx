@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-// import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -37,6 +35,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         }),
         waterVolume: 50,
       };
+
   const {
     register,
     setValue,
@@ -45,50 +44,32 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     handleSubmit,
     formState: { errors },
     clearErrors,
-    // reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
     mode: "onChange",
   });
 
-  // useEffect(() => {
-  //   if (operationType !== "add" && item) {
-  //     reset({
-  //       date: item.date,
-  //       time: new Date(item.date).toLocaleTimeString("en-GB", {
-  //         hour: "2-digit",
-  //         minute: "2-digit",
-  //         hour12: false,
-  //       }),
-  //       waterVolume: item.waterVolume,
-  //     });
-  //   }
-  // }, [operationType, item, reset]);
-
   const onSubmit = async (data) => {
-    console.log("You on submit");
-
     const date = new Date(data.date);
     const [hours, minutes] = data.time.split(":");
     date.setHours(hours);
     date.setMinutes(minutes);
-
     const water = {
-      waterVolume: data.waterVolume,
+      amount: data.waterVolume,
       date: date.toISOString(),
     };
 
     const response = isAddWater
       ? await dispatch(addWater(water))
-      : await dispatch(updateWater([item._id, water]));
-    console.log(response);
+      : await dispatch(updateWater({ waterId: item._id, ...water }));
 
-    response.meta.requestStatus === "fullfield"
-      ? closeWaterModal()
-      : alert("Failed to add water record!."),
+    if (response.meta.requestStatus === "fulfilled") {
       closeWaterModal();
-    return;
+    } else {
+      alert("Failed to add water record!");
+      closeWaterModal();
+    }
   };
 
   const plusWaterVolume = () => {
@@ -110,6 +91,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       clearErrors("waterVolume");
     }
   };
+
   return (
     <>
       <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>

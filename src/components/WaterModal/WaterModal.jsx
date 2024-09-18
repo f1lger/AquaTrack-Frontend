@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import WaterForm from "../WaterForm/WaterForm.jsx";
 import css from "./WaterModal.module.css";
 import Modal from "../Modal/Modal"; 
