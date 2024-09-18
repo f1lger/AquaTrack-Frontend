@@ -1,6 +1,6 @@
 /* Mobile*/
 .wrapper {
-  width: 343px;
+  max-width: 343px;
   border-radius: 30px;
   background: #f0eff4;
   padding: 24px 16px;
@@ -37,7 +37,6 @@
   gap: 16px;
   list-style-type: none;
   margin-top: 32px;
-  margin-bottom: 67px;
 }
 
 .button {
@@ -82,10 +81,10 @@
 }
 
 /* Tablet*/
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
   .wrapper {
-    width: 704px;
-    height: 498px;
+    max-width: 704px;
+    /* height: 498px; */
     flex-shrink: 0;
   }
 
@@ -108,8 +107,9 @@
 }
 
 /* Desctop*/
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .wrapper {
+    margin: auto 0;
     width: 672px;
     height: 736px;
     padding-left: 64px;
