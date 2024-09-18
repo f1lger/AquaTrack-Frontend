@@ -27,6 +27,7 @@ export default function WaterModal({
   isAddWater === "add" ? "Choose a value:" : "Correct entered data:";
 
   return (
+   
     <Modal isOpen={waterModalOpen} onClose={closeWaterModal}>
       <div className={css.waterModal}>
         <p className={css.modalTitle}>{title}</p>

@@ -5,13 +5,15 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { addWater, updateWater } from "../../redux/water/operations";
 import css from "./WaterForm.module.css";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const schema = yup.object().shape({
   waterVolume: yup
     .number()
     .typeError("Enter a valid amount of water")
     .min(50, "Minimum amount is 50 ml")
-    .max(3000, "Maximum amount is 500 ml")
+    .max(500, "Maximum amount is 500 ml")
     .required("Amount is required"),
   time: yup.string().required("Water consumption time is mandatory"),
 });
@@ -19,22 +21,24 @@ const schema = yup.object().shape({
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const dispatch = useDispatch();
 
-  const defaultValues = !isAddWater && item ? {
-        date: item.date,
-        time: new Date(item.date).toLocaleTimeString("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-        waterVolume: item.waterVolume,
-      }
-    : {
-        date: new Date().toISOString(),
-        time: new Date().toLocaleTimeString("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-        waterVolume: 50,
-      };
+  const defaultValues =
+    isAddWater !== "add" && item /*!isAddWater && item */
+      ? {
+          date: item.date,
+          time: new Date(item.date).toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          waterVolume: item.waterVolume,
+        }
+      : {
+          date: new Date().toISOString(),
+          time: new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          waterVolume: 50,
+        };
 
   const {
     register,
@@ -44,30 +48,63 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
     mode: "onChange",
   });
 
-  const onSubmit = async (data) => {
+  useEffect(() => {
+    if (isAddWater !== "add" && item) {
+      reset({
+        date: item.date,
+        time: new Date(item.date).toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+        waterVolume: item.waterVolume,
+      });
+    }
+  }, [isAddWater, item, reset]);
+
+  const onSubmit = (data) => {
     const date = new Date(data.date);
-    const [hours, minutes] = data.time.split(":");
+    const [hours, minutes] = data.time.split(':');
     date.setHours(hours);
     date.setMinutes(minutes);
-    const water = {
-      amount: data.waterVolume,
-      date: date.toISOString(),
+
+    const isoDate = date.toISOString();
+
+    const waterRecord = {
+      amount: data.waterVolume, 
+      date: isoDate,
     };
 
-    const response = isAddWater
-      ? await dispatch(addWater(water))
-      : await dispatch(updateWater({ waterId: item._id, ...water }));
+    if (isAddWater === "add") {
+      dispatch(addWater(waterRecord))
+        .unwrap()
+        .then(() => {
+          toast.success("You successfully add a water record!");
+        })
+        .catch((error) => {
+          toast.error("Failed to add water record!");
+          console.log("Failed to add:", waterRecord);
+          console.error(error)
+        });
 
-    if (response.meta.requestStatus === "fulfilled") {
       closeWaterModal();
     } else {
-      alert("Failed to add water record!");
+      dispatch(updateWater({ waterId: item._id, ...waterRecord }))
+        .unwrap()
+        .then(() => {
+          toast.success("You successfully update a water record!");
+          console.log("Edit Water:", waterRecord);
+        })
+        .catch((error) => {
+          toast.error("Failed to update water record!");
+        });
       closeWaterModal();
     }
   };
@@ -80,7 +117,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
 
   const minusWaterVolume = () => {
     const currentAmount = parseInt(getValues("waterVolume"), 10);
-    setValue("waterVolume", Math.max(0, currentAmount - 50));
+    setValue("waterVolume", Math.max(50, currentAmount - 50));
     clearErrors("waterVolume");
   };
 

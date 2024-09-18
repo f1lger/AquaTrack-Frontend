@@ -14,7 +14,7 @@ const waterSlice = createSlice({
   name: "water",
   initialState: {
     waterInfo: {
-      total: 900,
+      total: null,
       dailyRecords: [],
     },
     monthlyRecords: [],
@@ -26,8 +26,12 @@ const waterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addWater.pending, waterPending)
-      .addCase(addWater.fulfilled, (state, { payload }) => {
-        state.waterInfo.total += payload.amount;
+      .addCase(addWater.fulfilled, (state, action) => {
+        const { amount, date } = action.payload.data;
+        state.waterInfo.dailyRecords.push({ amount, date });
+        if (date.split("T")[0] === state.currentDay) {
+          state.waterInfo.total += amount;
+        }      
         state.loading = false;
       })
       .addCase(addWater.rejected, waterRejected)
@@ -39,13 +43,18 @@ const waterSlice = createSlice({
       .addCase(fetchWater.rejected, waterRejected)
       .addCase(updateWater.pending, waterPending)
       .addCase(updateWater.fulfilled, (state, action) => {
-        state.loading = false;
+        const { waterId, waterRecord } = action.payload;
         const index = state.waterInfo.dailyRecords.findIndex(
-          (item) => item._id === action.payload.data._id
+          (record) => record._id === waterId
         );
         if (index !== -1) {
-          state.waterInfo.dailyRecords[index] = action.payload.data;
+          state.waterInfo.dailyRecords[index] = {
+            ...state.waterInfo.dailyRecords[index],
+            ...waterRecord,
+          };
         }
+
+        state.loading = false;
       })
       .addCase(updateWater.rejected, waterRejected)
       .addCase(deleteWater.pending, waterPending)
@@ -55,6 +64,8 @@ const waterSlice = createSlice({
         state.waterInfo.dailyRecords = state.waterInfo.dailyRecords.filter(
           (item) => item._id !== waterId
         );
+        // console.log( state.waterInfo.dailyRecords);
+        state.loading = false;
       })
       .addCase(deleteWater.rejected, waterRejected);
   },

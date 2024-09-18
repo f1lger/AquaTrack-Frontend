@@ -13,6 +13,7 @@ export const addWater = createAsyncThunk(
   }
 );
 
+
 export const fetchWater = createAsyncThunk(
   "water/fetchWater",
   async (_, thunkAPI) => {
@@ -27,12 +28,16 @@ export const fetchWater = createAsyncThunk(
 
 export const updateWater = createAsyncThunk(
   "water/updateWater",
-  async ({ waterId, ...water }, thunkAPI) => {
+  async ({ waterId, waterRecord }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/water/${waterId}`, water);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      const response = await axios.patch(
+        `/water/${waterId}`,
+        waterId,
+        waterRecord
+      );
+      return { waterId, waterRecord: response.data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
