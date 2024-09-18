@@ -7,6 +7,7 @@ import defaultAvatar from "../../photo/mob/default-user-avatar-1x.webp";
 import { useRef, useState } from "react";
 import Modal from "../Modal/Modal";
 import LogOutModal from "../LogOutModal/LogOutModal";
+import clsx from "clsx";
 export default function UserBar({ userName }) {
   const userAvatar = useSelector(selectAvatar);
   const userBar = useRef();
@@ -34,7 +35,13 @@ export default function UserBar({ userName }) {
           alt="avatar"
           loading="lazy"
         />
-        <IoIosArrowDown size={16} />
+        <IoIosArrowDown
+          size={16}
+          className={clsx(
+            css.icon,
+            popoverBarModal ? css.arrowIconUp : null
+          )}
+        />
       </div>
       <UserBarPopover
         openModal={popoverBarModal}

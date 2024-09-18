@@ -3,17 +3,16 @@ import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
 import Modal from "../../components/Modal/Modal.jsx";
 import WaterModal from "../../components/WaterModal/WaterModal";
 import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo.jsx";
+import css from "./TrackerPage.module.css"
 
 const TrackerPage = () => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
-  // const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-  // const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const openWaterModal = () => setIsWaterModalOpen(true);
   const closeWaterModal = () => setIsWaterModalOpen(false);
 
   return (
-    <div>
+    <div className={css.trackerPage}>
       <WaterMainInfo openWaterModal={openWaterModal} />
       <WaterDetailedInfo />
       <Modal isOpen={isWaterModalOpen} onClose={closeWaterModal}>

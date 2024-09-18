@@ -1,8 +1,10 @@
 .UserBarPopover {
   display: flex;
   flex-direction: column;
-  transform: translateY(-100%);
-  transition: transform 500ms ease-in-out;
+  transform: translateY(-88%);
+  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  opacity: 0;
+  cursor: default;
 }
 .btnList {
   z-index: 0;
@@ -15,4 +17,26 @@
 }
 .UserBarPopover.open {
   transform: translateY(0%);
+  opacity: 1;
+}
+.logoutBtn,
+.settingBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: #323f47;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+.logoutBtn {
+  margin-top: 3px;
+  color: #323f4766;
+  transition: color 200ms ease-in-out;
+}
+.logoutBtn:hover {
+  color: #323f47;
 }

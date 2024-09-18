@@ -5,8 +5,8 @@ export const addWater = createAsyncThunk(
   "water/addWater",
   async ({ amount, date }, thunkAPI) => {
     try {
-      const response = await axios.post("/water", { amount, date });
-      return response.data;
+      const { data } = await axios.post("/water", { amount, date });
+      return data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

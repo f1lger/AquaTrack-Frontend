@@ -48,5 +48,9 @@
     order: 1;
     border-radius: 30px;
     background: rgb(240, 239, 244);
-    color: rgba(50, 63, 71, 0.3);
+    color: #323f474d;
+    transition: color 200ms ease-in-out
+}
+.cancelButton:hover {
+    color: #323f47
 }
