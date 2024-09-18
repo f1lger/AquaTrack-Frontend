@@ -1,34 +1,23 @@
 .layout {
   border-radius: 30px;
   background: #f0eff4;
-  padding: 24px 16px 216px;
-}
-@media only screen and (min-width: 768px) {
-  .layout {
-    padding: 32px 32px 281px;
-  }
 }
 @media only screen and (min-width: 1400px) {
   .layout {
-    max-width: 672px;
-    padding: 32px 33px 169px;
+    max-width: 100%;
+    padding-top: 130px;
+    align-items: flex-start;
   }
 }
 
 .signInContainer {
   width: 100%;
-  margin-top: 172px;
+  margin-bottom: 100px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-    margin-top: 225px;
-    padding-left: 85px;
-    padding-right: 85px;
-  }
-}
-@media only screen and (min-width: 1440px) {
-  .signInContainer {
-    margin-top: 113px;
+   margin: 0 auto;
+   width: 436px;
   }
 }
 
@@ -51,9 +40,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 16px;
 }
 
 .field {
@@ -73,7 +59,6 @@
     margin-bottom: 20px;
   }
 }
-
 .field:last-of-type {
   margin-bottom: 0;
 }
@@ -87,7 +72,6 @@
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.2);
   padding: 16px;
-  margin-bottom: 10px;
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
@@ -95,6 +79,11 @@
     line-height: 1.5;
     height: 56px;
   }
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
 }
 
 .submit {
@@ -153,6 +142,7 @@
 .errorMessage {
   color: #ef5050;
   font-size: 13px;
+  margin-top: 10px;
 }
 
 .inputError {
