@@ -4,11 +4,11 @@
   padding: 24px 16px 216px;
 }
 @media only screen and (min-width: 768px) {
-    .layout {
-  padding: 32px 32px 281px;
-    }
+  .layout {
+    padding: 32px 32px 281px;
+  }
 }
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1440px) {
   .layout {
     max-width: 672px;
     padding: 32px 33px 169px;
@@ -17,7 +17,7 @@
 
 .signInContainer {
   width: 100%;
-margin-top: 172px;
+  margin: 126px auto 170px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
@@ -27,11 +27,10 @@ margin-top: 172px;
   }
 }
 @media only screen and (min-width: 1440px) {
-    .signInContainer {
+  .signInContainer {
     margin-top: 113px;
-    }
+  }
 }
-
 
 .title {
   font-weight: 700;
@@ -43,10 +42,9 @@ margin-top: 172px;
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 36px;
-    line-height: 1.06;    
+    line-height: 1.06;
   }
 }
-
 
 .form {
   width: 100%;

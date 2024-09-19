@@ -1,11 +1,24 @@
 /* Mobile */
 .wrapper {
+  width: 100%;
+  /* height: 100%; */
   position: relative;
   margin: 0 auto;
 }
-
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 768px;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    height: 100%;
+    max-width: 50%;
+  }
+}
 .mainImg {
-  width: 343px;
+  max-width: 343px;
   height: 353px;
   border-radius: 30px;
   background-image: url("../../photo/mob/drinking-woman-1x.webp");
@@ -158,7 +171,7 @@
 /* Tablet */
 @media (min-width: 768px) {
   .mainImg {
-    width: 704px;
+    max-width: 768px;
     height: 446px;
     background-image: url("../../photo/tab/drinking-woman-1x.webp");
   }
@@ -236,10 +249,10 @@
 }
 
 /* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .mainImg {
-    width: 672px;
-    height: 736px;
+    width: 100%;
+    height: 100%;
     background-image: url("../../photo/desk/drinking-woman-1x.webp");
   }
 
