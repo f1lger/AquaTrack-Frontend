@@ -1,14 +1,14 @@
-import SignInForm from "../../components/SignInForm/SignInForm";
+import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
 import Logo from "../../components/Logo/Logo";
 import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
-import css from "./SignInPage.module.css"
+import css from "./ResetPassword.module.css"
 
-const SignInPage = () => {
+const ResetPasswordPage = () => {
   return (
-    <div className={css.signInSection}>
+    <div className={css.ResetSection}>
       <div className={css.container}>
         <Logo />
-        <SignInForm />
+        <ResetPasswordForm />
       </div>
       <div className={css.advantages}>
         <AdvantagesSection />
@@ -17,4 +17,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default ResetPasswordPage;

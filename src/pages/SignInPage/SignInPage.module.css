@@ -1,0 +1,51 @@
+.signInSection {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 170px;
+  background: #f0eff4;
+  border-radius: 30px;
+  width: 100%;
+  gap: 172px;
+  margin-top: 32px;
+}
+@media only screen and (min-width: 375px) {
+  .container {
+    width: 375px;
+    
+  }
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    gap: 225px;
+    padding-bottom: 281px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    gap: 32px;
+    max-width: 672px;
+    padding-bottom: 168px;
+  }
+}
+
+.advantages {
+  display: none;
+}
+@media only screen and (min-width: 1440px) {
+  .advantages {
+    display: block;
+  }
+}
