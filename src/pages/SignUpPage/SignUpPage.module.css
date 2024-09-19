@@ -4,3 +4,25 @@
   border-radius: 30px;
   background: #f0eff4;
 }
+
+.advSection {
+  display: none;
+}
+
+
+/* Desktop*/
+@media (min-width: 1440px) {
+  .signUpSection{
+    width: 672px;
+    height: 736px;
+  }
+
+  .wrapper{
+    display: flex;
+    gap: 32px;
+  }
+  .advSection{
+    display: flex;
+  }
+}
+

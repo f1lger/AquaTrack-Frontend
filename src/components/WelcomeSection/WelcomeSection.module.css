@@ -1,12 +1,18 @@
 /* Mobile*/
 .wrapper {
-  max-width: 343px;
+  /* max-width: 343px; */
+  min-width: 320px;
+  width: 100%;
   border-radius: 30px;
   background: #f0eff4;
   padding: 24px 16px;
   margin: 0 auto;
-  margin-bottom: 16px;
   text-align: center;
+}
+
+.logo {
+  margin-top: 24px;
+  margin-left: 16px;
 }
 
 .subTitle {
@@ -84,8 +90,15 @@
 @media (min-width: 768px) {
   .wrapper {
     max-width: 704px;
-    /* height: 498px; */
     flex-shrink: 0;
+    padding-left: 64px;
+    padding-right: 61px;
+    padding-bottom: 50px;
+  }
+
+  .logo {
+    margin-top: 32px;
+    margin-left: 32px;
   }
 
   .subTitle {
@@ -106,14 +119,16 @@
   }
 }
 
-/* Desctop*/
+/* Desktop*/
 @media (min-width: 1440px) {
   .wrapper {
-    margin: auto 0;
     width: 672px;
     height: 736px;
-    padding-left: 64px;
-    padding-right: 61px;
+  }
+
+  .logo {
+    margin-top: 32px;
+    margin-left: 33px;
   }
   .subTitle {
     font-size: 16px;
