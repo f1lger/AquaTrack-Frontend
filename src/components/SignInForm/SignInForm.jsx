@@ -9,7 +9,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/operations.js";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
-import Logo from "../Logo/Logo.jsx";
 import { toast } from "react-toastify";
 
 export const AuthFormLayout = ({ children, className }) => {
@@ -63,7 +62,6 @@ const SignInForm = () => {
 
   return (
     <AuthFormLayout className={css.layout}>
-      <Logo className={css.logo}></Logo>
       <div className={css.signInContainer}>
         <h2 className={css.title}>Sign In</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -109,6 +107,7 @@ const SignInForm = () => {
             </div>
             <p className={css.errorMessage}>{errors.password?.message}</p>
           </label>
+          
           <button type="submit" className={css.submit}>
             Sign in
           </button>
@@ -121,6 +120,14 @@ const SignInForm = () => {
             </NavLink>
           </p>
         </div>
+        <div className={css.forgotPasswordContainer}>
+          <p className={css.questionText}>
+            Forgot Password?
+          </p>
+            <NavLink to="/forgot-password" className={css.forgotPasswordLink}>
+              Reset
+            </NavLink>
+          </div>
       </div>
     </AuthFormLayout>
   );

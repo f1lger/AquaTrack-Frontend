@@ -1,6 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import SharedLayout from "../SharedLayout/SharedLayout";
+
+import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
+import ResetPasswordPage from '../../pages/ResetPasswordPage/ResetPasswordPage'
+
 import { lazy, Suspense } from "react";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
@@ -27,6 +31,8 @@ function App() {
               path="/tracker"
               element={<PrivateRoute component={<TrackerPage />} />}
             />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Routes>
         </Suspense>
       </SharedLayout>

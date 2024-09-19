@@ -1,14 +1,14 @@
-import SignInForm from "../../components/SignInForm/SignInForm";
+import ForgotPasswordForm from "../../components/ForgotPasswordForm/ForgotPasswordForm";
 import Logo from "../../components/Logo/Logo";
 import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
-import css from "./SignInPage.module.css"
+import css from "./ForgotPassword.module.css"
 
-const SignInPage = () => {
+const ForgotPasswordPage = () => {
   return (
-    <div className={css.signInSection}>
+    <div className={css.ForgotSection}>
       <div className={css.container}>
         <Logo />
-        <SignInForm />
+        <ForgotPasswordForm />
       </div>
       <div className={css.advantages}>
         <AdvantagesSection />
@@ -17,4 +17,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default ForgotPasswordPage;
