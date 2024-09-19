@@ -1,6 +1,7 @@
 .modal{
     display: flex;
     flex-direction: column;
+    /* max-width: 344px; */
 }
 
 .modalHead{
@@ -67,6 +68,7 @@
 @media screen and (min-width:768px) {
 .modal{
     width: 436px;
+    /* max-width: 436px; */
 }
 
 .modalHead{
@@ -95,3 +97,24 @@
 }
     
 }
+@media screen and (min-width:768px) {
+.modal{
+    width: 516px;
+    height: 244px;
+}
+}
+
+/* TABLET STYLES
+@media screen and (min-width:768px) {
+  .modal{
+      max-width: 436px;
+   
+  }
+}  
+
+@media screen and (min-width:1440px) {
+  .modal{
+    max-width: 516px;
+    height: 244px;
+  }
+}   */

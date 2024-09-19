@@ -1,0 +1,81 @@
+.container {
+    background-color: #ffffff;
+    padding: 18px 14px;
+    border-radius: 15px;
+    width: 148px;
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.iconGlass {
+    stroke: none;
+    width:32px;
+    height:32px;
+}
+
+.icon {
+    stroke: #2f2f2f;
+    fill:none;
+    width:14px;
+    height:14px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ml {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.time {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.button {
+    width: 14px;
+    height: 14px;
+    background-color: inherit;
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) { 
+    .container {
+        width: 192px;
+        height: 86px;
+        gap: 20px;
+
+    }
+    .iconGlass {
+        stroke: none;
+        width:44px;
+        height:45px;
+    }
+    .icon {
+ 
+        width:16px;
+        height:16px;
+    }
+    .time {
+      
+        font-size: 15px;
+       
+    }
+
+    .ml {
+            font-size: 15px;
+        }
+}

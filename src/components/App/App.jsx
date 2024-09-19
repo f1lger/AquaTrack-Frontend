@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { Toaster } from 'react-hot-toast';
+import WaterItem from "../WaterItem/WaterItem";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -30,8 +31,9 @@ function App() {
             />
           </Routes>
         </Suspense>
+        <WaterItem/>
       </SharedLayout>
-      <Toaster />
+      <Toaster />  
     </>
   );
 }

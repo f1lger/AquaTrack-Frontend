@@ -25,7 +25,7 @@ const DeleteWaterModal = ({ modalIsOpen, closeModal, waterId }) => {
   const buttonCancelClass = `${css.btn} ${css.btnCancel}`;
 
   return (
-    <Modal modalIsOpen={modalIsOpen} closeModal={closeModal}>
+    <Modal isOpen={modalIsOpen} onClose={closeModal}>
       <div className={css.modal}>
         <h3 className={css.modalHead}>Delete entry</h3>
         <p className={css.modalText}>
