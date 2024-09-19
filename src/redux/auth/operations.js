@@ -58,7 +58,6 @@ export const login = createAsyncThunk(
   }
 );
 
-<<<<<<< SignInPage
 
 
 // Надсилання email для скидання пароля
@@ -86,7 +85,6 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
-=======
 export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/users/logout");
@@ -95,4 +93,3 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
->>>>>>> main
