@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 const clearAuthHeader = () => {

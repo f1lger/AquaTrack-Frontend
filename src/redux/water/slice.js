@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addWater, deleteWater, fetchWater, updateWater } from "./operations";
+import {
+  addWater,
+  deleteWater,
+  fetchWater,
+  updateWater,
+  waterPerDay,
+} from "./operations";
 
 const waterPending = (state) => {
   state.loading = true;
@@ -14,7 +20,7 @@ const waterSlice = createSlice({
   name: "water",
   initialState: {
     waterInfo: {
-      total: 900,
+      total: 0,
       dailyRecords: [],
     },
     monthlyRecords: [],
@@ -31,6 +37,15 @@ const waterSlice = createSlice({
         state.loading = false;
       })
       .addCase(addWater.rejected, waterRejected)
+      .addCase(waterPerDay.pending, waterPending)
+      .addCase(waterPerDay.fulfilled, (state, { payload }) => {
+        state.waterInfo.total = payload.reduce(
+          (total, record) => total + record.amount,
+          0
+        );
+        state.loading = false;
+      })
+      .addCase(waterPerDay.rejected, waterRejected)
       .addCase(fetchWater.pending, waterPending)
       .addCase(fetchWater.fulfilled, (state, { payload }) => {
         state.waterInfo.total = payload.total;
