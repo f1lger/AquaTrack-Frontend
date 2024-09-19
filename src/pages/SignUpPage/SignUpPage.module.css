@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   margin: 0 auto;
   padding: 24px 16px;
   border-radius: 30px;
@@ -11,7 +12,6 @@
   }
 }
 .container {
-  position: relative;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
