@@ -2,8 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'http://localhost:5173/'
-/*"https://aquatrack-back-end.onrender.com/";*/
+axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/"
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
