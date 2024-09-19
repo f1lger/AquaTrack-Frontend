@@ -3,7 +3,7 @@
   background: #f0eff4;
   padding: 24px 16px 216px;
 }
-}
+
 @media only screen and (min-width: 1440px) {
   .layout {
     max-width: 100%;
@@ -18,8 +18,8 @@
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-   margin: 0 auto;
-   width: 436px;
+    margin: 0 auto;
+    width: 436px;
   }
 }
 @media only screen and (min-width: 1440px) {
