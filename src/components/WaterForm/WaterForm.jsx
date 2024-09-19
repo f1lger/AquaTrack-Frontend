@@ -3,7 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useDispatch } from "react-redux";
-import { addWater, updateWater } from "../../redux/water/operations";
+import {
+  addWater,
+  updateWater,
+  waterPerDay,
+} from "../../redux/water/operations";
 import css from "./WaterForm.module.css";
 
 const schema = yup.object().shape({
@@ -11,7 +15,7 @@ const schema = yup.object().shape({
     .number()
     .typeError("Enter a valid amount of water")
     .min(50, "Minimum amount is 50 ml")
-    .max(3000, "Maximum amount is 500 ml")
+    .max(500, "Maximum amount is 500 ml")
     .required("Amount is required"),
   time: yup.string().required("Water consumption time is mandatory"),
 });
@@ -52,23 +56,35 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   });
 
   const onSubmit = async (data) => {
-    const date = new Date(data.date);
-    const [hours, minutes] = data.time.split(":");
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    const water = {
-      amount: data.waterVolume,
-      date: date.toISOString(),
-    };
+    try {
+      const date = new Date(data.date);
+      const [hours, minutes] = data.time.split(":");
+      date.setHours(hours);
+      date.setMinutes(minutes);
 
-    const response = isAddWater
-      ? await dispatch(addWater(water))
-      : await dispatch(updateWater({ waterId: item._id, ...water }));
+      const water = {
+        amount: data.waterVolume,
+        date: date.toISOString(),
+      };
 
-    if (response.meta.requestStatus === "fulfilled") {
-      closeWaterModal();
-    } else {
-      alert("Failed to add water record!");
+      let response;
+      if (isAddWater) {
+        response = await dispatch(addWater(water));
+      } else {
+        response = await dispatch(updateWater({ waterId: item._id, ...water }));
+      }
+
+      if (response.meta.requestStatus === "fulfilled") {
+        const today = new Date().toISOString().split("T")[0];
+        await dispatch(waterPerDay(today));
+        closeWaterModal();
+      } else {
+        alert("Failed to add or update water record!");
+        closeWaterModal();
+      }
+    } catch (error) {
+      console.error("Error submitting water form:", error);
+      alert("An error occurred!");
       closeWaterModal();
     }
   };
@@ -121,6 +137,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
             <p className={css.error}>{errors.waterVolume.message}</p>
           )}
         </div>
+
         <p className={css.text}>Recording time</p>
         <input type="time" className={css.timeInput} {...register("time")} />
         {errors.time && <p className={css.error}>{errors.time.message}</p>}
@@ -137,6 +154,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         {errors.waterVolume && (
           <p className={css.error}>{errors.waterVolume.message}</p>
         )}
+
         <button className={css.saveBtn} type="submit">
           Save
         </button>
