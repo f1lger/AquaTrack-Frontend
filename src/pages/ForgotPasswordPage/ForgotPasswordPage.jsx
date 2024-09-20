@@ -1,7 +1,7 @@
 import ForgotPasswordForm from "../../components/ForgotPasswordForm/ForgotPasswordForm";
 import Logo from "../../components/Logo/Logo";
 import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
-import css from "./ForgotPassword.module.css"
+import css from "./ForgotPasswordPage.module.css"
 
 const ForgotPasswordPage = () => {
   return (

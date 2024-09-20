@@ -1,30 +1,17 @@
-.layout {
-  border-radius: 30px;
-  background: #f0eff4;
-  /* padding: 24px 16px 216px; */
-}
-
-@media only screen and (min-width: 1440px) {
-  .layout {
-    max-width: 100%;
-    /* padding-top: 130px; */
-    align-items: flex-start;
-  }
-}
 
 .signInContainer {
   width: 100%;
-  margin-bottom: 100px;
+  margin: 172px auto 216px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-    margin: 0 auto;
+    margin: 225px auto 280px;
     width: 436px;
   }
 }
 @media only screen and (min-width: 1440px) {
   .signInContainer {
-    margin-top: 113px;
+    margin: 113px auto 169px;
   }
 }
 
@@ -125,6 +112,7 @@
 
 .questionText {
   color: rgba(47, 47, 47, 0.5);
+  font-weight: 400;
   line-height: 1.28;
   letter-spacing: -0.01em;
 }

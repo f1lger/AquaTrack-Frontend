@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInFormSchema } from "../../validationSchemas/authFormSchema";
 import css from "./SignInForm.module.css";
 import clsx from "clsx";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -10,7 +9,9 @@ import { login } from "../../redux/auth/operations.js";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
+/*
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
 };
@@ -19,6 +20,14 @@ AuthFormLayout.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
+*/
+ const signInFormSchema = Yup.object({
+  email: Yup.string().email().required(),
+  password: Yup.string()
+    .min(8, "must contain at least 8 characters")
+    .max(64)
+    .required(),
+});
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -61,10 +70,9 @@ const SignInForm = () => {
   };
 
   return (
-    <AuthFormLayout className={css.layout}>
       <div className={css.signInContainer}>
-        <h2 className={css.title}>Sign In</h2>
-        <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+        <h2  className={css.title}>Sign In</h2>
+          <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.field}>
             <span className={css.label}>Email: </span>
             <input
@@ -128,8 +136,7 @@ const SignInForm = () => {
               Reset
             </NavLink>
           </div>
-      </div>
-    </AuthFormLayout>
+        </div>
   );
 };
 
