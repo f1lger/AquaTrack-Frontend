@@ -5,55 +5,25 @@
   border-radius: 30px;
   background: #f0eff4;
 }
-@media only screen and (min-width: 1440px) {
-  .wrapper {
-    display: flex;
-    height: 100%;
-  }
-}
-.container {
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 24px;
-  padding-bottom: 170px;
-  background: #f0eff4;
-  border-radius: 30px;
-  width: 100%;
-  gap: 172px;
-  margin-top: 32px;
-}
-@media only screen and (min-width: 375px) {
-  .container {
-    max-width: 375px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    gap: 225px;
-    padding-bottom: 281px;
-  }
+
+.advSection {
+  display: none;
 }
 
-@media only screen and (min-width: 1440px) {
-  .container {
+
+/* Desktop*/
+@media (min-width: 1440px) {
+  .signUpSection{
+    width: 672px;
+    height: 736px;
+  }
+
+  .wrapper{
+    display: flex;
     gap: 32px;
-    max-width: 50%;
-    padding-bottom: 168px;
+  }
+  .advSection{
+    display: flex;
   }
 }
-.advantages {
-    display: none;
-}
 
-@media only screen and (min-width: 1440px) {
-    .advantages {
-    position: relative;
-    display: flex;
-    height: 100%;
-    width: 50%;
-    }
-}
