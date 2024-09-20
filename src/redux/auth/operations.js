@@ -59,11 +59,12 @@ export const login = createAsyncThunk(
 );
 
 
+
 export const updateUser = createAsyncThunk(
   "auth/update",
   async (formData, thunkAPI) => {
     try {
-      const res = await axios.put("users/update", formData, { 
+      const res = await axios.patch("/users/profile", formData, { 
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -73,4 +74,36 @@ export const updateUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-);
+); 
+
+/*
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      console.log("Update user function called");
+      const token = thunkAPI.getState().auth.token;
+
+      console.log("Token:", token);
+
+      if (!token) {
+        throw new Error("No authorization token available");
+      }
+
+      console.log('Token is valid, setting auth header...');
+      setAuthHeader(token);
+
+      const res = await axios.patch("/users/profile", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      
+      console.log("Response from server:", res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+); */
