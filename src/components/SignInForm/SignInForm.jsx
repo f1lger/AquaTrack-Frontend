@@ -12,15 +12,10 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 /*
-export const AuthFormLayout = ({ children, className }) => {
-  return <div className={clsx(css.layout, { className })}>{children}</div>;
-};
-
-AuthFormLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
+import GoogleLoginButton from '../GoogleLoginButton/GoogleLoginButton.jsx';
 */
+
+
  const signInFormSchema = Yup.object({
   email: Yup.string().email().required(),
   password: Yup.string()
@@ -118,7 +113,15 @@ const SignInForm = () => {
           
           <button type="submit" className={css.submit}>
             Sign in
-          </button>
+        </button>
+{/*
+        <GoogleLoginButton
+          context={"Sign In with Google"}
+          onClick={() => {
+
+          }}
+        />
+*/}
         </form>
         <div className={css.questionOnLogIn}>
           <p className={css.questionText}>

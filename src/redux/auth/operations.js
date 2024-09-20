@@ -93,3 +93,24 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
+
+
+
+
+// Log in with Google
+export const loginWithGoogle = createAsyncThunk(
+  'auth/loginWithGoogle',
+  async (tokenId, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/auth/google-login', { tokenId });
+      if (response.data) {
+        return response.data;
+      }
+      
+      return thunkAPI.rejectWithValue("No data returned from server.");
+    } catch (error) {
+      console.error("Login error:", error);
+      return thunkAPI.rejectWithValue(error.response?.data || "Login failed.");
+    }
+  }
+);
