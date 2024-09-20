@@ -27,12 +27,12 @@
 }
 @media only screen and (min-width: 375px) {
   .container {
-    width: 375px;
+    max-width: 375px;
   }
 }
 @media only screen and (min-width: 768px) {
   .container {
-    width: 768px;
+    max-width: 768px;
     gap: 225px;
     padding-bottom: 281px;
   }
@@ -41,7 +41,7 @@
 @media only screen and (min-width: 1440px) {
   .container {
     gap: 32px;
-    max-width: 100%;
+    max-width: 50%;
     padding-bottom: 168px;
   }
 }
