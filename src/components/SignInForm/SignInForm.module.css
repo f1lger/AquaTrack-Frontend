@@ -1,13 +1,13 @@
 .layout {
   border-radius: 30px;
   background: #f0eff4;
-  padding: 24px 16px 216px;
+  /* padding: 24px 16px 216px; */
 }
 
 @media only screen and (min-width: 1440px) {
   .layout {
     max-width: 100%;
-    padding-top: 130px;
+    /* padding-top: 130px; */
     align-items: flex-start;
   }
 }

@@ -21,8 +21,6 @@
   padding-right: 16px;
   display: flex;
   flex-direction: column;
-  padding-top: 24px;
-  padding-bottom: 170px;
   background: #f0eff4;
   border-radius: 30px;
   width: 100%;
@@ -37,8 +35,6 @@
 @media only screen and (min-width: 768px) {
   .container {
     width: 768px;
-    gap: 225px;
-    padding-bottom: 281px;
   }
 }
 
