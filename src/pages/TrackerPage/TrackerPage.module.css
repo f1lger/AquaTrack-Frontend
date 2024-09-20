@@ -4,6 +4,14 @@
   gap: 16px;
   height: 100%;
 }
+
+.waterListAndCalendarWrapper {
+  /* max-width: 343px; */
+  background-color: #f0eff4;
+  border-radius: 30px;
+  padding: 40px 20px;
+}
+
 @media only screen and (min-width: 1440px) {
   .trackerPage {
     flex-direction: row;
