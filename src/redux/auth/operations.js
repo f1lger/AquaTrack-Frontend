@@ -2,8 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'http://localhost:5173/'
-/*"https://aquatrack-back-end.onrender.com/";*/
+axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/"
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -59,7 +58,6 @@ export const login = createAsyncThunk(
   }
 );
 
-<<<<<<< SignInPage
 
 
 // Надсилання email для скидання пароля
@@ -87,7 +85,6 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
-=======
 export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/users/logout");
@@ -96,4 +93,3 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
->>>>>>> main
