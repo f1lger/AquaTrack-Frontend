@@ -1,16 +1,16 @@
 .signInContainer {
   width: 100%;
- margin: 172px auto 216px;
+  margin: 172px auto 216px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-   margin: 225px auto 280px;
-   width: 436px;
+    margin: 225px auto 280px;
+    width: 436px;
   }
 }
 @media only screen and (min-width: 1440px) {
   .signInContainer {
-    margin:113px auto 169px;
+    margin: 113px auto 169px;
   }
 }
 
