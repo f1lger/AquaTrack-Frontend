@@ -21,7 +21,7 @@ const Calendar = ({ daysInMonth }) => {
     <div>
       <ul className={css.calendar}>
         {daysArray.map((percentage, index) => (
-          <li key={index + 1}>
+          <li key={index + 1} className={css.calendarDay}>
             <button
               className={clsx(
                 percentage === "100" ? css.waterCompleted : css.day

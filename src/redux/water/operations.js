@@ -54,8 +54,7 @@ export const waterPerDay = createAsyncThunk(
   async (date, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      // const token = state.auth.token;
-      const token = "6HscuTbeEdcwt5L7tbrUNHaQLp+IlshG6qTnOnLg";
+      const token = state.auth.token;
       setAuthHeader(token);
       const { data } = await axios.get(`/water/per-day/${date}`);
       return data.data;
@@ -70,8 +69,7 @@ export const waterPerMonth = createAsyncThunk(
   async (date, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      // const token = state.auth.token;
-      const token = "6HscuTbeEdcwt5L7tbrUNHaQLp+IlshG6qTnOnLg";
+      const token = state.auth.token;
       setAuthHeader(token);
       const { data } = await axios.get(`/water/per-month/${date}`);
       return data.data;

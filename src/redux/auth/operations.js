@@ -30,9 +30,7 @@ export const fetchUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      // setAuthHeader(state.auth.token);
-      const token = "6HscuTbeEdcwt5L7tbrUNHaQLp+IlshG6qTnOnLg";
-      setAuthHeader(token);
+      setAuthHeader(state.auth.token);
       const response = await axios.get("/users/info");
       return response.data;
     } catch (error) {

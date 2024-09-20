@@ -16,6 +16,12 @@
   color: rgb(47, 47, 47, 60%);
 }
 
+.calendarDay {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .day {
   font-size: 14px;
   font-weight: bold;
