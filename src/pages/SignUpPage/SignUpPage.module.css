@@ -1,7 +1,7 @@
 .wrapper {
   position: relative;
   margin: 0 auto;
-  padding: 24px 16px;
+
   border-radius: 30px;
   background: #f0eff4;
 }
@@ -46,14 +46,14 @@
   }
 }
 .advantages {
-    display: none;
+  display: none;
 }
 
 @media only screen and (min-width: 1440px) {
-    .advantages {
+  .advantages {
     position: relative;
     display: flex;
     height: 100%;
     width: 50%;
-    }
+  }
 }
