@@ -9,7 +9,7 @@ function WelcomeSection() {
 
   return (
     <div className={styles.wrapper}>
-      <Logo />
+      <Logo className={styles.logo} />
       <h2 className={styles.subTitle}>Record daily water intake and track</h2>
       <h1 className={styles.mainTitle}>Water consumption tracker</h1>
       <ul className={styles.btnGroup}>

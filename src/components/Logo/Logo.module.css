@@ -1,7 +1,7 @@
 .logo {
-  position: absolute;
+  /* position: absolute;
   top: 33px;
-  left: 32px;
+  left: 32px; */
   color: #323f47;
   text-align: start;
   font-family: Poppins;
@@ -9,6 +9,12 @@
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing:  -0.02em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+}
+@media only screen and (min-width: 768px) {
+  .logo {
+    top: 33px;
+    left: 32px;
+  }
 }
