@@ -27,8 +27,8 @@ const GoogleLoginButton = ({ context }) => {
     const { url } = response.data.data;
     window.location.href = url;
   } catch (error) {
-    console.error("Помилка при отриманні URL для Google OAuth:", error);
-    setError("Не вдалося отримати URL для авторизації. Спробуйте ще раз.");
+    console.error("Problem getting URL for Google OAuth:", error);
+    setError("Failed to get authorization URL.  Please try again.");
   } finally {
     setLoading(false);
   }

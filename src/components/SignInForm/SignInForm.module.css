@@ -8,12 +8,18 @@
     width: 436px;
   }
 }
+/* Без кнопки Google */
 @media only screen and (min-width: 1440px) {
   .signInContainer {
-    margin: 54px auto;
+    margin: 54px auto;}
+  }
+/*  Коли додано Google Btn
+@media only screen and (min-width: 1440px) {
+  .signInContainer {
+    margin: 32px auto 32px;
   }
 }
-
+*/
 .title {
   font-weight: 700;
   font-size: 32px;
