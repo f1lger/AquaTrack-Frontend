@@ -1,3 +1,4 @@
+/* Mobile */
 .wrapper {
   margin: 126px auto 170px;
 }
@@ -5,8 +6,6 @@
 .title {
   color: #323f47;
   margin-bottom: 32px;
-
-  /* Mobile/H2 */
   font-family: Poppins;
   font-size: 32px;
   font-style: normal;
@@ -34,6 +33,7 @@
 }
 
 .inputField {
+  position: relative;
   display: flex;
   margin-bottom: 20px;
   width: 100%;
@@ -48,6 +48,7 @@
 }
 
 .inputLastField {
+  position: relative;
   display: flex;
   margin-bottom: 32px;
   width: 100%;
@@ -65,32 +66,19 @@
   color: rgba(47, 47, 47, 0.6);
 }
 
-.errorMessage {
+.inputError {
+  border-color: #ef5050;
   color: #ef5050;
-  margin-bottom: 20px;
-  text-align:inherit;
-
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px; /* 128.571% */
-  letter-spacing: -0.14px;
 }
 
-.errorMessageConfirm{
-	color: #ef5050;
-	margin-top: -12px;
-	margin-bottom: 20px;
-	text-align:inherit;
-  
-	font-family: Poppins;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 18px; /* 128.571% */
-	letter-spacing: -0.14px;
-  }
+.errorMessage,
+.errorMessageConfirm {
+  color: #ef5050;
+  margin-bottom: 20px;
+  font-family: Poppins;
+  font-size: 14px;
+  border-color: #ef5050;
+}
 
 .submitButton {
   background-color: #9be1a0;
@@ -135,4 +123,50 @@
   line-height: 18px;
   letter-spacing: -0.14px;
   text-decoration-line: underline;
+}
+
+.showPasswordBtn {
+  display: none;
+}
+
+/* Tablet */
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    /* margin: 281px 134px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    margin-left: -200px;
+  }
+
+  .showPasswordTablet {
+    display: none;
+  }
+  .showPasswordTablet {
+    display: block;
+  }
+
+  .inputContainer {
+    position: relative;
+  }
+
+  .showPasswordBtn {
+    position: absolute;
+    background-color: transparent;
+    right: 10px;
+    top: 13px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .icon {
+    fill: none;
+    stroke: #2f2f2f;
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -5,12 +5,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register, login } from "../../redux/auth/operations";
 import { toast } from "react-toastify";
+import iconSprite from "../../icons/symbol-defs.svg";
 import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const initialValues = {
     email: "",
@@ -22,7 +25,8 @@ function SignUpForm() {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required!"),
-    password: Yup.string().required("Password is required!"),
+    password: Yup.string()
+      .required("Password is required!"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Please, repeat your password"),
@@ -54,12 +58,19 @@ function SignUpForm() {
       resetForm();
       setError("");
     } catch (err) {
-
       const errorMessage = err.response?.data?.message || err.message;
-      
+
       setError(errorMessage);
       toast.error(`Registration failed: ${errorMessage}`);
     }
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
@@ -70,18 +81,20 @@ function SignUpForm() {
         initialValues={initialValues}
         onSubmit={handleSignUp}
       >
-        {() => (
+        {({ values, touched, errors }) => (
           <Form className={styles.formContainer}>
             <div>
               <label htmlFor="email" className={styles.label}>
                 Email
               </label>
               <Field
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 placeholder="Enter your email"
-                className={styles.inputField}
+                className={`${styles.inputField} ${
+                  errors.email && touched.email ? styles.inputError : ""
+                }`}
               />
               <ErrorMessage
                 name="email"
@@ -89,40 +102,81 @@ function SignUpForm() {
                 className={styles.errorMessage}
               />
             </div>
-            <div>
+            <div className={styles.inputWrapper}>
               <label htmlFor="password" className={styles.label}>
                 Password
               </label>
-              <Field
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                className={styles.inputField}
-              />
+              <div className={styles.inputContainer}>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  className={`${styles.inputField} ${
+                    errors.password && touched.password ? styles.inputError : ""
+                  }`}
+                />
+                <button
+                  className={`${styles.showPasswordBtn} ${styles.showPasswordTablet}`}
+                  type="button"
+                  onClick={handleClickShowPassword}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <svg className={styles.icon}>
+                      <use href={`${iconSprite}#icon-eye`}></use>
+                    </svg>
+                  ) : (
+                    <svg className={styles.icon}>
+                      <use href={`${iconSprite}#icon-eye-off`}></use>
+                    </svg>
+                  )}
+                </button>
+              </div>
+
               <ErrorMessage
                 name="password"
                 component="div"
                 className={styles.errorMessage}
               />
             </div>
-            <div>
+            <div className={styles.inputWrapper}>
               <label htmlFor="confirmPassword" className={styles.label}>
                 Repeat password
               </label>
-              <Field
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Repeat password"
-                className={styles.inputLastField}
-              />
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className={styles.errorMessageConfirm}
-              />
+              <div className={styles.inputContainer}>
+                <Field
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Repeat password"
+                  className={`${styles.inputLastField} ${
+                    errors.confirmPassword ? styles.inputError : ""
+                  }`}
+                />
+                <button
+                  className={`${styles.showPasswordBtn} ${styles.showPasswordTablet}`}
+                  type="button"
+                  onClick={handleClickShowConfirmPassword}
+                  aria-label={
+                    showConfirmPassword ? "Hide password" : "Show password"
+                  }
+                >
+                  {showConfirmPassword ? (
+                    <svg className={styles.icon}>
+                      <use href={`${iconSprite}#icon-eye`}></use>
+                    </svg>
+                  ) : (
+                    <svg className={styles.icon}>
+                      <use href={`${iconSprite}#icon-eye-off`}></use>
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
+            {values.password !== values.confirmPassword && (
+              <div className={styles.errorMessage}>Passwords do not match</div>
+            )}
             {error && <div className={styles.error}>{error}</div>}
             <button type="submit" className={styles.submitButton}>
               Sign up
