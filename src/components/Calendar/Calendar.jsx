@@ -2,8 +2,8 @@ import css from "./Calendar.module.css";
 import { useSelector } from "react-redux";
 import { selectMonthlyRecords } from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
-import clsx from "clsx";
 import { useMemo } from "react";
+import CalendarItem from "../CalendarItem/CalendarItem";
 
 const Calendar = ({ daysInMonth }) => {
   const monthlyRecords = useSelector(selectMonthlyRecords);
@@ -24,15 +24,7 @@ const Calendar = ({ daysInMonth }) => {
       <ul className={css.calendar}>
         {daysArray.map((percentage, index) => (
           <li key={index + 1} className={css.calendarDay}>
-            <button
-              className={clsx(
-                css.baseDay,
-                percentage === "100" ? css.waterCompleted : css.day
-              )}
-            >
-              {index + 1}
-            </button>
-            <div>{percentage}%</div>
+            <CalendarItem index={index} percentage={percentage} />
           </li>
         ))}
       </ul>
