@@ -23,7 +23,7 @@
   row-gap: 6px;
 }
 
-.day {
+.baseDay {
   font-size: 14px;
   font-weight: bold;
   display: flex;
@@ -32,18 +32,13 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
+}
+
+.day {
   background-color: rgb(50, 63, 71, 20%);
 }
 
 .waterCompleted {
-  font-size: 14px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
   background-color: #ffffff;
 }
 
