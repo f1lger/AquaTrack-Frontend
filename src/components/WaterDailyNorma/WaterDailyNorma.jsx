@@ -7,7 +7,7 @@ const WaterDailyNorma = () => {
 
   return (
     <div className={styles.normaWrapper}>
-      <p className={styles.normaValue}>{(dailyNorma / 1000).toFixed(1)} L</p>
+      <p className={styles.normaValue}>{(dailyNorma).toFixed(1)} L</p>
       <p className={styles.normaDesc}>My daily norma</p>
     </div>
   );

@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-// import { fetchWater } from "../../redux/water/operations";
 import { fetchUser } from "../../redux/auth/operations";
 
 import WaterDailyNorma from "../WaterDailyNorma/WaterDailyNorma";
@@ -14,7 +13,6 @@ const WaterMainInfo = ({ openWaterModal }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(fetchWater());
     dispatch(fetchUser());
   }, [dispatch]);
   
