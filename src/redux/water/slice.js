@@ -5,6 +5,7 @@ import {
   fetchWater,
   updateWater,
   waterPerDay,
+  waterPerMonth,
 } from "./operations";
 
 const waterPending = (state) => {
@@ -71,7 +72,17 @@ const waterSlice = createSlice({
           (item) => item._id !== waterId
         );
       })
-      .addCase(deleteWater.rejected, waterRejected);
+      .addCase(deleteWater.rejected, waterRejected)
+      .addCase(waterPerMonth.pending, waterPending)
+      .addCase(waterPerMonth.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.monthlyRecords = payload;
+      })
+      .addCase(waterPerMonth.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        state.monthlyRecords = [];
+      });
   },
 });
 
