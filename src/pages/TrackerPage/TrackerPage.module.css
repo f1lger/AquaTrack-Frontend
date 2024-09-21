@@ -5,15 +5,31 @@
   height: 100%;
 }
 
-.waterListAndCalendarWrapper {
-  background-color: #f0eff4;
-  border-radius: 30px;
-  padding: 40px 20px;
-}
-
 @media only screen and (min-width: 1440px) {
   .trackerPage {
     flex-direction: row;
     gap: 32px;
+  }
+}
+
+.waterListAndCalendarWrapper {
+  max-width: 343px;
+  background-color: #f0eff4;
+  border-radius: 30px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+  .waterListAndCalendarWrapper {
+    max-width: 704px;
+    padding: 35px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .waterListAndCalendarWrapper {
+    max-width: 672px;
+    padding: 33px 32px;
   }
 }

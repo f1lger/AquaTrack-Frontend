@@ -1,4 +1,6 @@
 import css from "./CalendarPagination.module.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 
 const CalendarPagination = ({ handleMonthChange, year, month }) => {
   const months = [
@@ -26,7 +28,7 @@ const CalendarPagination = ({ handleMonthChange, year, month }) => {
           onClick={() => handleMonthChange(-1)}
           className={css.paginationBtn}
         >
-          ←
+          <IoIosArrowBack size={18} color="#323F47" />
         </button>
         <p className={css.monthName}>
           {monthName}, {year}
@@ -35,7 +37,7 @@ const CalendarPagination = ({ handleMonthChange, year, month }) => {
           onClick={() => handleMonthChange(+1)}
           className={css.paginationBtn}
         >
-          →
+          <IoIosArrowForward size={18} color="#323F47" />
         </button>
       </div>
     </div>

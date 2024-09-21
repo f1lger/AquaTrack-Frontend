@@ -7,19 +7,20 @@
 }
 
 .calendar {
+  font-size: 10px;
+  font-weight: normal;
+  color: rgb(47, 47, 47, 60%);
+  text-align: center;
   display: flex;
   flex-wrap: wrap;
   column-gap: 17px;
   row-gap: 20px;
-  font-size: 10px;
-  font-weight: normal;
-  color: rgb(47, 47, 47, 60%);
 }
 
 .calendarDay {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  row-gap: 6px;
 }
 
 .day {
@@ -30,8 +31,8 @@
   align-items: center;
   width: 28px;
   height: 28px;
-  background-color: rgb(50, 63, 71, 20%);
   border-radius: 50%;
+  background-color: rgb(50, 63, 71, 20%);
 }
 
 .waterCompleted {
@@ -42,6 +43,36 @@
   align-items: center;
   width: 28px;
   height: 28px;
-  background-color: #ffffff;
   border-radius: 50%;
+  background-color: #ffffff;
+}
+
+@media only screen and (min-width: 768px) {
+  .calendar {
+    font-size: 12px;
+    column-gap: 48px;
+    row-gap: 15px;
+  }
+
+  .calendarDay {
+    row-gap: 4px;
+  }
+
+  .day {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .waterCompleted {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .calendar {
+    column-gap: 43px;
+  }
 }

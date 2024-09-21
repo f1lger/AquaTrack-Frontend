@@ -1,4 +1,3 @@
-import css from "./MonthInfo.module.css";
 import { useDispatch } from "react-redux";
 import { waterPerMonth } from "../../redux/water/operations";
 import { useEffect, useState } from "react";
@@ -41,7 +40,7 @@ const MonthInfo = () => {
   }, [dispatch, year, month]);
 
   return (
-    <div className={css.monthInfo}>
+    <div>
       <CalendarPagination
         handleMonthChange={handleMonthChange}
         month={month}

@@ -10,7 +10,7 @@ const Calendar = ({ daysInMonth }) => {
 
   const daysArray = Array.from({ length: daysInMonth }, (_, index) => {
     const day = index + 1;
-    const record = monthlyRecords.find((rec) => rec.hasOwnProperty(day));
+    const record = monthlyRecords.find((rec) => rec[day]);
     const waterConsumed = record ? record[day] : 0;
     const percentage = (waterConsumed / dailyTarget) * 100;
 
