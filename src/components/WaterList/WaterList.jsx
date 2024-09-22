@@ -20,11 +20,11 @@ function WaterList() {
   // }, [currentDay, dispatch]);
 
   return (
-    <ul className={css.list}>
-      {dailyRecords.map((item) => (
-        <WaterItem key={item._id} data={item} />
-      ))}
-    </ul>
+      <ul className={css.list}>
+        {dailyRecords.map((item) => (
+          <WaterItem key={item._id} data={item} />
+        ))}
+      </ul>
   );
 }
 
