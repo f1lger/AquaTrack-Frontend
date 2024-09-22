@@ -5,11 +5,11 @@ const initialState = {
   user: {
     email: null,
     dailyNorma: 1500,
+    avatar: '../../photo/desk/woman-avatar-2x.webp',
     name: null,
     gender: "woman",
     weight: 0,
     sportTime: 0,
-    avatar: null,
   },
   isLogedIn: false,
   token: null,
@@ -54,11 +54,13 @@ const authSlice = createSlice({
       .addCase(login.pending, handlePending)
       .addCase(login.fulfilled, (state, { payload }) => {
         state.token = payload.accessToken;
+        state.loading = false;
       })
       .addCase(login.rejected, handleError)
       .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, (state) => {
         state.token = null;
+        state.loading = false;
       })
       .addCase(logout.rejected, handleError);
   },

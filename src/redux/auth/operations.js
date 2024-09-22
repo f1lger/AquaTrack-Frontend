@@ -29,8 +29,8 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      setAuthHeader(state.auth.token);
+      const token = thunkAPI.getState().auth.token;
+      setAuthHeader(token);
       const response = await axios.get("/users/info");
       return response.data.data;
     } catch (error) {
@@ -57,6 +57,54 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.patch("/users/profile", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+); 
+
+/*
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      console.log("Update user function called");
+      const token = thunkAPI.getState().auth.token;
+
+      console.log("Token:", token);
+
+      if (!token) {
+        throw new Error("No authorization token available");
+      }
+
+      console.log('Token is valid, setting auth header...');
+      setAuthHeader(token);
+
+      const res = await axios.patch("/users/profile", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      
+      console.log("Response from server:", res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+); */
 
 // Надсилання email для скидання пароля
 export const sendPasswordResetEmail = createAsyncThunk(
@@ -93,3 +141,21 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
+
+// Log in with Google
+export const loginWithGoogle = createAsyncThunk(
+  'auth/loginWithGoogle',
+  async (tokenId, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/auth/google-login', { tokenId });
+      if (response.data) {
+        return response.data;
+      }
+      
+      return thunkAPI.rejectWithValue("No data returned from server.");
+    } catch (error) {
+      console.error("Login error:", error);
+      return thunkAPI.rejectWithValue(error.response?.data || "Login failed.");
+    }
+  }
+);
