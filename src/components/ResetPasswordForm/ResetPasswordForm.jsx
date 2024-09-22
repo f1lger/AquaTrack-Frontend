@@ -16,10 +16,10 @@ const resetPasswordSchema = yup.object().shape({
     .string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
-  confirmPassword: yup
+  /*confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Confirm password is required"),
+    .required("Confirm password is required"),*/
 });
 
 const ResetPasswordForm = () => {
@@ -85,7 +85,7 @@ const ResetPasswordForm = () => {
           <p className={css.errorMessage}>{errors.password?.message}</p>
         </label>
 
-        
+        {/*
         <label className={css.field}>
           <span className={css.label}>Confirm Password: </span>
           <div className={css.inputField}>
@@ -115,7 +115,8 @@ const ResetPasswordForm = () => {
             </button>
           </div>
           <p className={css.errorMessage}>{errors.confirmPassword?.message}</p>
-        </label>
+        </label>       
+*/}
 
         <button type="submit" className={css.submitbtn}>
           Reset Password
