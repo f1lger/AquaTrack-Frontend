@@ -1,9 +1,8 @@
-// import { format, isSameDay, parseISO } from "date-fns";
-import css from "./ChooseDate.module.css";
-
-import { useSelector } from "react-redux";
-import { selectSelectedDate } from "../../../redux/water/selectors";
 import { format, isSameDay, parseISO } from "date-fns";
+import { useSelector } from "react-redux";
+import { selectSelectedDate } from "../../redux/water/selectors";
+
+import css from "./ChooseDate.module.css";
 
 const ChooseDate = () => {
   const chosenDate = useSelector(selectSelectedDate);

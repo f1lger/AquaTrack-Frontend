@@ -30,6 +30,11 @@ const waterSlice = createSlice({
     loading: false,
     error: null,
   },
+  reducers: {
+    setSelectedDate: (state, action) => {
+      state.setSelectedDate = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addWater.pending, waterPending)
