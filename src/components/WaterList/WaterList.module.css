@@ -1,0 +1,42 @@
+.listContainer {
+  display: flex;
+  width: 100%;
+
+  padding-top: 24px;
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+}
+
+.list {
+  width: 300px;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  display: flex;
+  gap: 8px;
+  padding-bottom: 24px;
+  margin: 0;
+  min-height: 74px;
+}
+
+.msg {
+  font-size: 18px;
+  color: var(--main-grey);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    width: 640px;
+    gap: 32px;
+    min-height: 86px;
+  }
+
+  .stub {
+    font-size: 25px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .list {
+    width: 608px;
+    gap: 16px;
+  }
+}

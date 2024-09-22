@@ -1,0 +1,15 @@
+.date {
+  font-family: var(font-family);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--main-grey);
+}
+
+@media screen and (min-width: 768px) {
+  .date {
+    font-size: 28px;
+    line-height: 114%;
+  }
+}

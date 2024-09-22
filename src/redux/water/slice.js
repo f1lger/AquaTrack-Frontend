@@ -30,6 +30,11 @@ const waterSlice = createSlice({
     loading: false,
     error: null,
   },
+  reducers: {
+    setSelectedDate: (state, action) => {
+      state.setSelectedDate = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addWater.pending, waterPending)
@@ -40,6 +45,7 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, waterRejected)
       .addCase(waterPerDay.pending, waterPending)
       .addCase(waterPerDay.fulfilled, (state, { payload }) => {
+        state.waterInfo.dailyRecords = payload;
         state.waterInfo.total = payload.reduce(
           (total, record) => total + record.amount,
           0
