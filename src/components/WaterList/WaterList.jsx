@@ -15,17 +15,17 @@ function WaterList() {
 
   const dispatch = useDispatch;
 
-  useEffect(() => {
-    dispatch(fetchWater(currentDay));
-  }, [currentDay, dispatch]);
+  useEffect(() => {}, []);
+
+  // useEffect(() => {
+  //   dispatch(fetchWater(currentDay));
+  // }, [currentDay, dispatch]);
 
   return (
     <ul className={css.list}>
-      <p>water item</p>
       {dailyRecords.map((data, index) => (
         <WaterItem key={index} data={data} />
       ))}
-      {/* <WaterItem /> */}
     </ul>
   );
 }

@@ -37,7 +37,7 @@ const WaterItem = ({ data }) => {
 
       <div className={css.item}>
         <svg className={css.iconGlass}>
-          <use href={`${iconSprite}#water-glass-fill`}></use>
+          <use href={`${iconSprite}#icon-water-glass-fill`}></use>
         </svg>
         <div className={css.water}>
           <p className={css.volume}>{`${data.amount}ml`}</p>
@@ -59,7 +59,7 @@ const WaterItem = ({ data }) => {
           </button>
         </div>
 
-        <DeleteWaterModal
+        {/* <DeleteWaterModal
           isLoading={isLoading}
           setIsLoading={setIsLoading}
           isOpen={isDeleteModalOpen}
@@ -74,11 +74,11 @@ const WaterItem = ({ data }) => {
           isOpen={isEditModalOpen}
           closeModal={handleCloseEditModal}
           type="edit"
-          initialData={{
-            amount: data.amount,
-            time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
-          }}
-        />
+          // initialData={{
+          //   amount: data.amount,
+          //   time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
+          // }}
+        /> */}
       </div>
     </>
   );
