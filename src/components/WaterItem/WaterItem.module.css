@@ -21,6 +21,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  background-color: var(--main-white);
 }
 
 .volume {
@@ -50,13 +51,23 @@
   height: 16px;
   stroke: var(--main-grey);
   fill: var(--main-white);
-  background-color: var(--main-white);
 }
 .iconTrash {
   width: 16px;
   height: 16px;
   stroke: var(--main-grey);
   fill: var(--main-white);
+}
+
+.btnEdit {
+  width: 16x;
+  height: 16px;
+  background-color: var(--main-white);
+}
+
+.btnTrash {
+  width: 16px;
+  height: 16px;
   background-color: var(--main-white);
 }
 
@@ -87,15 +98,5 @@
   .iconGlass {
     width: 44px;
     height: 45px;
-  }
-
-  .btnEdit {
-    width: 16x;
-    height: 16px;
-  }
-
-  .btnTrash {
-    width: 16px;
-    height: 16px;
   }
 }
