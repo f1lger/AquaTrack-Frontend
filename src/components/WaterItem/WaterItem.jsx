@@ -6,6 +6,7 @@ import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
 import css from "./WaterItem.module.css";
+import Loader from "../Loader/Loader";
 
 const WaterItem = ({ data }) => {
   console.log("data: ", data);
@@ -65,20 +66,26 @@ const WaterItem = ({ data }) => {
           isOpen={isDeleteModalOpen}
           closeModal={handleCloseDeleteModal}
           id={data._id}
-        />
-
+        /> */}
+        {/* 
         <WaterModal
+          title={}
+          secondTitle={}
+          onClose={}
+          isAddWater={}
+          item={}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
           id={data._id}
           isOpen={isEditModalOpen}
           closeModal={handleCloseEditModal}
           type="edit"
-          // initialData={{
-          //   amount: data.amount,
-          //   time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
-          // }}
-        /> */}
+          initialData={{
+            amount: data.amount,
+            time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
+          }}
+        />
+         */}
       </div>
     </>
   );

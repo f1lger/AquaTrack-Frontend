@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import WaterItem from "../WaterItem/WaterItem";
 import css from "./WaterList.module.css";
 import {
@@ -13,8 +13,6 @@ function WaterList() {
 
   console.log(dailyRecords);
 
-  const dispatch = useDispatch;
-
   useEffect(() => {}, []);
 
   // useEffect(() => {
@@ -23,8 +21,8 @@ function WaterList() {
 
   return (
     <ul className={css.list}>
-      {dailyRecords.map((data, index) => (
-        <WaterItem key={index} data={data} />
+      {dailyRecords.map((item) => (
+        <WaterItem key={item._id} data={item} />
       ))}
     </ul>
   );
