@@ -1,0 +1,35 @@
+.icon_google {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.google_btn {
+    margin-top: 4px;
+    font-weight: 700;
+    border: none;
+    width: 100%;
+    color: var(--primary-light-grey-color);
+    border-radius: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: white;
+    background-size: 300% auto;
+    transition: var(--transition-duration) var(--transition-timing-function);
+
+    &:hover {
+        background-position: 100% 0;
+    }
+
+    @media (min-width: 768px) {
+        height: 60px;
+    }
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-weight: 400;
+}

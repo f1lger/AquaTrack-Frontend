@@ -9,21 +9,24 @@ import { lazy, Suspense, useEffect } from "react";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuthLoading } from "../../redux/auth/selectors";
+import { selectAuthLoading, selectAuthToken } from "../../redux/auth/selectors";
 import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
+
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
+
 function App() {
   const dispatch = useDispatch();
 
   const isRefreshing = useSelector(selectAuthLoading);
-
+  const token = useSelector(selectAuthToken);
   useEffect(() => {
+    if (!token) return
     dispatch(fetchUser());
-  }, [dispatch]);
+  }, [dispatch, token]);
   return isRefreshing ? (
     <Loader />
   ) : (

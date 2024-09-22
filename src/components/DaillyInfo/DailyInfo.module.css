@@ -1,7 +1,6 @@
 .section {
   max-width: 375px;
   margin: 0 auto;
-  margin-top: 40px;
 }
 
 .container {
@@ -19,6 +18,7 @@
   justify-content: space-between;
   width: 100%;
   max-width: 343px;
+  margin-bottom: 24px;
 }
 
 @media screen and (min-width: 768px) {
