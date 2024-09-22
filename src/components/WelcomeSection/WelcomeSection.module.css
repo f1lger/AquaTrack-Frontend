@@ -1,7 +1,9 @@
 /* Mobile*/
 .wrapper {
+  position: relative;
+  padding: 24px 16px;
   /* max-width: 343px; */
-  min-width: 320px;
+  max-width: 375px;
   width: 100%;
   border-radius: 30px;
   background: #f0eff4;
