@@ -1,6 +1,6 @@
 /* Mobile */
 .wrapper {
-  min-width: 320px;
+  max-width: 375px;
   width: 100%;
   position: relative;
   margin: 0 auto;
@@ -160,7 +160,7 @@
 /* Tablet */
 @media (min-width: 768px) {
   .wrapper {
-    width: 704px;
+    max-width: 704px;
     height: 446px;
   }
 
@@ -246,7 +246,7 @@
 /* Desktop */
 @media (min-width: 1440px) {
   .wrapper {
-    width: 672px;
+    max-width: 672px;
     height: 736px;
   }
 

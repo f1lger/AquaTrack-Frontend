@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/"
+axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -29,10 +29,10 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      setAuthHeader(state.auth.token);
+      const token = thunkAPI.getState().auth.token;
+      setAuthHeader(token);
       const response = await axios.get("/users/info");
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -58,14 +58,60 @@ export const login = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.patch("/users/profile", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+); 
 
+/*
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (formData, thunkAPI) => {
+    try {
+      console.log("Update user function called");
+      const token = thunkAPI.getState().auth.token;
+
+      console.log("Token:", token);
+
+      if (!token) {
+        throw new Error("No authorization token available");
+      }
+
+      console.log('Token is valid, setting auth header...');
+      setAuthHeader(token);
+
+      const res = await axios.patch("/users/profile", formData, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      
+      console.log("Response from server:", res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+); */
 
 // Надсилання email для скидання пароля
 export const sendPasswordResetEmail = createAsyncThunk(
-  'auth/sendPasswordResetEmail',
+  "auth/sendPasswordResetEmail",
   async (email, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/auth/forgot-password', { email });
+      const response = await axios.post("/api/auth/forgot-password", { email });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -75,10 +121,12 @@ export const sendPasswordResetEmail = createAsyncThunk(
 
 // Скидання пароля за токеном
 export const resetPassword = createAsyncThunk(
-  'auth/resetPassword',
+  "auth/resetPassword",
   async ({ token, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`/api/auth/reset-password/${token}`, { password });
+      const response = await axios.post(`/api/auth/reset-password/${token}`, {
+        password,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -93,9 +141,6 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
-
-
-
 
 // Log in with Google
 export const loginWithGoogle = createAsyncThunk(

@@ -1,11 +1,21 @@
 .WaterDetailedInfo {
+  max-width: 343px;
+  background-color: #f0eff4;
+  border-radius: 30px;
+  margin: 0 auto;
   padding: 40px 20px;
 }
-@media only screen and (min-width: 768px) {
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
   .WaterDetailedInfo {
-    max-width: 768px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 32px;
+    max-width: 704px;
+    padding: 35px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .WaterDetailedInfo {
+    max-width: 672px;
+    padding: 33px 32px;
   }
 }

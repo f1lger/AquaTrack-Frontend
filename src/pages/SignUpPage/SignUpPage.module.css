@@ -1,34 +1,33 @@
 .wrapper {
   position: relative;
   margin: 0 auto;
-  border-radius: 30px;
-  background: #f0eff4;
 }
 
 .advSection {
   display: none;
 }
 
-
 /* Desktop*/
 @media (min-width: 1440px) {
-  .signUpSection{
-    width: 672px;
+  .signUpSection {
+    max-width: 672px;
+    width: 100%;
     height: 736px;
+    border-radius: 30px;
+    background: #f0eff4;
   }
 
-  .wrapper{
+  .wrapper {
     display: flex;
     gap: 32px;
   }
-
 }
 .advantages {
   display: none;
 }
 
 @media only screen and (min-width: 1440px) {
-  .advantages {
+  .advSection {
     position: relative;
     display: flex;
     height: 100%;

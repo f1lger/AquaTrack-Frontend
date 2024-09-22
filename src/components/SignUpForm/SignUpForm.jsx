@@ -26,11 +26,7 @@ function SignUpForm() {
       .email("Invalid email address")
       .required("Email is required!"),
     password: Yup.string()
-      .required("Password is required!")
-      .matches(
-        /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-        "Password must contain at least one uppercase letter and one special character"
-      ),
+      .required("Password is required!"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Please, repeat your password"),
@@ -92,7 +88,7 @@ function SignUpForm() {
                 Email
               </label>
               <Field
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 placeholder="Enter your email"
