@@ -6,36 +6,25 @@
 }
 
 .plusBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: var(--accent);
-
-  transition: background-color var(--transition);
-  color: var(--main-gray);
-}
-/* display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  color: var(--main-grey);
   background-color: var(--accent);
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition);
   padding: 5px 10px;
   margin-right: 10px;
   font-weight: 100;
-  font-size: 24px; */
-/* }
+  font-size: 24px;
+}
 
-.btn:hover,
-.btn:focus {
-  background-color: var(--main-gray);
+.plusBtn:hover,
+.plusBtn:focus {
+  background-color: var(--main-grey);
   color: var(--main-white);
 }
 
@@ -45,6 +34,6 @@
   line-height: 150%;
   letter-spacing: -0.01em;
   text-align: center;
-  color: var(--main-gray);
+  color: var(--main-grey);
   cursor: pointer;
-} */
+}
