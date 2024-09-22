@@ -1,11 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addWater, deleteWater, fetchWater, updateWater } from "./operations";
+import {
+  addWater,
+  deleteWater,
+  fetchWater,
+  updateWater,
+  waterPerDay,
+  waterPerMonth,
+} from "./operations";
+
+const waterPending = (state) => {
+  state.loading = true;
+  state.error = null;
+};
+const waterRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.error.message;
+};
 
 const waterSlice = createSlice({
   name: "water",
   initialState: {
     waterInfo: {
-      total: 900,
+      total: 0,
       dailyRecords: [],
     },
     monthlyRecords: [],
@@ -16,34 +32,28 @@ const waterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addWater.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(addWater.pending, waterPending)
       .addCase(addWater.fulfilled, (state, { payload }) => {
         state.waterInfo.total += payload.amount;
         state.loading = false;
       })
-      .addCase(addWater.rejected, (state, action) => {
+      .addCase(addWater.rejected, waterRejected)
+      .addCase(waterPerDay.pending, waterPending)
+      .addCase(waterPerDay.fulfilled, (state, { payload }) => {
+        state.waterInfo.total = payload.reduce(
+          (total, record) => total + record.amount,
+          0
+        );
         state.loading = false;
-        state.error = action.error.message;
       })
-      .addCase(fetchWater.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(waterPerDay.rejected, waterRejected)
+      .addCase(fetchWater.pending, waterPending)
       .addCase(fetchWater.fulfilled, (state, { payload }) => {
         state.waterInfo.total = payload.total;
         state.loading = false;
       })
-      .addCase(fetchWater.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
-      .addCase(updateWater.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(fetchWater.rejected, waterRejected)
+      .addCase(updateWater.pending, waterPending)
       .addCase(updateWater.fulfilled, (state, action) => {
         state.loading = false;
         const index = state.waterInfo.dailyRecords.findIndex(
@@ -53,14 +63,8 @@ const waterSlice = createSlice({
           state.waterInfo.dailyRecords[index] = action.payload.data;
         }
       })
-      .addCase(updateWater.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
-      .addCase(deleteWater.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(updateWater.rejected, waterRejected)
+      .addCase(deleteWater.pending, waterPending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         const waterId = action.meta.arg;
@@ -68,9 +72,16 @@ const waterSlice = createSlice({
           (item) => item._id !== waterId
         );
       })
-      .addCase(deleteWater.rejected, (state, action) => {
+      .addCase(deleteWater.rejected, waterRejected)
+      .addCase(waterPerMonth.pending, waterPending)
+      .addCase(waterPerMonth.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.monthlyRecords = payload;
+      })
+      .addCase(waterPerMonth.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        state.monthlyRecords = [];
       });
   },
 });

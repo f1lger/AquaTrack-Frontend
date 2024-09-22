@@ -1,32 +1,36 @@
+/* Mobile*/
 .wrapper {
-  width: 343px;
+  /* max-width: 343px; */
+  min-width: 320px;
+  width: 100%;
   border-radius: 30px;
   background: #f0eff4;
-  padding: 24px 16px;
   margin: 0 auto;
-  margin-bottom: 16px;
   text-align: center;
+}
+
+.logo {
+  margin-top: 24px;
+  margin-left: 16px;
 }
 
 .subTitle {
   margin-top: 118px;
   text-align: start;
   color: #2f2f2f;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.02;
+  letter-spacing: 0.02em;
 }
 
 .mainTitle {
   margin-top: 16px;
   color: #323f47;
   text-align: start;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -38,7 +42,6 @@
   gap: 16px;
   list-style-type: none;
   margin-top: 32px;
-  margin-bottom: 67px;
 }
 
 .button {
@@ -80,4 +83,66 @@
   border-color: #323f47;
   color: #323f47;
   opacity: 0.5;
+}
+
+/* Tablet*/
+@media (min-width: 768px) {
+  .wrapper {
+    max-width: 704px;
+    flex-shrink: 0;
+    padding-left: 64px;
+    padding-right: 61px;
+    padding-bottom: 50px;
+  }
+
+  .logo {
+    margin-top: 32px;
+    margin-left: 32px;
+  }
+
+  .subTitle {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.96px;
+  }
+
+  .mainTitle {
+    font-size: 64px;
+    line-height: 70px;
+    letter-spacing: -0.64px;
+  }
+
+  .button {
+    padding: 18px 40px;
+    gap: 10px;
+  }
+}
+
+/* Desktop*/
+@media (min-width: 1440px) {
+  .wrapper {
+    width: 672px;
+    height: 736px;
+  }
+
+  .logo {
+    margin-top: 32px;
+    margin-left: 33px;
+  }
+  .subTitle {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.96px;
+  }
+
+  .mainTitle {
+    font-size: 80px;
+    line-height: 76px;
+    letter-spacing: -0.8px;
+  }
+
+  .button {
+    padding: 18px 40px;
+    gap: 10px;
+  }
 }

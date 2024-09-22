@@ -52,7 +52,7 @@ img {
   height: auto;
 }
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .container {
     padding: 32px;
   }
@@ -61,4 +61,4 @@ img {
   .container {
     padding: 16px;
   }
-}
+} */

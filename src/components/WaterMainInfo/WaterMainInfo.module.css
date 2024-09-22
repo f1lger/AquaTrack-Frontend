@@ -3,7 +3,7 @@
   position: relative;
   flex-direction: column;
   padding: 24px 16px 32px;
-  width: 343px;
+  max-width: 343px;
   height: auto;
   flex-shrink: 0;
   border-radius: 30px;
@@ -12,14 +12,16 @@
 
 @media only screen and (min-width: 768px) {
   .wrapper {
-    width: 704px;
+    max-width: 704px;
+    width: 100%;
+    margin: 0 auto;
     padding: 32px 32px 64px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .wrapper {
-    width: 672px;
+    max-width: 672px;
   }
 }
 

@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggerIn } from "../redux/auth/selectors";
+import { selectAuthToken } from "../redux/auth/selectors";
 import { Navigate } from "react-router-dom";
 
 export default function RestrictedRoute({ component: Components }) {
-  const islogedIn = useSelector(selectIsLoggerIn);
+  const token = useSelector(selectAuthToken);
 
-  return islogedIn ? <Navigate to="/tracker" /> : Components;
+  return token ? <Navigate to="/tracker" /> : Components;
 }

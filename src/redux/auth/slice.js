@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser, register } from "./operations";
+import { fetchUser, login, logout, register } from "./operations";
 
 const initialState = {
   user: {
@@ -7,6 +7,10 @@ const initialState = {
     dailyNorma: 1500,
     avatar: '../../photo/desk/woman-avatar-2x.webp',
     name: '',
+    name: null,
+    gender: "woman",
+    weight: 0,
+    sportTime: 0,
   },
   isLogedIn: false,
   token: null,
@@ -21,10 +25,15 @@ const handlePending = (state) => {
 
 const handleFulfilled = (state, { payload }) => {
   state.user.email = payload.email;
-  state.user.dailyNorma = payload.dailyNorma || 1500;
-  state.token = payload.token;
+  state.user.dailyNorma = payload.dailyWater || 1500;
+  state.user.name = payload.name;
+  state.user.gender = payload.gender;
+  state.user.weight = payload.weight;
+  state.user.sportTime = payload.sportTime;
+  state.user.avatar = payload.avatar;
   state.loading = false;
 };
+// console.log(handleFulfilled);
 
 const handleError = (state, { payload }) => {
   state.loading = false;
@@ -42,7 +51,19 @@ const authSlice = createSlice({
       .addCase(fetchUser.rejected, handleError)
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, handleFulfilled)
-      .addCase(register.rejected, handleError);
+      .addCase(register.rejected, handleError)
+      .addCase(login.pending, handlePending)
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.token = payload.accessToken;
+        state.loading = false;
+      })
+      .addCase(login.rejected, handleError)
+      .addCase(logout.pending, handlePending)
+      .addCase(logout.fulfilled, (state) => {
+        state.token = null;
+        state.loading = false;
+      })
+      .addCase(logout.rejected, handleError);
   },
 });
 

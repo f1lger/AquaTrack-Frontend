@@ -1,37 +1,19 @@
-.layout {
-  border-radius: 30px;
-  background: #f0eff4;
-  padding: 24px 16px 216px;
-}
-@media only screen and (min-width: 768px) {
-    .layout {
-  padding: 32px 32px 281px;
-    }
-}
-@media only screen and (min-width: 1400px) {
-  .layout {
-    max-width: 672px;
-    padding: 32px 33px 169px;
-  }
-}
 
 .signInContainer {
   width: 100%;
-margin-top: 172px;
+  margin: 172px auto 216px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-    margin-top: 225px;
-    padding-left: 85px;
-    padding-right: 85px;
+    margin: 225px auto 280px;
+    width: 436px;
   }
 }
 @media only screen and (min-width: 1440px) {
-    .signInContainer {
-    margin-top: 113px;
-    }
+  .signInContainer {
+    margin: 113px auto 169px;
+  }
 }
-
 
 .title {
   font-weight: 700;
@@ -43,19 +25,15 @@ margin-top: 172px;
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 36px;
-    line-height: 1.06;    
+    line-height: 1.06;
   }
 }
-
 
 .form {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 16px;
 }
 
 .field {
@@ -75,7 +53,6 @@ margin-top: 172px;
     margin-bottom: 20px;
   }
 }
-
 .field:last-of-type {
   margin-bottom: 0;
 }
@@ -89,7 +66,6 @@ margin-top: 172px;
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.2);
   padding: 16px;
-  margin-bottom: 10px;
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
@@ -97,6 +73,11 @@ margin-top: 172px;
     line-height: 1.5;
     height: 56px;
   }
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
 }
 
 .submit {
@@ -131,6 +112,7 @@ margin-top: 172px;
 
 .questionText {
   color: rgba(47, 47, 47, 0.5);
+  font-weight: 400;
   line-height: 1.28;
   letter-spacing: -0.01em;
 }
@@ -155,6 +137,7 @@ margin-top: 172px;
 .errorMessage {
   color: #ef5050;
   font-size: 13px;
+  margin-top: 10px;
 }
 
 .inputError {
@@ -191,4 +174,24 @@ margin-top: 172px;
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.forgotPasswordContainer {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.forgotPasswordLink {
+  line-height: 1.28;
+  font-weight: 700;
+  color: #2f2f2f;
+  text-decoration: underline;
+}
+@media only screen and (min-width: 768px) {
+  .forgotPasswordLink {
+    line-height: 1.5;
+  }
 }

@@ -1,0 +1,32 @@
+.baseDay {
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.day {
+  background-color: rgb(50, 63, 71, 20%);
+}
+
+.waterCompleted {
+  background-color: #ffffff;
+}
+
+@media only screen and (min-width: 768px) {
+  .day {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .waterCompleted {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+}

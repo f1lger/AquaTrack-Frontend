@@ -1,0 +1,43 @@
+.paginationWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.monthTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.paginationControll {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.monthName {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.paginationBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+}
+
+@media only screen and (min-width: 768px) {
+  .monthTitle {
+    font-size: 28px;
+  }
+
+  .paginationControll {
+    column-gap: 20px;
+  }
+
+  .monthName {
+    font-size: 16px;
+  }
+}
