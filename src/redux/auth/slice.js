@@ -6,7 +6,6 @@ const initialState = {
     email: null,
     dailyNorma: 1500,
     avatar: '../../photo/desk/woman-avatar-2x.webp',
-    name: '',
     name: null,
     gender: "woman",
     weight: 0,

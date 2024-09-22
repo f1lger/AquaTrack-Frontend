@@ -29,8 +29,8 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      setAuthHeader(state.auth.token);
+      const token = thunkAPI.getState().auth.token;
+      setAuthHeader(token);
       const response = await axios.get("/users/info");
       return response.data.data;
     } catch (error) {
