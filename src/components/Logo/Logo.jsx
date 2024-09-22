@@ -1,9 +1,10 @@
+import { NavLink } from "react-router-dom";
 import styles from "./Logo.module.css";
 
 function Logo() {
   return (
     <div className={styles.logo}>
-      <a href="#">Aquatrack</a>
+      <NavLink to="/">Aquatrack</NavLink>
     </div>
   );
 }
