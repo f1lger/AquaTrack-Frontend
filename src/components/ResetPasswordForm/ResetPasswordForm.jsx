@@ -16,10 +16,10 @@ const resetPasswordSchema = yup.object().shape({
     .string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
-  confirmPassword: yup
+  /*confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Confirm password is required"),
+    .required("Confirm password is required"),*/
 });
 
 const ResetPasswordForm = () => {
@@ -84,6 +84,39 @@ const ResetPasswordForm = () => {
           </div>
           <p className={css.errorMessage}>{errors.password?.message}</p>
         </label>
+
+        {/*
+        <label className={css.field}>
+          <span className={css.label}>Confirm Password: </span>
+          <div className={css.inputField}>
+            <input
+              type={showPassword ? "text" : "password"}
+              {...register("confirmPassword", { required: true })}
+              placeholder="Confirm new password"
+              className={clsx(css.input, {
+                [css.inputError]: errors.confirmPassword,
+              })}
+            />
+            <button
+              className={css.showPasswordBtn}
+              type="button"
+              onClick={handleClickShowPassword}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye`}></use>
+                </svg>
+              ) : (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye-off`}></use>
+                </svg>
+              )}
+            </button>
+          </div>
+          <p className={css.errorMessage}>{errors.confirmPassword?.message}</p>
+        </label>       
+*/}
 
         <button type="submit" className={css.submitbtn}>
           Reset Password
