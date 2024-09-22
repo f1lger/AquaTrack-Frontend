@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import SharedLayout from "../SharedLayout/SharedLayout";
+import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
 
 import ForgotPasswordPage from "../../pages/ForgotPasswordPage/ForgotPasswordPage";
 import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";

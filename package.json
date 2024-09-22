@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
+    "@mui/material": "^6.1.0",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
