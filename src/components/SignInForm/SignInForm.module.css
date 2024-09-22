@@ -5,7 +5,6 @@
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
-    margin: 225px auto 280px;
     width: 436px;
   }
 }
