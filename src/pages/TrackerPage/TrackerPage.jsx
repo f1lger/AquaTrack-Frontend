@@ -14,7 +14,7 @@ const TrackerPage = () => {
   return (
     <div className={css.trackerPage}>
       <WaterMainInfo openWaterModal={openWaterModal} />
-        <WaterDetailedInfo />
+      <WaterDetailedInfo openWaterModal={openWaterModal} />
       <Modal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
         <WaterModal
           title={"Add water"}

@@ -1,11 +1,11 @@
-import womanAvatar1x from "../../photo/mob/woman-avatar-1x.webp";
-import womanAvatar2x from "../../photo/mob/woman-avatar-2x.webp";
+import womanAvatar1x from "../../photo/mob/woman-avatar@1x.webp";
+import womanAvatar2x from "../../photo/mob/woman-avatar@2x.webp";
 
-import manAvatar1x from "../../photo/mob/man-avatar-1x.webp";
-import manAvatar2x from "../../photo/mob/man-avatar-2x.webp";
+import manAvatar1x from "../../photo/mob/man-avatar@1x.webp";
+import manAvatar2x from "../../photo/mob/man-avatar@2x.webp";
 
-import girlAvatar1x from "../../photo/mob/second-woman-avatar-1x.webp";
-import girlAvatar2x from "../../photo/mob/second-woman-avatar-2x.webp";
+import girlAvatar1x from "../../photo/mob/girl-avatar@1x.webp";
+import girlAvatar2x from "../../photo/mob/girl-avatar@2x.webp";
 
 import styles from "./AdvantagesSection.module.css";
 

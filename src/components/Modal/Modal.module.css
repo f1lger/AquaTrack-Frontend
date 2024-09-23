@@ -4,8 +4,6 @@
   position: relative;
   border-radius: 15px;
   background-color: white;
-  width: 100%;
-  max-width: 344px;
 }
 .overlay {
   position: fixed;
@@ -21,7 +19,7 @@
   background-color: rgba(47, 47, 47, 0.6);
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-.closeIcon{
+.closeIcon {
   cursor: pointer;
   position: absolute;
   top: 20px;

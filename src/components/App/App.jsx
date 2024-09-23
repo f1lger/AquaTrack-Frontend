@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAuthLoading, selectAuthToken } from "../../redux/auth/selectors";
 import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
+import { waterPerDay } from "../../redux/water/operations.js";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
@@ -20,13 +21,14 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 
 function App() {
   const dispatch = useDispatch();
-
+  const today = new Date().toISOString().split("T")[0];
   const isRefreshing = useSelector(selectAuthLoading);
   const token = useSelector(selectAuthToken);
   useEffect(() => {
-    if (!token) return
+    if (!token) return;
     dispatch(fetchUser());
-  }, [dispatch, token]);
+    dispatch(waterPerDay(today));
+  }, [dispatch, token, today]);
   return isRefreshing ? (
     <Loader />
   ) : (
@@ -47,8 +49,8 @@ function App() {
               path="/tracker"
               element={<PrivateRoute component={<TrackerPage />} />}
             />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            {/* <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password/:token" element={<ResetPasswordPage />} /> */}
           </Route>
         </Routes>
       </Suspense>

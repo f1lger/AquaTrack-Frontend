@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,10 +15,10 @@ const resetPasswordSchema = yup.object().shape({
     .string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
-  /*confirmPassword: yup
+  confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Confirm password is required"),*/
+    .required("Confirm password is required"),
 });
 
 const ResetPasswordForm = () => {
@@ -85,7 +84,6 @@ const ResetPasswordForm = () => {
           <p className={css.errorMessage}>{errors.password?.message}</p>
         </label>
 
-        {/*
         <label className={css.field}>
           <span className={css.label}>Confirm Password: </span>
           <div className={css.inputField}>
@@ -116,8 +114,6 @@ const ResetPasswordForm = () => {
           </div>
           <p className={css.errorMessage}>{errors.confirmPassword?.message}</p>
         </label>       
-*/}
-
         <button type="submit" className={css.submitbtn}>
           Reset Password
         </button>
@@ -140,10 +136,6 @@ const ResetPasswordForm = () => {
           </div>
     </div>
   );
-};
-
-ResetPasswordForm.propTypes = {
-  token: PropTypes.string.isRequired,
 };
 
 export default ResetPasswordForm;

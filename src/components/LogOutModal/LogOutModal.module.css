@@ -27,9 +27,15 @@
     justify-content: center;
     gap: 10px;
 }
+@media only screen and (min-width: 768px) {
+    .btnCont {
+    flex-direction: row;
+    width: 100%;
+    }
+}
 .logButton,
 .cancelButton {
-    padding: 14px 0px;
+    padding: 14px 0;
     text-align: center;
     flex-grow: 0;
     border-radius: 30px;
@@ -37,6 +43,12 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 18px;
+}
+@media only screen and (min-width: 768px) {
+    .logButton,
+    .cancelButton{
+    padding: 18px 57px;
+    }
 }
 .logButton {
     order: 0;

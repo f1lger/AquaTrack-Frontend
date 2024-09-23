@@ -22,7 +22,6 @@ const schema = yup.object().shape({
 
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const dispatch = useDispatch();
-
   const defaultValues = !isAddWater
     ? {
         date: item.date,
@@ -30,7 +29,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
           hour: "2-digit",
           minute: "2-digit",
         }),
-        waterVolume: item.waterVolume,
+        waterVolume: item.amount,
       }
     : {
         date: new Date().toISOString(),

@@ -1,37 +1,24 @@
 import { useState } from "react";
 import { format } from "date-fns";
-// import Loader from "../../Loader/Loader";
 import iconSprite from "../../icons/symbol-defs.svg";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
 import css from "./WaterItem.module.css";
-import Loader from "../Loader/Loader";
+import Modal from "../Modal/Modal";
 
 const WaterItem = ({ data }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const handleEdit = () => {
-    setIsEditModalOpen(true);
-  };
+  const handleEdit = () => setIsEditModalOpen(true);
+  const handleCloseEditModal = () => setIsEditModalOpen(false);
 
-  const handleDelete = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
+  const handleDelete = () => setIsDeleteModalOpen(true);
+  const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
 
   return (
     <>
-      {isLoading && <Loader type="blue" />}
-
       <div className={css.item}>
         <svg className={css.iconGlass}>
           <use href={`${iconSprite}#icon-water-glass-fill`}></use>
@@ -62,32 +49,15 @@ const WaterItem = ({ data }) => {
           />
         </Modal>
 
-        {/* <DeleteWaterModal
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          isOpen={isDeleteModalOpen}
-          closeModal={handleCloseDeleteModal}
-          id={data._id}
-        /> */}
-        {/* 
-        <WaterModal
-          title={}
-          secondTitle={}
-          onClose={}
-          isAddWater={}
-          item={}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          id={data._id}
-          isOpen={isEditModalOpen}
-          closeModal={handleCloseEditModal}
-          type="edit"
-          initialData={{
-            amount: data.amount,
-            time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
-          }}
-        />
-         */}
+        <Modal isOpen={isEditModalOpen} onClose={handleCloseEditModal}>
+          <WaterModal
+            title={"Edit the entered amount of water"}
+            secondTitle={"Correct entered data:"}
+            onClose={handleCloseEditModal}
+            isAddWater={false}
+            item={data}
+          />
+        </Modal>
       </div>
     </>
   );

@@ -13,18 +13,17 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { ModalBtn } from "../ModalBtn/Modalbtn";
-import photo from "../../photo/desk/woman-avatar-2x.webp";
+// import { ModalBtn } from "../ModalBtn/Modalbtn";
+import photo from "../../photo/mob/woman-avatar@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
 import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
-
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
-  gender: yup.string().oneOf(["male", "female"]).notRequired(),
+  gender: yup.string().oneOf(["man", "woman"]).notRequired(),
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
@@ -36,12 +35,12 @@ const schema = yup.object().shape({
     .typeError("Weight must be a number")
     .positive("Weight must be a positive number")
     .notRequired(),
-  sportsActivity: yup
+  sportTime: yup
     .number()
     .typeError("Active minutes must be a number")
     .positive("Active minutes must be a positive number")
     .notRequired(),
-  waterRate: yup
+  dailyWater: yup
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
@@ -73,11 +72,10 @@ const UserSettingsForm = ({ onClose }) => {
       email: user?.email || "",
       gender: user?.gender || "",
       weight: user?.weight || "",
-      sportsActivity: user?.sportsActivity || "",
-      waterRate: user?.waterRate || "",
+      sportTime: user?.sportTime || "",
+      dailyWater: user?.dailyNorma || "",
     },
   });
-
 
   useEffect(() => {
     reset({
@@ -85,18 +83,18 @@ const UserSettingsForm = ({ onClose }) => {
       email: user?.email || "",
       gender: user?.gender || "",
       weight: user?.weight || "",
-      sportsActivity: user?.sportsActivity || "",
-      waterRate: user?.waterRate || "",
+      sportTime: user?.sportTime || "",
+      dailyWater: user?.dailyNorma || "",
     });
   }, [user, reset]);
 
   const watchWeight = watch("weight", 0);
-  const watchActiveMinutes = watch("sportsActivity", 0);
+  const watchActiveMinutes = watch("sportTime", 0);
 
-  const calculateRecommendedWaterIntake = (weight, sportsActivity) => {
+  const calculateRecommendedWaterIntake = (weight, sportTime) => {
     return genderLocal === "male"
-      ? (weight * 0.04 + sportsActivity * 0.6).toFixed(1)
-      : (weight * 0.03 + sportsActivity * 0.4).toFixed(1);
+      ? (weight * 0.04 + sportTime * 0.6).toFixed(1)
+      : (weight * 0.03 + sportTime * 0.4).toFixed(1);
   };
 
   const onSubmit = async (data) => {
@@ -124,11 +122,11 @@ const UserSettingsForm = ({ onClose }) => {
     if (hasChanged("weight")) {
       formData.append("weight", data.weight);
     }
-    if (hasChanged("waterRate")) {
-      formData.append("waterRate", data.waterRate);
+    if (hasChanged("dailyWater")) {
+      formData.append("dailyWater", data.dailyWater);
     }
-    if (hasChanged("sportsActivity")) {
-      formData.append("sportsActivity", data.sportsActivity);
+    if (hasChanged("sportTime")) {
+      formData.append("sportTime", data.sportTime);
     }
 
     if (
@@ -137,8 +135,8 @@ const UserSettingsForm = ({ onClose }) => {
       hasChanged("name") ||
       hasChanged("email") ||
       hasChanged("weight") ||
-      hasChanged("waterRate") ||
-      hasChanged("sportsActivity")
+      hasChanged("dailyWater") ||
+      hasChanged("sportTime")
     ) {
       try {
         dispatch(updateUser(formData));
@@ -204,6 +202,7 @@ const UserSettingsForm = ({ onClose }) => {
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
+            checked
           />
           <FormControlLabel
             value="male"
@@ -254,11 +253,11 @@ const UserSettingsForm = ({ onClose }) => {
             </p>
           </div>
           <div className={css.warningBox}>
-                      {/* <img src={svg} alt="banner" className={css.banner} /> */}
-                      
-<svg className={css.banner}>
-    <use href={`${sprite}#icon-exclamation`} />
-  </svg>
+            {/* <img src={svg} alt="banner" className={css.banner} /> */}
+
+            <svg className={css.banner}>
+              <use href={`${sprite}#icon-exclamation`} />
+            </svg>
 
             <p className={css.radioText}>Active time in hours</p>
           </div>
@@ -275,8 +274,8 @@ const UserSettingsForm = ({ onClose }) => {
             <label className={css.radioText}>
               The time of active participation in sports:
             </label>
-            <input type="text" {...register("sportsActivity")} />
-            {errors.sportsActivity && (
+            <input type="text" {...register("sportTime")} />
+            {errors.sportTime && (
               <span className={css.error}>{errors.sportsActivity.message}</span>
             )}
           </div>
@@ -296,17 +295,18 @@ const UserSettingsForm = ({ onClose }) => {
             </p>
           </div>
           <div className={css.formGroup}>
-            <label id="waterRate" className={css.titleText}>
+            <label id="dailyWater" className={css.titleText}>
               Write down how much water you will drink:
             </label>
-            <input type="text" {...register("waterRate")} placeholder="1.8" />
-            {errors.waterRate && (
-              <span className={css.error}>{errors.waterRate.message}</span>
+            <input type="text" {...register("dailyWater")} placeholder="1.8" />
+            {errors.dailyWater && (
+              <span className={css.error}>{errors.dailyWater.message}</span>
             )}
           </div>
         </div>
       </div>
-      <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} />
+      <button type="submit" className={css.saveBtn}>Save</button>
+      {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
 };

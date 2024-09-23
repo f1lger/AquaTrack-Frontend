@@ -26,7 +26,7 @@ const waterSlice = createSlice({
     },
     monthlyRecords: [],
     currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
-    selectedDate: new Date().toISOString().split("T")[0],
+    selectedDate: new Date().toISOString().split("T")[0], //для отримання дати, що показуватиметься у DailyInfo(це або сьогоднішній день, або той, що обере користувач)
     loading: false,
     error: null,
   },
@@ -56,7 +56,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchWater.pending, waterPending)
       .addCase(fetchWater.fulfilled, (state, { payload }) => {
-        state.waterInfo.total = payload.total;
+        state.water.waterInfo.total = payload.total;
         state.loading = false;
       })
       .addCase(fetchWater.rejected, waterRejected)
