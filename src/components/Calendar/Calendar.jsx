@@ -1,13 +1,25 @@
 import css from "./Calendar.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectMonthlyRecords } from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import CalendarItem from "../CalendarItem/CalendarItem";
+import { waterPerDay } from "../../redux/water/operations";
 
-const Calendar = ({ daysInMonth }) => {
+const Calendar = ({ daysInMonth, year, month }) => {
+  const dispatch = useDispatch();
   const monthlyRecords = useSelector(selectMonthlyRecords);
   const dailyTarget = useSelector(selectDailyNorma);
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleButtonClick = (index) => {
+    setActiveIndex(index);
+    const formattedMonth = String(month).padStart(2, "0");
+    const date = `${year}-${formattedMonth}-${index + 1}`;
+
+    dispatch(waterPerDay(date));
+  };
 
   const daysArray = useMemo(() => {
     return Array.from({ length: daysInMonth }, (_, index) => {
@@ -24,7 +36,12 @@ const Calendar = ({ daysInMonth }) => {
       <ul className={css.calendar}>
         {daysArray.map((percentage, index) => (
           <li key={index + 1} className={css.calendarDay}>
-            <CalendarItem index={index} percentage={percentage} />
+            <CalendarItem
+              index={index}
+              percentage={percentage}
+              isActive={activeIndex === index}
+              onClick={() => handleButtonClick(index)}
+            />
           </li>
         ))}
       </ul>

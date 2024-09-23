@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { format } from "date-fns";
-// import Loader from "../../Loader/Loader";
 import iconSprite from "../../icons/symbol-defs.svg";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
 import css from "./WaterItem.module.css";
-import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 
 const WaterItem = ({ data }) => {
-  console.log(data);
-  const [isLoading, setIsLoading] = useState(false);
-
+  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -24,8 +20,6 @@ const WaterItem = ({ data }) => {
 
   return (
     <>
-      {isLoading && <Loader type="blue" />}
-
       <div className={css.item}>
         <svg className={css.iconGlass}>
           <use href={`${iconSprite}#icon-water-glass-fill`}></use>

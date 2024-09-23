@@ -52,7 +52,11 @@ const waterSlice = createSlice({
         );
         state.loading = false;
       })
-      .addCase(waterPerDay.rejected, waterRejected)
+      .addCase(waterPerDay.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.message;
+        state.waterInfo.dailyRecords = []
+      })
       .addCase(fetchWater.pending, waterPending)
       .addCase(fetchWater.fulfilled, (state, { payload }) => {
         state.waterInfo.total = payload.total;

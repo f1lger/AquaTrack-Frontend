@@ -17,6 +17,11 @@
   background-color: #ffffff;
 }
 
+.active {
+  color: #9be1a0;
+  background-color: #323f47;
+}
+
 @media only screen and (min-width: 768px) {
   .day {
     font-size: 16px;

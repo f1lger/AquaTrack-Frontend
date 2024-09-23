@@ -46,7 +46,7 @@ const MonthInfo = () => {
         month={month}
         year={year}
       />
-      <Calendar daysInMonth={daysInMonth} />
+      <Calendar daysInMonth={daysInMonth} year={year} month={month} />
     </div>
   );
 };

@@ -1,9 +1,13 @@
 /* Mobile */
 .wrapper {
-  margin: 126px auto 170px;
+  margin: 0 auto;
+  padding: 170px 0;
+  max-width: 343px;
+  height: 780px;
 }
 
 .title {
+  padding-left: 16px;
   color: #323f47;
   margin-bottom: 32px;
   font-family: Poppins;
@@ -137,6 +141,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
+    padding: 227px 0;
   }
 
   .title {
@@ -168,5 +174,11 @@
     stroke: #2f2f2f;
     width: 20px;
     height: 20px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 130px 0 100px;
   }
 }
