@@ -22,29 +22,33 @@ import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
 const schema = yup.object().shape({
-  avatar: yup.mixed().notRequired(),
-  gender: yup.string().oneOf(["man", "woman"]).notRequired(),
+  avatar: yup.mixed().nullable(),
+  gender: yup.string().oneOf(["man", "woman"]).nullable(),
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
     .max(13, "Name must be no more than 13 characters")
-    .notRequired(),
-  email: yup.string().email("Invalid email format").notRequired(),
+    .nullable()
+    .transform((value, originalValue) => originalValue === '' ? null : value), // Перетворення порожнього рядка
+  email: yup.string().email("Invalid email format").nullable(),
   weight: yup
     .number()
     .typeError("Weight must be a number")
     .positive("Weight must be a positive number")
-    .notRequired(),
+    .nullable()
+    .transform((value, originalValue) => originalValue === '' ? null : value),
   sportsActivity: yup
     .number()
     .typeError("Active minutes must be a number")
     .positive("Active minutes must be a positive number")
-    .notRequired(),
+    .nullable()
+    .transform((value, originalValue) => originalValue === '' ? null : value),
   waterRate: yup
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
-    .notRequired(),
+    .nullable()
+    .transform((value, originalValue) => originalValue === '' ? null : value),
 });
 
 const UserSettingsForm = ({ onClose }) => {
