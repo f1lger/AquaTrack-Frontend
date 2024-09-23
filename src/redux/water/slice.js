@@ -41,7 +41,7 @@ const waterSlice = createSlice({
       .addCase(waterPerDay.pending, waterPending)
       .addCase(waterPerDay.fulfilled, (state, { payload }) => {
         state.selectedDate = payload.date;
-        console.log("waterPerDay payload", payload.date);
+        // console.log("waterPerDay payload", payload.date);
         state.waterInfo.dailyRecords = payload.data;
         state.waterInfo.total = payload.data.reduce(
           (total, record) => total + record.amount,

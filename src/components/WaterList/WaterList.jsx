@@ -6,7 +6,7 @@ import {
   selectSelectedDate,
 } from "../../redux/water/selectors";
 import { useEffect } from "react";
-import { fetchWater } from "../../redux/water/operations";
+import { waterPerDay } from "../../redux/water/operations";
 
 function WaterList() {
   const selectedDay = useSelector(selectSelectedDate);
@@ -15,7 +15,7 @@ function WaterList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWater(selectedDay));
+    dispatch(waterPerDay(selectedDay));
   }, [selectedDay, dispatch]);
 
   return (
