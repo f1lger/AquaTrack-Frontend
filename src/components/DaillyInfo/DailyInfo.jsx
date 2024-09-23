@@ -3,14 +3,14 @@ import AddDailyWaterBtn from "../AddDailyWaterBtn/AddDailyWaterBtn";
 import WaterList from "../WaterList/WaterList";
 import css from "./DailyInfo.module.css";
 
-const DailyInfo = () => {
+const DailyInfo = ({ openWaterModal}) => {
   return (
     <section className={css.section}>
       <div className={css.container}>
         <div className={css.title}>
           {/* <ChooseDate /> */}
           <p>Today</p>
-          <AddDailyWaterBtn />
+          <AddDailyWaterBtn openWaterModal={openWaterModal} />
         </div>
         <WaterList />
       </div>

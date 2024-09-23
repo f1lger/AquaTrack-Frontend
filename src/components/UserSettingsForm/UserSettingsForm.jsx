@@ -13,7 +13,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { ModalBtn } from "../ModalBtn/Modalbtn";
+// import { ModalBtn } from "../ModalBtn/Modalbtn";
 import photo from "../../photo/desk/woman-avatar-2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
@@ -306,7 +306,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} />
+      {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
 };

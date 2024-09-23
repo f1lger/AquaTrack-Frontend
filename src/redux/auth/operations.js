@@ -111,7 +111,7 @@ export const sendPasswordResetEmail = createAsyncThunk(
   "auth/sendPasswordResetEmail",
   async (email, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/api/auth/forgot-password", { email });
+      const response = await axios.post("/api/users/send-reset-email", email );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -124,7 +124,7 @@ export const resetPassword = createAsyncThunk(
   "auth/resetPassword",
   async ({ token, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`/api/auth/reset-password/${token}`, {
+      const response = await axios.post(`/api/users/reset-pwd/${token}`, {
         password,
       });
       return response.data;

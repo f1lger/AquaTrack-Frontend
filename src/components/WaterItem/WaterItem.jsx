@@ -16,22 +16,12 @@ const WaterItem = ({ data }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const handleEdit = () => {
-    setIsEditModalOpen(true);
-  };
+  const handleEdit = () => setIsEditModalOpen(true);
+  const handleCloseEditModal = () => setIsEditModalOpen(false);
 
-  const handleDelete = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-
+  const handleDelete = () => setIsDeleteModalOpen(true);
+  const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
+  
   return (
     <>
       {isLoading && <Loader type="blue" />}
@@ -67,25 +57,14 @@ const WaterItem = ({ data }) => {
           closeModal={handleCloseDeleteModal}
           id={data._id}
         /> */}
-        {/* 
+        
         <WaterModal
-          title={}
-          secondTitle={}
+          title={"Edit the entered amount of water"}
+          secondTitle={"Correct entered data:"}
           onClose={}
           isAddWater={}
           item={}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          id={data._id}
-          isOpen={isEditModalOpen}
-          closeModal={handleCloseEditModal}
-          type="edit"
-          initialData={{
-            amount: data.amount,
-            time: format(new Date(data?.date.slice(0, -1)), "HH:mm"),
-          }}
         />
-         */}
       </div>
     </>
   );
