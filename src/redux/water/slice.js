@@ -54,7 +54,7 @@ const waterSlice = createSlice({
       })
       .addCase(waterPerDay.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.message;
         state.waterInfo.dailyRecords = []
       })
       .addCase(fetchWater.pending, waterPending)

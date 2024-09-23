@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { waterPerDay } from "../../redux/water/operations";
+// import { waterPerDay } from "../../redux/water/operations";
 import { selectTotalWater } from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
 import styles from "./WaterProgressBar.module.css";
@@ -8,8 +8,16 @@ import styles from "./WaterProgressBar.module.css";
 const WaterProgressBar = () => {
   // const dispatch = useDispatch();
   const total = useSelector(selectTotalWater);
-  const dailyNorma = useSelector(selectDailyNorma);
-  const progress = dailyNorma ? (total / dailyNorma) * 100 : 0;
+  const dailyNorma = useSelector(selectDailyNorma) * 1000;
+  
+  const calculatePercentage = (dailyNorma, total) => {
+    if (total === 0) {
+      return 0;
+    }
+    return (total / dailyNorma) * 100;
+  };
+  const progress = dailyNorma ? calculatePercentage(dailyNorma, total) : 0;
+  console.log(progress);
 
   const [currentProgress, setCurrentProgress] = useState({});
 
