@@ -21,7 +21,6 @@ import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
-
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
   gender: yup.string().oneOf(["male", "female"]).notRequired(),
@@ -77,7 +76,6 @@ const UserSettingsForm = ({ onClose }) => {
       waterRate: user?.waterRate || "",
     },
   });
-
 
   useEffect(() => {
     reset({
@@ -254,11 +252,11 @@ const UserSettingsForm = ({ onClose }) => {
             </p>
           </div>
           <div className={css.warningBox}>
-                      {/* <img src={svg} alt="banner" className={css.banner} /> */}
-                      
-<svg className={css.banner}>
-    <use href={`${sprite}#icon-exclamation`} />
-  </svg>
+            {/* <img src={svg} alt="banner" className={css.banner} /> */}
+
+            <svg className={css.banner}>
+              <use href={`${sprite}#icon-exclamation`} />
+            </svg>
 
             <p className={css.radioText}>Active time in hours</p>
           </div>
