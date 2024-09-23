@@ -6,25 +6,25 @@ import { selectDailyNorma } from "../../redux/auth/selectors";
 import styles from "./WaterProgressBar.module.css";
 
 const WaterProgressBar = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const total = useSelector(selectTotalWater);
   const dailyNorma = useSelector(selectDailyNorma);
   const progress = dailyNorma ? (total / dailyNorma) * 100 : 0;
 
   const [currentProgress, setCurrentProgress] = useState({});
 
-  useEffect(() => {
-    if (total === 0) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (total === 0) {
+  //     return;
+  //   }
 
-    const today = new Date().toISOString().split("T")[0];
-    dispatch(waterPerDay(today))
-      .unwrap()
-      .catch((error) => {
-        console.error("Error fetching water data:", error);
-      });
-  }, [dispatch, total]);
+  //   const today = new Date().toISOString().split("T")[0];
+  //   dispatch(waterPerDay(today))
+  //     .unwrap()
+  //     .catch((error) => {
+  //       console.error("Error fetching water data:", error);
+  //     });
+  // }, [dispatch, total]);
 
   useEffect(() => {
     const newSliderStyle = {

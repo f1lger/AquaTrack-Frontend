@@ -35,7 +35,7 @@
 }
 .logButton,
 .cancelButton {
-    padding: 14px 0px;
+    padding: 14px 0;
     text-align: center;
     flex-grow: 0;
     border-radius: 30px;
@@ -47,7 +47,7 @@
 @media only screen and (min-width: 768px) {
     .logButton,
     .cancelButton{
-    width: 50%;
+    padding: 18px 57px;
     }
 }
 .logButton {
