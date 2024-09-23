@@ -239,9 +239,9 @@ input[type="file"] {
 @media (min-width: 1440px) {
     .contentBox {
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
         gap: 40px;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 
     .smallBox {
