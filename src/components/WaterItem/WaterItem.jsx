@@ -9,10 +9,6 @@ import css from "./WaterItem.module.css";
 import Loader from "../Loader/Loader";
 
 const WaterItem = ({ data }) => {
-  console.log("data: ", data);
-
-  const [isLoading, setIsLoading] = useState(false);
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -59,6 +55,12 @@ const WaterItem = ({ data }) => {
             </svg>
           </button>
         </div>
+        <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
+          <DeleteWaterModal
+            closeModal={handleCloseDeleteModal}
+            waterId={data._id}
+          />
+        </Modal>
 
         {/* <DeleteWaterModal
           isLoading={isLoading}

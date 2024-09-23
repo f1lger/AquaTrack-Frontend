@@ -6,11 +6,10 @@ import css from "./ChooseDate.module.css";
 
 const ChooseDate = () => {
   const chosenDate = useSelector(selectSelectedDate);
+  console.log(chosenDate);
   const currentDate = new Date().toISOString().split("T")[0]; // Поточна дата
 
-  const selectedDate = chosenDate;
-
-  const selectedDateObj = parseISO(selectedDate); // Перетворення обраної дати на об'єкт Date
+  const selectedDateObj = parseISO(chosenDate); // Перетворення обраної дати на об'єкт Date
 
   const formatDate = (date) => {
     return format(date, "d, MMMM");

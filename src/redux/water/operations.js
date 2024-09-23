@@ -15,9 +15,10 @@ export const addWater = createAsyncThunk(
 
 export const fetchWater = createAsyncThunk(
   "water/fetchWater",
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
-      const response = await axios.get("/water");
+      console.log("fetchWater date: ", date);
+      const response = await axios.get(`/water/${date}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -57,7 +58,7 @@ export const waterPerDay = createAsyncThunk(
       const token = state.auth.token;
       setAuthHeader(token);
       const { data } = await axios.get(`/water/per-day/${date}`);
-      return data.data;
+      return { data: data.data, date };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
