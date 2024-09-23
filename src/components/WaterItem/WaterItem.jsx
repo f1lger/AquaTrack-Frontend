@@ -58,13 +58,13 @@ const WaterItem = ({ data }) => {
           id={data._id}
         /> */}
         
-        <WaterModal
+        {/* <WaterModal
           title={"Edit the entered amount of water"}
           secondTitle={"Correct entered data:"}
           onClose={}
           isAddWater={}
           item={}
-        />
+        /> */}
       </div>
     </>
   );
