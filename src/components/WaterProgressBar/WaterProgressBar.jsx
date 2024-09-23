@@ -17,7 +17,6 @@ const WaterProgressBar = () => {
     return (total / dailyNorma) * 100;
   };
   const progress = dailyNorma ? calculatePercentage(dailyNorma, total) : 0;
-  console.log(progress);
 
   const [currentProgress, setCurrentProgress] = useState({});
 

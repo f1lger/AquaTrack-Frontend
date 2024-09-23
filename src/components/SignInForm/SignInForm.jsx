@@ -135,12 +135,12 @@ const SignInForm = () => {
           </NavLink>
         </p>
       </div>
-      <div className={css.forgotPasswordContainer}>
+      {/* <div className={css.forgotPasswordContainer}>
         <p className={css.questionText}>Forgot Password?</p>
         <NavLink to="/forgot-password" className={css.forgotPasswordLink}>
           Reset
         </NavLink>
-      </div>
+      </div> */}
     </div>
   );
 };
