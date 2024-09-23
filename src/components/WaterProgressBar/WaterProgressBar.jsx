@@ -8,7 +8,7 @@ import styles from "./WaterProgressBar.module.css";
 const WaterProgressBar = () => {
   // const dispatch = useDispatch();
   const total = useSelector(selectTotalWater);
-  const dailyNorma = useSelector(selectDailyNorma) * 1000;
+  const dailyNorma = useSelector(selectDailyNorma);
   
   const calculatePercentage = (dailyNorma, total) => {
     if (total === 0) {
