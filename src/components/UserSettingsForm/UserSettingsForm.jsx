@@ -280,7 +280,7 @@ const UserSettingsForm = ({ onClose }) => {
             </label>
             <input type="text" {...register("sportTime")} />
             {errors.sportTime && (
-              <span className={css.error}>{errors.sportsActivity.message}</span>
+              <span className={css.error}>{errors.sportTime.message}</span>
             )}
           </div>
           <div className={css.box}>
@@ -309,7 +309,9 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <button type="submit" className={css.saveBtn}>Save</button>
+      <button type="submit" className={css.saveBtn}>
+        Save
+      </button>
       {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
