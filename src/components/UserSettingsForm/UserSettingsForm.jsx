@@ -14,7 +14,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 // import { ModalBtn } from "../ModalBtn/Modalbtn";
-import photo from "../../photo/desk/woman-avatar-2x.webp";
+import photo from "../../photo/mob/woman-avatar@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
 import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
