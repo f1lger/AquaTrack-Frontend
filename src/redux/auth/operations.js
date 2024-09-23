@@ -133,6 +133,9 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+
+
 export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/users/logout");
