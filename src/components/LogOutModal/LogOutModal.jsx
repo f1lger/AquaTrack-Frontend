@@ -1,18 +1,14 @@
 import css from "./LogOutModal.module.css";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/auth/operations";
 
 const LogOutModal = ({ onClose }) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
     try {
-      await axios.post("/users/logout");
-
       dispatch(logout());
       navigate("/");
     } catch (error) {

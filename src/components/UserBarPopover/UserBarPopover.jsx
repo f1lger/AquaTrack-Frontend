@@ -2,11 +2,18 @@ import clsx from "clsx";
 import css from "./UserBarPopover.module.css";
 import { FiSettings } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
+import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
 export default function UserBarPopover({
   openModal,
   openLoguotModal,
-  openSettingModal,
 }) {
+  const [settingModal, setSettingModal] = useState(false);
+
+  const openSettingModal = () => setSettingModal(true);
+  const closeSettingModal = () => setSettingModal(false);
+
   return (
     <div className={clsx(css.UserBarPopover, openModal ? css.open : css.close)}>
       <div className={css.btnList}>
@@ -23,10 +30,13 @@ export default function UserBarPopover({
           onClick={openLoguotModal}
           className={css.logoutBtn}
         >
-          <FiLogOut/>
+          <FiLogOut />
           Log out
         </button>
       </div>
+      <Modal isOpen={settingModal} onClose={closeSettingModal}>
+        <UserSettingsForm onClose={closeSettingModal} />
+      </Modal>
     </div>
   );
 }

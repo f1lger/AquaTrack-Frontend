@@ -239,9 +239,9 @@ input[type="file"] {
 @media (min-width: 1440px) {
     .contentBox {
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
         gap: 40px;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 
     .smallBox {
@@ -322,3 +322,18 @@ input[type="file"] {
                 height: 22px;
             }
         }
+.saveBtn {
+    background-color: rgba(155, 225, 160, 1);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 30px;
+    border: none;
+    margin-top: 14px;
+}
+
+.saveBtn:hover {
+    background-color: #87d28d;
+    transition: all var(--animation);
+}
