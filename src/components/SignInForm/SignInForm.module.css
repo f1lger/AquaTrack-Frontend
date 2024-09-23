@@ -105,7 +105,12 @@
 .submit:hover {
   background-color: #87d28d;
 }
-
+/*
+.submit[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+*/
 .questionOnLogIn {
   display: flex;
   gap: 4px;
