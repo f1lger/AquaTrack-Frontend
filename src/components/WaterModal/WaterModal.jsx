@@ -1,7 +1,13 @@
 import WaterForm from "../WaterForm/WaterForm.jsx";
 import css from "./WaterModal.module.css";
 
-export default function WaterModal({ title, secondTitle, onClose, isAddWater, item }) {
+export default function WaterModal({
+  title,
+  secondTitle,
+  onClose,
+  isAddWater,
+  item,
+}) {
   return (
     <div className={css.waterModal}>
       <h2 className={css.modalTitle}>{title}</h2>

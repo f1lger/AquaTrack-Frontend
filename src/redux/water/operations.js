@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setAuthHeader } from "../auth/operations";
+
 export const addWater = createAsyncThunk(
   "water/addWater",
   async ({ amount, date }, thunkAPI) => {
