@@ -13,7 +13,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { ModalBtn } from "../ModalBtn/Modalbtn";
+// import { ModalBtn } from "../ModalBtn/Modalbtn";
 import photo from "../../photo/desk/woman-avatar-2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
@@ -21,10 +21,9 @@ import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
-
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
-  gender: yup.string().oneOf(["male", "female"]).notRequired(),
+  gender: yup.string().oneOf(["man", "woman"]).notRequired(),
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
@@ -77,7 +76,6 @@ const UserSettingsForm = ({ onClose }) => {
       waterRate: user?.waterRate || "",
     },
   });
-
 
   useEffect(() => {
     reset({
@@ -204,6 +202,7 @@ const UserSettingsForm = ({ onClose }) => {
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
+            checked
           />
           <FormControlLabel
             value="male"
@@ -254,11 +253,11 @@ const UserSettingsForm = ({ onClose }) => {
             </p>
           </div>
           <div className={css.warningBox}>
-                      {/* <img src={svg} alt="banner" className={css.banner} /> */}
-                      
-<svg className={css.banner}>
-    <use href={`${sprite}#icon-exclamation`} />
-  </svg>
+            {/* <img src={svg} alt="banner" className={css.banner} /> */}
+
+            <svg className={css.banner}>
+              <use href={`${sprite}#icon-exclamation`} />
+            </svg>
 
             <p className={css.radioText}>Active time in hours</p>
           </div>
@@ -306,7 +305,8 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} />
+      <button type="submit" className={css.saveBtn}>Save</button>
+      {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
 };

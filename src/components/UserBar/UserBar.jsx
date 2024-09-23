@@ -14,11 +14,7 @@ export default function UserBar({ userName }) {
   const [popoverBarModal, setPopoverBarModal] = useState(false);
   const changePopoverBarModal = () =>
     setPopoverBarModal(popoverBarModal ? false : true);
-  const [settingModal, setSettingModal] = useState(false);
   const [loguotModal, setLoguotModal] = useState(false);
-
-  const openSettingModal = () => setSettingModal(true);
-  const closeSettingModal = () => setSettingModal(false);
 
   const openLoguotModal = () => setLoguotModal(true);
   const closeLoguotModal = () => setLoguotModal(false);
@@ -46,12 +42,10 @@ export default function UserBar({ userName }) {
       <UserBarPopover
         openModal={popoverBarModal}
         openLoguotModal={openLoguotModal}
-        openSettingModal={openSettingModal}
       />
       <Modal isOpen={loguotModal} onClose={closeLoguotModal}>
         <LogOutModal onClose={closeLoguotModal} />
       </Modal>
-      <Modal isOpen={settingModal} onClose={closeSettingModal}></Modal>
     </div>
   );
 }

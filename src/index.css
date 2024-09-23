@@ -16,6 +16,16 @@ body {
   background-color: #fff;
 }
 
+:root {
+  --accent: #9be1a0;
+  --accent-hover: #87d28d;
+  --background: #f0eff4;
+  --main-white: #fff;
+  --main-dark: #2f2f2f;
+  --main-grey: #323f47;
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 h1,
 h2,
 h3,
