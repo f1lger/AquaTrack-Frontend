@@ -4,26 +4,49 @@ import css from "./UserBar.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { selectAvatar } from "../../redux/auth/selectors";
 import defaultAvatar from "../../photo/mob/default-user-avatar-1x.webp";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import LogOutModal from "../LogOutModal/LogOutModal";
 import clsx from "clsx";
+
 export default function UserBar({ userName }) {
   const userAvatar = useSelector(selectAvatar);
-  const userBar = useRef();
+  const userBarRef = useRef();
+  const popoverRef = useRef();
+
   const [popoverBarModal, setPopoverBarModal] = useState(false);
-  const changePopoverBarModal = () =>
-    setPopoverBarModal(popoverBarModal ? false : true);
   const [loguotModal, setLoguotModal] = useState(false);
+
+  const changePopoverBarModal = () => setPopoverBarModal(!popoverBarModal);
 
   const openLoguotModal = () => setLoguotModal(true);
   const closeLoguotModal = () => setLoguotModal(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target) &&
+        userBarRef.current &&
+        !userBarRef.current.contains(event.target)
+      ) {
+        setPopoverBarModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <div
-        ref={userBar}
+        ref={userBarRef}
         className={css.UserBar}
-        onClick={() => changePopoverBarModal()}
+        onClick={changePopoverBarModal}
       >
         {userName ? userName : "user"}
         <img
@@ -33,16 +56,17 @@ export default function UserBar({ userName }) {
         />
         <IoIosArrowDown
           size={16}
-          className={clsx(
-            css.icon,
-            popoverBarModal ? css.arrowIconUp : null
-          )}
+          className={clsx(css.icon, popoverBarModal ? css.arrowIconUp : null)}
         />
       </div>
+
       <UserBarPopover
         openModal={popoverBarModal}
         openLoguotModal={openLoguotModal}
+        closeUserBarPopover={() => setPopoverBarModal(false)}
+        ref={popoverRef}
       />
+
       <Modal isOpen={loguotModal} onClose={closeLoguotModal}>
         <LogOutModal onClose={closeLoguotModal} />
       </Modal>
