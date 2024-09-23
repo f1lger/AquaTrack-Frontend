@@ -10,7 +10,7 @@ import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 
 const WaterItem = ({ data }) => {
-
+  console.log(data);
   const [isLoading, setIsLoading] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const WaterItem = ({ data }) => {
 
   const handleDelete = () => setIsDeleteModalOpen(true);
   const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
-  
+
   return (
     <>
       {isLoading && <Loader type="blue" />}
@@ -49,22 +49,20 @@ const WaterItem = ({ data }) => {
             </svg>
           </button>
         </div>
-
-        {/* <DeleteWaterModal
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          isOpen={isDeleteModalOpen}
-          closeModal={handleCloseDeleteModal}
-          id={data._id}
-        /> */}
+        <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
+          <DeleteWaterModal
+          closeModal={handleCloseDeleteModal} 
+          waterId={data._id} 
+          />
+        </Modal>
 
         <Modal isOpen={isEditModalOpen} onClose={handleCloseEditModal}>
           <WaterModal
-          title={"Edit the entered amount of water"}
-          secondTitle={"Correct entered data:"}
-          onClose={handleCloseEditModal}
-          isAddWater={false}
-          item={data}
+            title={"Edit the entered amount of water"}
+            secondTitle={"Correct entered data:"}
+            onClose={handleCloseEditModal}
+            isAddWater={false}
+            item={data}
           />
         </Modal>
       </div>

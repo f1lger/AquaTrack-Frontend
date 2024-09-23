@@ -306,6 +306,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
+      <button type="submit">Save</button>
       {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );

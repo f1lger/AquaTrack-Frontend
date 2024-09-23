@@ -11,8 +11,6 @@ function WaterList() {
   const currentDay = useSelector(selectCurrentDay);
   const dailyRecords = useSelector(selectDailyRecords);
 
-  console.log(dailyRecords);
-
   useEffect(() => {}, []);
 
   // useEffect(() => {
