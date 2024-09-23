@@ -7,9 +7,9 @@ import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
 import css from "./WaterItem.module.css";
 import Loader from "../Loader/Loader";
+import Modal from "../Modal/Modal";
 
 const WaterItem = ({ data }) => {
-  console.log("data: ", data);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -57,14 +57,16 @@ const WaterItem = ({ data }) => {
           closeModal={handleCloseDeleteModal}
           id={data._id}
         /> */}
-        
-        {/* <WaterModal
+
+        <Modal isOpen={isEditModalOpen} onClose={handleCloseEditModal}>
+          <WaterModal
           title={"Edit the entered amount of water"}
           secondTitle={"Correct entered data:"}
-          onClose={}
-          isAddWater={}
-          item={}
-        /> */}
+          onClose={handleCloseEditModal}
+          isAddWater={false}
+          item={data}
+          />
+        </Modal>
       </div>
     </>
   );
