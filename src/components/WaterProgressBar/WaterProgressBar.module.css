@@ -98,3 +98,24 @@
   font-weight: 400;
   line-height: 1;
 }
+
+.sliderProgressWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.percentageLabel {
+  position: absolute;
+  top: 26.5px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+  color: #9be1a0;
+}
+
+@media only screen and (min-width: 768px) {
+  .percentageLabel {
+    top: 24.5px;
+    font-size: 10.5px;
+  }
+}
