@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 
 const schema = yup.object().shape({
   avatar: yup.mixed().notRequired(),
-  gender: yup.string().oneOf(["male", "female"]).notRequired(),
+  gender: yup.string().oneOf(["man", "woman"]).notRequired(),
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
@@ -202,6 +202,7 @@ const UserSettingsForm = ({ onClose }) => {
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
+            checked
           />
           <FormControlLabel
             value="male"
@@ -304,7 +305,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <button type="submit">Save</button>
+      <button type="submit" className={css.saveBtn}>Save</button>
       {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
