@@ -16,8 +16,9 @@ const Calendar = ({ daysInMonth, year, month }) => {
 
   const handleButtonClick = (index) => {
     setActiveIndex(index);
+    const formattedDay = String(index + 1).padStart(2, "0");
     const formattedMonth = String(month).padStart(2, "0");
-    const date = `${year}-${formattedMonth}-${index + 1}`;
+    const date = `${year}-${formattedMonth}-${formattedDay}`;
 
     dispatch(waterPerDay(date));
     dispatch(setSelectedDate(date));
