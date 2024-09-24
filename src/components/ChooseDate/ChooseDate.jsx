@@ -1,32 +1,50 @@
-import { format, isSameDay, parseISO } from "date-fns";
 import { useSelector } from "react-redux";
-import { selectSelectedDate } from "../../redux/water/selectors";
-
+import { selectCurrentDay, selectedDate } from "../../redux/water/selectors";
 import css from "./ChooseDate.module.css";
 
 const ChooseDate = () => {
-  const chosenDate = useSelector(selectSelectedDate);
-  const currentDate = new Date().toISOString().split("T")[0]; // Поточна дата
+  const today = useSelector(selectCurrentDay);
+  const chosenDate = useSelector(selectedDate);
+  let month = null;
+  let day = null;
 
-  const selectedDate = chosenDate;
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  const selectedDateObj = parseISO(selectedDate); // Перетворення обраної дати на об'єкт Date
+  if (chosenDate !== null) {
+    const [chosenYear, chosenMonth, chosenDay] = chosenDate.split("-");
 
-  const formatDate = (date) => {
-    return format(date, "d, MMMM");
+    const monthName = months[parseInt(chosenMonth, 10) - 1];
+
+    month = monthName;
+    day = chosenDay;
+  }
+
+  const date = () => {
+    if (chosenDate !== null) {
+      if (today === chosenDate) {
+        return "Today";
+      } else {
+        return `${day}, ${month}`;
+      }
+    } else {
+      return "Today";
+    }
   };
 
-  const isToday = (date1, date2) => {
-    return isSameDay(date1, date2);
-  };
-
-  return (
-    <h2 className={css.date}>
-      {isToday(currentDate, selectedDateObj)
-        ? "Today"
-        : formatDate(selectedDateObj)}
-    </h2>
-  );
+  return <p className={css.date}>{date()}</p>;
 };
 
 export default ChooseDate;

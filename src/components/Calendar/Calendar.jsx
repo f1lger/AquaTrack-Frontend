@@ -5,6 +5,7 @@ import { selectDailyNorma } from "../../redux/auth/selectors";
 import { useMemo, useState } from "react";
 import CalendarItem from "../CalendarItem/CalendarItem";
 import { waterPerDay } from "../../redux/water/operations";
+import { setSelectedDate } from "../../redux/water/slice";
 
 const Calendar = ({ daysInMonth, year, month }) => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Calendar = ({ daysInMonth, year, month }) => {
     const date = `${year}-${formattedMonth}-${index + 1}`;
 
     dispatch(waterPerDay(date));
+    dispatch(setSelectedDate(date));
   };
 
   const daysArray = useMemo(() => {
