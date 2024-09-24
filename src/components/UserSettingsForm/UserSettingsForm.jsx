@@ -35,18 +35,21 @@ const schema = yup.object().shape({
     .number()
     .typeError("Weight must be a number")
     .positive("Weight must be a positive number")
+    .min(5, "Weight must be at least 5 kg")
     .nullable()
     .transform((value, originalValue) => originalValue === '' ? null : value),
   sportTime: yup
     .number()
     .typeError("Active minutes must be a number")
     .positive("Active minutes must be a positive number")
+    .min(0, "Sport time must be at least 0 minutes")
     .nullable()
     .transform((value, originalValue) => originalValue === '' ? null : value),
   dailyWater: yup
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
+    .min(1000, "Water consumption must be at least 1000 ml")
     .nullable()
     .transform((value, originalValue) => originalValue === '' ? null : value),
 });
@@ -75,9 +78,9 @@ const UserSettingsForm = ({ onClose }) => {
       name: user?.name || "",
       email: user?.email || "",
       gender: user?.gender || "",
-      weight: user?.weight || "",
-      sportTime: user?.sportTime || "",
-      dailyWater: user?.dailyNorma || "",
+      weight: user?.weight || 0,
+      sportTime: user?.sportTime || 0,
+      dailyWater: user?.dailyNorma || 0,
     },
   });
 
@@ -206,13 +209,14 @@ const UserSettingsForm = ({ onClose }) => {
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
-            checked
+            checked={genderLocal === "female"}
           />
           <FormControlLabel
             value="male"
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Man</p>}
             className={css.radioLabel}
+            checked={genderLocal === "male"}
           />
         </RadioGroup>
         {errors.gender && (
@@ -302,7 +306,7 @@ const UserSettingsForm = ({ onClose }) => {
             <label id="dailyWater" className={css.titleText}>
               Write down how much water you will drink:
             </label>
-            <input type="text" {...register("dailyWater")} placeholder="1.8" />
+            <input type="text" {...register("dailyWater")} placeholder="1800" />
             {errors.dailyWater && (
               <span className={css.error}>{errors.dailyWater.message}</span>
             )}
