@@ -1,94 +1,96 @@
-.modal{
-    display: flex;
-    flex-direction: column;
+.modal {
+  display: flex;
+  flex-direction: column;
 }
 
-.modalHead{
-    color: #323f47;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 16px;
-}
-  
-.modalText{
-    font-weight: 400;
-    font-size: 14px;
-    margin-bottom: 28px;
-    text-align: center;
+.modalHead {
+  color: #323f47;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 16px;
 }
 
-.btn{
-    width: 100%;
-    padding: 18px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 30px;
-
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 0.7;
-
-    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+.modalText {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 28px;
+  text-align: center;
 }
 
-.btnColor{
-    color: #323f47;
-    background-color: #9be1a0;
+.btn {
+  width: 100%;
+  padding: 18px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 0.7;
+
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.btnColor:hover{
-    background-color:#87d28d;
+.btnColor {
+  color: #323f47;
+  background-color: #9be1a0;
 }
 
-.btnColor:active{
-    color: #bcbcbc;
-    background-color: transparent;
+.btnColor:hover {
+  background-color: #87d28d;
 }
 
-.btnCancel{
-    color: #bcbcbc;
-    background-color:#f0eff4;
+.btnColor:active {
+  color: #bcbcbc;
+  background-color: transparent;
 }
 
-.btnCancel:hover{
-    color: #323f47;
+.btnCancel {
+  color: #bcbcbc;
+  background-color: #f0eff4;
 }
 
-.logOutButtons{
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
+.btnCancel:hover {
+  color: #323f47;
+}
+
+.logOutButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
 }
 
 /* TABLET STYLES */
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 436px;
+  }
 
-.modalHead{
+  .modalHead {
     font-size: 28px;
     line-height: 1.1;
 
     margin-bottom: 24px;
-}
+  }
 
-.modalText{
+  .modalText {
     font-size: 18px;
     line-height: 1.3;
 
     margin-bottom: 24px;
-}
+  }
 
-.logOutButtons{
+  .logOutButtons {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-}
+  }
 
-.btn{
+  .btn {
     width: 170px;
     height: 60px;
-}
-    
+  }
 }

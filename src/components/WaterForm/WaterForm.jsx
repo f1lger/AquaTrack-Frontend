@@ -2,13 +2,16 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addWater,
   updateWater,
   waterPerDay,
 } from "../../redux/water/operations";
 import css from "./WaterForm.module.css";
+import { selectWaterLoading } from "../../redux/water/selectors";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   waterVolume: yup
@@ -22,6 +25,9 @@ const schema = yup.object().shape({
 
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectWaterLoading);
+  const [plusError, setPlusError] = useState("");
+  const [minusError, setMinusError] = useState("");
   const defaultValues = !isAddWater
     ? {
         date: item.date,
@@ -76,35 +82,90 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       if (response.meta.requestStatus === "fulfilled") {
         const today = new Date().toISOString().split("T")[0];
         await dispatch(waterPerDay(today));
+        toast.success(
+          `Water record ${isAddWater ? "added" : "updated"} successfully!`
+        );
         closeWaterModal();
       } else {
-        alert("Failed to add or update water record!");
+        toast.error("Failed to add or update water record!");
         closeWaterModal();
       }
     } catch (error) {
       console.error("Error submitting water form:", error);
-      alert("An error occurred!");
+      toast.error("An error occurred!");
       closeWaterModal();
     }
   };
 
+
   const plusWaterVolume = () => {
     const currentAmount = parseInt(getValues("waterVolume"), 10);
-    setValue("waterVolume", currentAmount + 50);
+    const newAmount = currentAmount + 50;
+
+    if (newAmount > 500) {
+      setPlusError("Maximum amount is 500 ml");
+      return;
+    } else {
+      setPlusError("");
+    }
+    setValue("waterVolume", newAmount);
     clearErrors("waterVolume");
+
+    if (newAmount >= 50) {
+      setMinusError("");
+    }
   };
 
   const minusWaterVolume = () => {
     const currentAmount = parseInt(getValues("waterVolume"), 10);
-    setValue("waterVolume", Math.max(0, currentAmount - 50));
-    clearErrors("waterVolume");
-  };
+    const newAmount = Math.max(0, currentAmount - 50);
 
-  const handleWaterVolumeChange = (evt) => {
-    const value = Number(evt.target.value);
-    setValue("waterVolume", value);
-    if (value >= 50 && value <= 500) {
-      clearErrors("waterVolume");
+    if (newAmount < 50) {
+      setMinusError("Minimum amount is 50 ml");
+      return;
+    } else {
+      setMinusError("");
+    }
+
+    setValue("waterVolume", newAmount);
+    clearErrors("waterVolume");
+
+    if (newAmount >= 50) {
+      setPlusError("");
+    }
+  };
+  // const plusWaterVolume = () => {
+  //   const currentAmount = parseInt(getValues("waterVolume"), 10);
+  //   setValue("waterVolume", currentAmount + 50);
+  //   clearErrors("waterVolume");
+  // };
+
+  // const minusWaterVolume = () => {
+  //   const currentAmount = parseInt(getValues("waterVolume"), 10);
+  //   setValue("waterVolume", Math.max(0, currentAmount - 50));
+  //   clearErrors("waterVolume");
+  // };
+
+  // const handleWaterVolumeChange = (evt) => {
+  //   const value = Number(evt.target.value);
+  //   setValue("waterVolume", value);
+  //   if (value >= 50 && value <= 500) {
+  //     clearErrors("waterVolume");
+  //   }
+  // };
+
+  const handleFocus = (e) => {
+    if (isAddWater) {
+      if (e.target.value === "50") {
+        setValue("waterVolume", "");
+      }
+    } else if (!isAddWater && item.amount) {
+      setValue("waterVolume", "");
+    }
+  };
+  const handleBlur = (e) => {
+    if (e.target.value === "") {
+      setValue("waterVolume", isAddWater ? 50 : item.amount);
     }
   };
 
@@ -132,9 +193,11 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
               <CiCirclePlus size={42} />
             </button>
           </div>
-          {errors.waterVolume && (
+          {/* {errors.waterVolume && (
             <p className={css.error}>{errors.waterVolume.message}</p>
-          )}
+          )} */}
+          {minusError && <p className={css.error}>{minusError}</p>}
+          {plusError && <p className={css.error}>{plusError}</p>}
         </div>
 
         <p className={css.text}>Recording time</p>
@@ -144,18 +207,20 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         <p className={css.waterInput}>Enter the value of the water used:</p>
         <input
           type="number"
-          step={50}
+          step={1}
           min={0}
           className={css.valueInput}
           {...register("waterVolume")}
-          onChange={handleWaterVolumeChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          // onChange={handleWaterVolumeChange}
         />
         {errors.waterVolume && (
           <p className={css.error}>{errors.waterVolume.message}</p>
         )}
 
-        <button className={css.saveBtn} type="submit">
-          Save
+        <button className={css.saveBtn} type="submit" disabled={isLoading}>
+          {isLoading ? "Saving..." : "Save"}
         </button>
       </form>
     </>

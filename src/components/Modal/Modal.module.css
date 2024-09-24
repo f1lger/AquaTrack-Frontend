@@ -25,3 +25,9 @@
   top: 20px;
   right: 16px;
 }
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px;
+  }
+}

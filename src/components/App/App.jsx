@@ -13,6 +13,7 @@ import { selectAuthLoading, selectAuthToken } from "../../redux/auth/selectors";
 import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
 import { waterPerDay } from "../../redux/water/operations.js";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
@@ -53,6 +54,7 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
         </Routes>
+        <Toaster/>
       </Suspense>
     </>
   );

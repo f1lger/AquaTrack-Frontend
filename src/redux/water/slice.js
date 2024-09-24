@@ -55,7 +55,7 @@ const waterSlice = createSlice({
       })
       .addCase(waterPerDay.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.message;
+        state.error = action.error.message;
         state.waterInfo.dailyRecords = [];
       })
       .addCase(fetchWater.pending, waterPending)
@@ -78,9 +78,14 @@ const waterSlice = createSlice({
       .addCase(deleteWater.pending, waterPending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
-        const waterId = action.meta.arg;
+        const deletedRecord = state.waterInfo.dailyRecords.find(
+          (item) => item._id === action.meta.arg
+        );
+        if (deletedRecord) {
+          state.waterInfo.total -= deletedRecord.amount;
+        }
         state.waterInfo.dailyRecords = state.waterInfo.dailyRecords.filter(
-          (item) => item._id !== waterId
+          (item) => item._id !== action.meta.arg
         );
       })
       .addCase(deleteWater.rejected, waterRejected)
