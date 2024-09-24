@@ -78,9 +78,9 @@ const UserSettingsForm = ({ onClose }) => {
       name: user?.name || "",
       email: user?.email || "",
       gender: user?.gender || "",
-      weight: user?.weight || 0,
-      sportTime: user?.sportTime || 0,
-      dailyWater: user?.dailyNorma || 0,
+      weight: user?.weight || "",
+      sportTime: user?.sportTime || "",
+      dailyWater: user?.dailyNorma || "",
     },
   });
 
@@ -99,7 +99,7 @@ const UserSettingsForm = ({ onClose }) => {
   const watchActiveMinutes = watch("sportTime", 0);
 
   const calculateRecommendedWaterIntake = (weight, sportTime) => {
-    return genderLocal === "male"
+    return genderLocal === "man"
       ? (weight * 0.04 + sportTime * 0.6).toFixed(1)
       : (weight * 0.03 + sportTime * 0.4).toFixed(1);
   };
@@ -127,13 +127,13 @@ const UserSettingsForm = ({ onClose }) => {
       formData.append("email", data.email);
     }
     if (hasChanged("weight")) {
-      formData.append("weight", data.weight);
+      formData.append("weight", data.weight || 0);
     }
     if (hasChanged("dailyWater")) {
-      formData.append("dailyWater", data.dailyWater);
+      formData.append("dailyWater", data.dailyWater || 0);
     }
     if (hasChanged("sportTime")) {
-      formData.append("sportTime", data.sportTime);
+      formData.append("sportTime", data.sportTime || 0);
     }
 
     if (
@@ -205,18 +205,18 @@ const UserSettingsForm = ({ onClose }) => {
           className={css.radioGroup}
         >
           <FormControlLabel
-            value="female"
+            value="woman"
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
-            checked={genderLocal === "female"}
+            checked={genderLocal === "woman"}
           />
           <FormControlLabel
-            value="male"
+            value="man"
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Man</p>}
             className={css.radioLabel}
-            checked={genderLocal === "male"}
+            checked={genderLocal === "man"}
           />
         </RadioGroup>
         {errors.gender && (
@@ -292,7 +292,7 @@ const UserSettingsForm = ({ onClose }) => {
               The required amount of water in liters per day:
             </p>
             <p className={css.recWater}>
-              {genderLocal && watchWeight && watchActiveMinutes
+              {genderLocal && watchWeight || watchActiveMinutes
                 ? calculateRecommendedWaterIntake(
                     watchWeight,
                     watchActiveMinutes,
