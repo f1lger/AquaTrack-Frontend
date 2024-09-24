@@ -1,6 +1,7 @@
 .signInContainer {
   width: 100%;
   margin: 172px auto 216px;
+  padding: 16px;
 }
 @media only screen and (min-width: 768px) {
   .signInContainer {
@@ -10,8 +11,9 @@
 /* Без кнопки Google */
 @media only screen and (min-width: 1440px) {
   .signInContainer {
-    margin: 54px auto;}
+    margin: 54px auto;
   }
+}
 /*  Коли додано Google Btn
 @media only screen and (min-width: 1440px) {
   .signInContainer {

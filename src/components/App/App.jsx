@@ -51,7 +51,7 @@ function App() {
               element={<PrivateRoute component={<TrackerPage />} />}
             />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
         </Routes>
         <Toaster/>
