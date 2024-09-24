@@ -29,7 +29,7 @@ const schema = yup.object().shape({
     .min(3, "Name must be at least 3 characters")
     .max(13, "Name must be no more than 13 characters")
     .nullable()
-    .transform((value, originalValue) => originalValue === '' ? null : value), // Перетворення порожнього рядка
+    .transform((value, originalValue) => (originalValue === "" ? null : value)), // Перетворення порожнього рядка
   email: yup.string().email("Invalid email format").nullable(),
   weight: yup
     .number()
@@ -37,21 +37,21 @@ const schema = yup.object().shape({
     .positive("Weight must be a positive number")
     .min(5, "Weight must be at least 5 kg")
     .nullable()
-    .transform((value, originalValue) => originalValue === '' ? null : value),
+    .transform((value, originalValue) => (originalValue === "" ? null : value)),
   sportTime: yup
     .number()
     .typeError("Active minutes must be a number")
     .positive("Active minutes must be a positive number")
     .min(0, "Sport time must be at least 0 minutes")
     .nullable()
-    .transform((value, originalValue) => originalValue === '' ? null : value),
+    .transform((value, originalValue) => (originalValue === "" ? null : value)),
   dailyWater: yup
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
     .min(1800, "Water consumption must be at least 1800 ml")
     .nullable()
-    .transform((value, originalValue) => originalValue === '' ? 1800 : value),
+    .transform((value, originalValue) => (originalValue === "" ? 1800 : value)),
 });
 
 const UserSettingsForm = ({ onClose }) => {
@@ -64,7 +64,7 @@ const UserSettingsForm = ({ onClose }) => {
   const [avatarPreview, setAvatarPreview] = useState(
     avatarPhoto ? avatarPhoto : photo
   );
-
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -75,6 +75,7 @@ const UserSettingsForm = ({ onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
+      avatar: user?.avatar || "",
       name: user?.name || "",
       email: user?.email || "",
       gender: user?.gender || "",
@@ -86,6 +87,7 @@ const UserSettingsForm = ({ onClose }) => {
 
   useEffect(() => {
     reset({
+      avatar: user?.avatar || "",
       name: user?.name || "",
       email: user?.email || "",
       gender: user?.gender || "",
@@ -115,7 +117,7 @@ const UserSettingsForm = ({ onClose }) => {
     };
 
     if (isAvatarSelected) {
-      formData.append("avatar", data.avatar);
+      formData.append("avatar", data.avatar || photo);
     }
     if (hasChanged("gender")) {
       formData.append("gender", data.gender);
@@ -162,10 +164,10 @@ const UserSettingsForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
-        {avatarPreview && (
+        {user.avatar && (
           <div className={css.avatarBox}>
             <img
-              src={avatarPreview}
+              src={user.avatar}
               alt="Avatar Preview"
               className={css.avatar}
             />
@@ -306,7 +308,11 @@ const UserSettingsForm = ({ onClose }) => {
             <label id="dailyWater" className={css.titleText}>
               Write down how much water you will drink:
             </label>
-            <input type="text" {...register("dailyWater")} placeholder="1800 ml" />
+            <input
+              type="text"
+              {...register("dailyWater")}
+              placeholder="1800 ml"
+            />
             {errors.dailyWater && (
               <span className={css.error}>{errors.dailyWater.message}</span>
             )}
