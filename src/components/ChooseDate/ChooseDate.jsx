@@ -29,7 +29,7 @@ const ChooseDate = () => {
     const monthName = months[parseInt(chosenMonth, 10) - 1];
 
     month = monthName;
-    day = chosenDay;
+    day = parseInt(chosenDay, 10);
   }
 
   const date = () => {
