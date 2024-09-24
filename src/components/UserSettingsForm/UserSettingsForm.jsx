@@ -49,9 +49,9 @@ const schema = yup.object().shape({
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
-    .min(1800, "Water consumption must be at least 1800 ml")
+    .min(1000, "Water consumption must be at least 1000 ml")
     .nullable()
-    .transform((value, originalValue) => (originalValue === "" ? 1800 : value)),
+    .transform((value, originalValue) => (originalValue === "" ? 1000 : value)),
 });
 
 const UserSettingsForm = ({ onClose }) => {
@@ -310,7 +310,7 @@ const UserSettingsForm = ({ onClose }) => {
             <input
               type="text"
               {...register("dailyWater")}
-              placeholder="1800 ml"
+              placeholder="1000 ml"
             />
             {errors.dailyWater && (
               <span className={css.error}>{errors.dailyWater.message}</span>
