@@ -2,13 +2,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addWater,
   updateWater,
   waterPerDay,
 } from "../../redux/water/operations";
 import css from "./WaterForm.module.css";
+import { selectWaterLoading } from "../../redux/water/selectors";
 
 const schema = yup.object().shape({
   waterVolume: yup
@@ -22,6 +23,7 @@ const schema = yup.object().shape({
 
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectWaterLoading);
   const defaultValues = !isAddWater
     ? {
         date: item.date,
@@ -154,8 +156,9 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
           <p className={css.error}>{errors.waterVolume.message}</p>
         )}
 
-        <button className={css.saveBtn} type="submit">
-          Save
+        <button className={css.saveBtn} type="submit"
+         disabled={isLoading}>
+       {isLoading ? "Saving..." : "Save"}
         </button>
       </form>
     </>
