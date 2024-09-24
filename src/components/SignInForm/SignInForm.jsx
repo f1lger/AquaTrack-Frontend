@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./SignInForm.module.css";
@@ -9,8 +9,8 @@ import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-
-import GoogleLoginButton from "../GoogleLoginButton/GoogleLoginButton.jsx";
+import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn.jsx";
+import { selectAuthError } from "../../redux/auth/selectors.js";
 
 const signInFormSchema = Yup.object({
   email: Yup.string()
@@ -24,9 +24,10 @@ const signInFormSchema = Yup.object({
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-
+  const reduxError = useSelector(selectAuthError);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -46,16 +47,23 @@ const SignInForm = () => {
     const { email, password } = data;
     setLoading(true);
     try {
-      const response = await dispatch(login({ email, password }));
-
-      if (response.error) {
-        throw new Error(response.error.message || "Unknown error");
+      const loginResult = await dispatch(login({ email, password }));
+      if (login.fulfilled.match(loginResult)) {
+        navigate("/tracker");
+        reset();
+      } else {
+        if (
+          reduxError === "Request failed with status code 400" ||
+          reduxError === "Request failed with status code 404" ||
+          reduxError === "Request failed with status code 401"
+        ) {
+          toast.error("Invalid email or password");
+        } else {
+          toast.error("Failed to login: " + (reduxError || "Unknown error"));
+        }
       }
-      toast.success("Successfully logged in!");
-      navigate("/tracker");
-      reset();
     } catch (error) {
-      toast.error("Failed to login " + (error.message || "Unknown error"));
+      toast.error("Failed to login: " + (error.message || "Unknown error"));
     } finally {
       setLoading(false);
     }
@@ -73,10 +81,10 @@ const SignInForm = () => {
           <span className={css.label}>Email: </span>
           <input
             type="email"
-            {...register("email", {
-              required: true,
-            })}
-            placeholder="Enter your email"
+            {...register("email")}
+            placeholder={
+              errors.email ? errors.email.message : "Enter your email"
+            }
             className={clsx(css.input, { [css.inputError]: errors.email })}
           />
           <p className={css.errorMessage}>{errors.email?.message}</p>
@@ -86,11 +94,13 @@ const SignInForm = () => {
           <div className={css.inputField}>
             <input
               type={showPassword ? "text" : "password"}
-              {...register("password", { required: true })}
-              placeholder="Enter your password"
-              className={clsx(css.input, {
-                [css.inputError]: errors.password,
-              })}
+              {...register("password")}
+              placeholder={
+                errors.password
+                  ? errors.password.message
+                  : "Enter your password"
+              }
+              className={clsx(css.input, { [css.inputError]: errors.password })}
             />
             <button
               className={css.showPasswordBtn}
@@ -112,16 +122,22 @@ const SignInForm = () => {
           <p className={css.errorMessage}>{errors.password?.message}</p>
         </label>
 
+        {reduxError ? (
+          <div className={css.errorMessage}>Invalid email or password, try again</div>
+        ) : (
+          ""
+        )}
+
         <button type="submit" className={css.submit} disabled={loading}>
           {loading ? "Signing in..." : "Sign in"}
         </button>
 
         <p className={css.questionText}>or</p>
-        <GoogleLoginButton context={"Sign In with Google"} onClick={() => {}} />
+          <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn>
       </form>
       <div className={css.questionOnLogIn}>
         <p className={css.questionText}>
-          Don`t have an account?{" "}
+          Don’t have an account?{" "}
           <NavLink to="/signup" className={css.signUpLink}>
             Sign Up
           </NavLink>

@@ -4,10 +4,8 @@ import { getAllUsers } from "../../redux/auth/operations";
 import {
   selectTotalUsers,
   selectAuthLoading,
-  selectAuthError,
 } from "../../redux/auth/selectors";
 import Loader from "../../components/Loader/Loader";
-import toast from "react-hot-toast";
 
 import womanAvatar1x from "../../photo/mob/woman-avatar@1x.webp";
 import womanAvatar2x from "../../photo/mob/woman-avatar@2x.webp";
@@ -24,7 +22,6 @@ function AdvantagesSection() {
   const dispatch = useDispatch();
   const totalUsers = useSelector(selectTotalUsers);
   const loading = useSelector(selectAuthLoading);
-  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     if (!totalUsers && !loading) {
@@ -34,10 +31,6 @@ function AdvantagesSection() {
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (error) {
-    return toast.error("Failed to fetch users");
   }
 
   return (

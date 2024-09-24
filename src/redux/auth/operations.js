@@ -172,3 +172,28 @@ export const loginWithGoogle = createAsyncThunk(
     }
   }
 );
+
+export const fetchGoogleOAuthUrl = createAsyncThunk(
+  "auth/fetchGoogleOAuthUrl",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/users/oauth-url");
+      return response.data.data.url;
+    } catch (error) {
+      console.log("failed fetch google url");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const confirmOAuth = createAsyncThunk(
+  "auth/confirmOAuth",
+  async (code, thunkAPI) => {
+    try {
+      const response = await axios.post("/users/confirm-oauth", code);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

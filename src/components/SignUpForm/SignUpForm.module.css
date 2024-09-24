@@ -59,7 +59,7 @@
 .inputLastField {
   position: relative;
   display: flex;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   width: 100%;
   padding: 16px;
   border: 1px solid rgba(47, 47, 47, 0.2);
@@ -82,11 +82,11 @@
 
 .errorMessage,
 .errorMessageConfirm {
+  text-align: center;
   color: #ef5050;
-  margin-bottom: 20px;
-  font-family: Poppins;
-  font-size: 14px;
-  border-color: #ef5050;
+  font-weight: 400;
+  font-size: 13px;
+  margin-bottom: 12px;
 }
 
 .submitButton {
@@ -104,6 +104,7 @@
   line-height: 24px; /* 150% */
   letter-spacing: -0.16px;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .submitButton:hover {
@@ -136,6 +137,14 @@
 
 .showPasswordBtn {
   display: none;
+}
+
+p {
+  color: rgba(47, 47, 47, 0.5);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-align: center;
 }
 
 /* Tablet */
