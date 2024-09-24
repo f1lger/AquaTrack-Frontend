@@ -40,6 +40,9 @@ const ForgotPasswordForm = () => {
   return (
     <div className={css.container}>
       <h2 className={css.title}>Forgot Password?</h2>
+      <p>
+        Enter your email and we&apos;ll send you a link to reset your password
+      </p>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={css.field}>
           <span className={css.label}>Email: </span>
@@ -64,7 +67,7 @@ const ForgotPasswordForm = () => {
         </p>
       </div>
       <div className={css.questionOnLogIn}>
-        <p className={css.questionText}>Have you got an account?</p>
+        <p className={css.questionText}>Already have an account?</p>
         <NavLink to="/signin" className={css.signUpLink}>
           Sign in
         </NavLink>
