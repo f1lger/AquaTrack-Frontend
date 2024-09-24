@@ -124,13 +124,13 @@ const UserSettingsForm = ({ onClose }) => {
       formData.append("email", data.email);
     }
     if (hasChanged("weight")) {
-      formData.append("weight", data.weight);
+      formData.append("weight", data.weight || 0);
     }
     if (hasChanged("dailyWater")) {
       formData.append("dailyWater", data.dailyWater);
     }
     if (hasChanged("sportTime")) {
-      formData.append("sportTime", data.sportTime);
+      formData.append("sportTime", data.sportTime || 0);
     }
 
     if (
