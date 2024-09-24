@@ -47,8 +47,9 @@ const schema = yup.object().shape({
     .number()
     .typeError("Water consumption must be a number")
     .positive("Water consumption must be a positive number")
+    .min(1800, "Water consumption must be at least 1800 ml")
     .nullable()
-    .transform((value, originalValue) => originalValue === '' ? null : value),
+    .transform((value, originalValue) => originalValue === '' ? 1800 : value),
 });
 
 const UserSettingsForm = ({ onClose }) => {
@@ -124,13 +125,13 @@ const UserSettingsForm = ({ onClose }) => {
       formData.append("email", data.email);
     }
     if (hasChanged("weight")) {
-      formData.append("weight", data.weight);
+      formData.append("weight", data.weight || 0);
     }
     if (hasChanged("dailyWater")) {
       formData.append("dailyWater", data.dailyWater);
     }
     if (hasChanged("sportTime")) {
-      formData.append("sportTime", data.sportTime);
+      formData.append("sportTime", data.sportTime || 0);
     }
 
     if (
@@ -288,7 +289,7 @@ const UserSettingsForm = ({ onClose }) => {
               The required amount of water in liters per day:
             </p>
             <p className={css.recWater}>
-              {genderLocal && watchWeight && watchActiveMinutes
+              {genderLocal && watchWeight
                 ? calculateRecommendedWaterIntake(
                     watchWeight,
                     watchActiveMinutes,
@@ -302,7 +303,7 @@ const UserSettingsForm = ({ onClose }) => {
             <label id="dailyWater" className={css.titleText}>
               Write down how much water you will drink:
             </label>
-            <input type="text" {...register("dailyWater")} placeholder="1.8" />
+            <input type="text" {...register("dailyWater")} placeholder="1800 ml" />
             {errors.dailyWater && (
               <span className={css.error}>{errors.dailyWater.message}</span>
             )}
