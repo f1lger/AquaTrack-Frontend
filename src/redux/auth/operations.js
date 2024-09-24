@@ -39,6 +39,18 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+export const getAllUsers = createAsyncThunk(
+  "users/getAll",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/users/all-users");
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const requestSignIn = async (formData) => {
   const { data } = await axios.post("/users/login", formData);
   setAuthHeader(data.data.accessToken);
@@ -62,7 +74,7 @@ export const updateUser = createAsyncThunk(
   "auth/update",
   async (formData, thunkAPI) => {
     try {
-      const res = await axios.patch("/users/profile", formData, { 
+      const res = await axios.patch("/users/profile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -72,7 +84,7 @@ export const updateUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-); 
+);
 
 /*
 export const updateUser = createAsyncThunk(
@@ -111,7 +123,7 @@ export const sendPasswordResetEmail = createAsyncThunk(
   "auth/sendPasswordResetEmail",
   async (email, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/api/users/send-reset-email", email );
+      const response = await axios.post("/api/users/send-reset-email", email);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -134,8 +146,6 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-
-
 export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/users/logout");
@@ -147,14 +157,14 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
 
 // Log in with Google
 export const loginWithGoogle = createAsyncThunk(
-  'auth/loginWithGoogle',
+  "auth/loginWithGoogle",
   async (tokenId, thunkAPI) => {
     try {
-      const response = await axios.post('/api/auth/google-login', { tokenId });
+      const response = await axios.post("/api/auth/google-login", { tokenId });
       if (response.data) {
         return response.data;
       }
-      
+
       return thunkAPI.rejectWithValue("No data returned from server.");
     } catch (error) {
       console.error("Login error:", error);

@@ -1,3 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllUsers } from "../../redux/auth/operations";
+import {
+  selectTotalUsers,
+  selectAuthLoading,
+  selectAuthError,
+} from "../../redux/auth/selectors";
+import Loader from "../../components/Loader/Loader";
+import toast from "react-hot-toast";
+
 import womanAvatar1x from "../../photo/mob/woman-avatar@1x.webp";
 import womanAvatar2x from "../../photo/mob/woman-avatar@2x.webp";
 
@@ -10,6 +21,25 @@ import girlAvatar2x from "../../photo/mob/girl-avatar@2x.webp";
 import styles from "./AdvantagesSection.module.css";
 
 function AdvantagesSection() {
+  const dispatch = useDispatch();
+  const totalUsers = useSelector(selectTotalUsers);
+  const loading = useSelector(selectAuthLoading);
+  const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    if (!totalUsers && !loading) {
+      dispatch(getAllUsers());
+    }
+  }, [dispatch, totalUsers, loading]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return toast.error("Failed to fetch users");
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainImg} />
@@ -38,7 +68,9 @@ function AdvantagesSection() {
           />
         </div>
         <p>
-          Our <span className={styles.accent}>happy </span>customers
+          {" "}
+          {totalUsers}+ <span className={styles.accent}>happy </span>
+          customers
         </p>
       </div>
       <ul className={styles.infoContainer}>
