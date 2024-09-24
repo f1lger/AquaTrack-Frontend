@@ -26,13 +26,14 @@ const waterSlice = createSlice({
     },
     monthlyRecords: [],
     currentDay: new Date().toISOString().split("T")[0],
+    selectedDate: null,
     currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
     loading: false,
     error: null,
   },
   reducers: {
     setSelectedDate: (state, action) => {
-      state.setSelectedDate = action.payload;
+      state.selectedDate = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,7 +56,7 @@ const waterSlice = createSlice({
       .addCase(waterPerDay.rejected, (state, action) => {
         state.loading = false;
         state.error = action.message;
-        state.waterInfo.dailyRecords = []
+        state.waterInfo.dailyRecords = [];
       })
       .addCase(fetchWater.pending, waterPending)
       .addCase(fetchWater.fulfilled, (state, { payload }) => {
@@ -96,4 +97,5 @@ const waterSlice = createSlice({
   },
 });
 
+export const { setSelectedDate } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;
