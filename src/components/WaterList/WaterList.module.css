@@ -8,7 +8,8 @@
 }
 
 .list {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   overflow-x: scroll;
   scrollbar-width: thin;
   display: flex;
@@ -25,7 +26,7 @@
 
 @media screen and (min-width: 768px) {
   .list {
-    width: 640px;
+    max-width: 640px;
     gap: 32px;
     min-height: 86px;
   }
@@ -36,7 +37,7 @@
 }
 @media screen and (min-width: 1440px) {
   .list {
-    width: 608px;
+    max-width: 608px;
     gap: 16px;
   }
 }

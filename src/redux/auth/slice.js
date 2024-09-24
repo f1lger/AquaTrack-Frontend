@@ -23,7 +23,6 @@ const handlePending = (state) => {
 };
 
 const handleFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.user.email = payload.email;
   state.user.dailyNorma = payload.dailyWater || 1500;
   state.user.name = payload.name;
@@ -33,7 +32,6 @@ const handleFulfilled = (state, { payload }) => {
   state.user.avatar = payload.avatar;
   state.loading = false;
 };
-// console.log(handleFulfilled);
 
 const handleError = (state, { payload }) => {
   state.loading = false;
