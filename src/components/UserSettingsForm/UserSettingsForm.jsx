@@ -35,12 +35,14 @@ const schema = yup.object().shape({
     .number()
     .typeError("Weight must be a number")
     .positive("Weight must be a positive number")
+    .min(5, "Weight must be at least 5 kg")
     .nullable()
     .transform((value, originalValue) => originalValue === '' ? null : value),
   sportTime: yup
     .number()
     .typeError("Active minutes must be a number")
     .positive("Active minutes must be a positive number")
+    .min(0, "Sport time must be at least 0 minutes")
     .nullable()
     .transform((value, originalValue) => originalValue === '' ? null : value),
   dailyWater: yup
@@ -97,7 +99,7 @@ const UserSettingsForm = ({ onClose }) => {
   const watchActiveMinutes = watch("sportTime", 0);
 
   const calculateRecommendedWaterIntake = (weight, sportTime) => {
-    return genderLocal === "male"
+    return genderLocal === "man"
       ? (weight * 0.04 + sportTime * 0.6).toFixed(1)
       : (weight * 0.03 + sportTime * 0.4).toFixed(1);
   };
@@ -128,7 +130,7 @@ const UserSettingsForm = ({ onClose }) => {
       formData.append("weight", data.weight || 0);
     }
     if (hasChanged("dailyWater")) {
-      formData.append("dailyWater", data.dailyWater);
+      formData.append("dailyWater", data.dailyWater || 0);
     }
     if (hasChanged("sportTime")) {
       formData.append("sportTime", data.sportTime || 0);
@@ -203,17 +205,18 @@ const UserSettingsForm = ({ onClose }) => {
           className={css.radioGroup}
         >
           <FormControlLabel
-            value="female"
+            value="woman"
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Woman</p>}
             className={css.radioLabel}
-            checked
+            checked={genderLocal === "woman"}
           />
           <FormControlLabel
-            value="male"
+            value="man"
             control={<Radio style={{ color: "#9BE1A0" }} />}
             label={<p className={css.radioText}>Man</p>}
             className={css.radioLabel}
+            checked={genderLocal === "man"}
           />
         </RadioGroup>
         {errors.gender && (
