@@ -9,6 +9,7 @@
   gap: 8px;
 }
 
+
 p,
 .saveBtn {
   font-family: "Poppins";
@@ -25,6 +26,8 @@ p,
   justify-content: center;
   width: 80px;
   height: 40px;
+  font-weight: 700;
+  font-size: 16px;
   color: #ffffff;
   background-color: #323f47;
 }
@@ -33,6 +36,7 @@ p,
   background-color: #ffffff;
   padding: 0;
   border: none;
+  height: 40px;
 }
 
 .waterInput {
@@ -43,12 +47,12 @@ p,
   color: #323f47;
 }
 
+
 .timeInput,
 .valueInput {
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   padding: 0 16px;
-  width: 303px;
   height: 46px;
   margin: 8px 0 24px;
 }
@@ -66,4 +70,15 @@ p,
 
 .saveBtn:hover {
   background-color: #87d28d;
+}
+@media screen and (min-width: 768px) {
+  .waterCountBtn {
+    height: 43px;
+  }
+  .text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
 }
