@@ -24,7 +24,8 @@ const ChooseDate = () => {
   ];
 
   if (chosenDate !== null) {
-    const [chosenYear, chosenMonth, chosenDay] = chosenDate.split("-");
+    const chosenMonth = chosenDate.split("-")[1];
+    const chosenDay = chosenDate.split("-")[2];
 
     const monthName = months[parseInt(chosenMonth, 10) - 1];
 

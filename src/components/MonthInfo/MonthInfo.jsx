@@ -6,9 +6,8 @@ import CalendarPagination from "../CalendarPagination/CalendarPagination";
 
 const MonthInfo = () => {
   const dispatch = useDispatch();
-  const today = new Date();
-  const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
 
   const getDaysInMonth = (year, month) => {
     return new Date(year, month, 0).getDate();
