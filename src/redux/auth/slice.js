@@ -1,16 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser, login, logout, register, updateUser } from "./operations";
+import {
+  fetchUser,
+  login,
+  logout,
+  register,
+  updateUser,
+  getAllUsers,
+} from "./operations";
 
 const initialState = {
   user: {
     email: null,
     dailyNorma: 1500,
-    avatar: "../../photo/desk/woman-avatar-2x.webp",
+    avatar: "../../photo/mob/woman-avatar@2x.webp" ,
     name: null,
     gender: "woman",
     weight: 0,
     sportTime: 0,
   },
+  totalUsers: 0,
   isLogedIn: false,
   token: null,
   loading: false,
@@ -31,8 +39,8 @@ const handleFulfilled = (state, { payload }) => {
   state.user.sportTime = payload.sportTime;
   state.user.avatar = payload.avatar;
   state.loading = false;
+  state.totalUsers = payload;
 };
-// console.log(handleFulfilled);
 
 const handleError = (state, { payload }) => {
   state.loading = false;
@@ -65,7 +73,10 @@ const authSlice = createSlice({
       .addCase(logout.rejected, handleError)
       .addCase(updateUser.pending, handlePending)
       .addCase(updateUser.fulfilled, handleFulfilled)
-      .addCase(updateUser.rejected, handleError);
+      .addCase(updateUser.rejected, handleError)
+      .addCase(getAllUsers.pending, handlePending)
+      .addCase(getAllUsers.fulfilled, handleFulfilled)
+      .addCase(getAllUsers.rejected, handleError);
   },
 });
 

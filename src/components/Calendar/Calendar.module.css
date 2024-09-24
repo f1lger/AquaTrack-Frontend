@@ -1,4 +1,4 @@
-@media only screen and (max-width: 369px) {
+@media only screen and (max-width: 375px) {
   .calendar {
     justify-content: space-between;
     column-gap: 17px;

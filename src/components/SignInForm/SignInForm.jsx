@@ -10,9 +10,7 @@ import iconSprite from "../../icons/symbol-defs.svg";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-/*
-import GoogleLoginButton from '../GoogleLoginButton/GoogleLoginButton.jsx';
-*/
+import GoogleLoginButton from "../GoogleLoginButton/GoogleLoginButton.jsx";
 
 const signInFormSchema = Yup.object({
   email: Yup.string()
@@ -117,15 +115,9 @@ const SignInForm = () => {
         <button type="submit" className={css.submit} disabled={loading}>
           {loading ? "Signing in..." : "Sign in"}
         </button>
-        {/* 
-<p className={css.questionText}>or</p>
-        <GoogleLoginButton
-          context={"Sign In with Google"}
-          onClick={() => {
 
-          }}
-        />
-*/}
+        <p className={css.questionText}>or</p>
+        <GoogleLoginButton context={"Sign In with Google"} onClick={() => {}} />
       </form>
       <div className={css.questionOnLogIn}>
         <p className={css.questionText}>
@@ -135,12 +127,12 @@ const SignInForm = () => {
           </NavLink>
         </p>
       </div>
-      {/* <div className={css.forgotPasswordContainer}>
+      <div className={css.forgotPasswordContainer}>
         <p className={css.questionText}>Forgot Password?</p>
         <NavLink to="/forgot-password" className={css.forgotPasswordLink}>
           Reset
         </NavLink>
-      </div> */}
+      </div>
     </div>
   );
 };
