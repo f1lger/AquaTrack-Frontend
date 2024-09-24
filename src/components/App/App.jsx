@@ -15,10 +15,10 @@ import Loader from "../Loader/Loader.jsx";
 import { waterPerDay } from "../../redux/water/operations.js";
 import { Toaster } from "react-hot-toast";
 
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
-const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
-const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
-const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
+const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
+const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage.jsx"));
+const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage.jsx"));
 
 function App() {
   const dispatch = useDispatch();

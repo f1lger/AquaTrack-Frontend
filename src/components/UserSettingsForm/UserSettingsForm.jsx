@@ -64,7 +64,6 @@ const UserSettingsForm = ({ onClose }) => {
   const [avatarPreview, setAvatarPreview] = useState(
     avatarPhoto ? avatarPhoto : photo
   );
-  console.log(user);
   const {
     register,
     handleSubmit,

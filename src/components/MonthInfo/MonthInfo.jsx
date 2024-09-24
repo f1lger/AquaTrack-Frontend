@@ -35,7 +35,6 @@ const MonthInfo = () => {
   useEffect(() => {
     const formattedMonth = String(month).padStart(2, "0");
     const date = `${year}-${formattedMonth}`;
-
     dispatch(waterPerMonth(date));
   }, [dispatch, year, month]);
 

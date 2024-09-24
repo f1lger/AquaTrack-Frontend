@@ -39,7 +39,6 @@ const handleFulfilled = (state, { payload }) => {
   state.user.sportTime = payload.sportTime;
   state.user.avatar = payload.avatar;
   state.loading = false;
-  state.totalUsers = payload;
 };
 
 const handleError = (state, { payload }) => {
@@ -75,7 +74,10 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, handleFulfilled)
       .addCase(updateUser.rejected, handleError)
       .addCase(getAllUsers.pending, handlePending)
-      .addCase(getAllUsers.fulfilled, handleFulfilled)
+      .addCase(getAllUsers.fulfilled, (state, { payload }) => {
+        state.totalUsers = payload;
+        state.loading = false;
+      })
       .addCase(getAllUsers.rejected, handleError);
   },
 });

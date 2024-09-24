@@ -23,7 +23,6 @@ const GoogleLoginButton = ({ context }) => {
 
   try {
     const response = await axios.get("/auth/google/get-oauth-url");
-    console.log("Response from server:", response.data);
     const { url } = response.data.data;
     window.location.href = url;
   } catch (error) {
