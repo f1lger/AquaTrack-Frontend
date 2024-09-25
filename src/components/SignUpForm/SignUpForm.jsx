@@ -26,7 +26,7 @@ function SignUpForm() {
       .email("Invalid email address")
       .required("Email is required!"),
     password: Yup.string()
-      .min(3, "Must contain at least 3 characters")
+      .min(6, "Must contain at least 6 characters")
       .required("Password is required!"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")

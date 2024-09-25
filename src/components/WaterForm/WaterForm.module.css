@@ -9,7 +9,6 @@
   gap: 8px;
 }
 
-
 p,
 .saveBtn {
   font-family: "Poppins";
@@ -47,7 +46,6 @@ p,
   color: #323f47;
 }
 
-
 .timeInput,
 .valueInput {
   border: 1px solid rgba(47, 47, 47, 0.15);
@@ -72,6 +70,9 @@ p,
   background-color: #87d28d;
 }
 @media screen and (min-width: 768px) {
+  .waterForm {
+    width: 436px;
+  }
   .waterCountBtn {
     height: 43px;
   }

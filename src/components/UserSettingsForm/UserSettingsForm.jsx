@@ -17,7 +17,7 @@ import {
 import photo from "../../photo/mob/woman-avatar@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
-import { selectUser, selectUserAvatar } from "../../redux/auth/selectors";
+import { selectAvatar, selectUser, selectUserAvatar } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
@@ -57,7 +57,7 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const avatarPhoto = useSelector(selectUserAvatar);
+  const avatarPhoto = useSelector(selectAvatar);
 
   const [genderLocal, setGender] = useState(user?.gender || "");
   const [isAvatarSelected, setIsAvatarSelected] = useState(false);
@@ -115,7 +115,7 @@ const UserSettingsForm = ({ onClose }) => {
       return data[fieldName] !== user[fieldName];
     };
 
-    if (isAvatarSelected) {
+    if (hasChanged("avatar")) {
       formData.append("avatar", data.avatar || photo);
     }
     if (hasChanged("gender")) {
@@ -163,10 +163,10 @@ const UserSettingsForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
-        {user.avatar && (
+        {avatarPreview && (
           <div className={css.avatarBox}>
             <img
-              src={user.avatar}
+              src={isAvatarSelected ? avatarPreview : avatarPhoto}
               alt="Avatar Preview"
               className={css.avatar}
             />

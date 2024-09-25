@@ -8,12 +8,14 @@ import { selectDailyNorma } from "../../redux/auth/selectors";
 import { useEffect, useMemo, useState } from "react";
 import CalendarItem from "../CalendarItem/CalendarItem";
 import { waterPerDay, waterPerMonth } from "../../redux/water/operations";
+import { setSelectedDate } from "../../redux/water/slice";
 
 const Calendar = ({ daysInMonth, year, month }) => {
   const dispatch = useDispatch();
   const monthlyRecords = useSelector(selectMonthlyRecords);
   const dailyTarget = useSelector(selectDailyNorma);
   const dailyRecords = useSelector(selectDailyRecords);
+  
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -30,9 +32,14 @@ const Calendar = ({ daysInMonth, year, month }) => {
 
   const handleButtonClick = (index) => {
     setActiveIndex(index);
-    const date = `${year}-${String(month).padStart(2, "0")}-${index + 1}`;
+    const formattedDay = String(index + 1).padStart(2, "0");
+    const formattedMonth = String(month).padStart(2, "0");
+    const date = `${year}-${formattedMonth}-${formattedDay}`;
+
     dispatch(waterPerDay(date));
+    dispatch(setSelectedDate(date));
   };
+
 
   const daysArray = useMemo(() => {
     return Array.from({ length: daysInMonth }, (_, index) => {
@@ -64,7 +71,11 @@ const Calendar = ({ daysInMonth, year, month }) => {
     currentDay,
     currentMonth,
     currentYear,
+    month, 
+    year, 
   ]);
+
+
 
   return (
     <div>

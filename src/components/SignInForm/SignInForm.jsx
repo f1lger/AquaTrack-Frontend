@@ -17,7 +17,7 @@ const signInFormSchema = Yup.object({
     .email("Invalid email address")
     .required("Email is required"),
   password: Yup.string()
-    .min(3, "Must contain at least 3 characters")
+    .min(6, "Must contain at least 6 characters")
     .max(64, "Password can't be longer than 64 characters")
     .required("Password is required"),
 });
