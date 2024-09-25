@@ -40,7 +40,7 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route path="/confirm-google-oauth" element={<OAuthCallback />} />
+            <Route path="/confirm-oauth" element={<OAuthCallback />} />
             <Route index element={<HomePage />} />
             <Route
               path="/signup"
