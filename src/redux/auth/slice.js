@@ -6,13 +6,14 @@ import {
   register,
   updateUser,
   getAllUsers,
+  confirmOAuth,
 } from "./operations";
 
 const initialState = {
   user: {
     email: null,
     dailyNorma: 1500,
-    avatar: "../../photo/mob/woman-avatar@2x.webp" ,
+    avatar: "../../photo/mob/woman-avatar@2x.webp",
     name: null,
     gender: "woman",
     weight: 0,
@@ -44,6 +45,7 @@ const handleFulfilled = (state, { payload }) => {
 const handleError = (state, { payload }) => {
   state.loading = false;
   state.error = payload;
+  state.confirmOAuth = null;
 };
 
 const authSlice = createSlice({
@@ -78,7 +80,14 @@ const authSlice = createSlice({
         state.totalUsers = payload;
         state.loading = false;
       })
-      .addCase(getAllUsers.rejected, handleError);
+      .addCase(getAllUsers.rejected, handleError)
+      .addCase(confirmOAuth.pending, handlePending)
+      .addCase(confirmOAuth.fulfilled, (state, { payload }) => {
+        state.token = payload.accessToken;
+        state.isLogedIn = true;
+        state.loading = false;
+      })
+      .addCase(confirmOAuth.rejected, handleError);
   },
 });
 

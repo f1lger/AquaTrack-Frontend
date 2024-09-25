@@ -3,8 +3,8 @@
     font-size: 20px;
 }
 
-.google_btn {
-    margin-top: 4px;
+.googleBtn{
+	margin-top: 4px;
     font-weight: 700;
     border: none;
     width: 100%;
@@ -26,10 +26,4 @@
     @media (min-width: 768px) {
         height: 60px;
     }
-}
-
-.error {
-    color: red;
-    margin-top: 10px;
-    font-weight: 400;
 }

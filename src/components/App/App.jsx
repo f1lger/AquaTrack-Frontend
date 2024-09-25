@@ -14,11 +14,14 @@ import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
 import { waterPerDay } from "../../redux/water/operations.js";
 import { Toaster } from "react-hot-toast";
+import OAuthCallback from "../GoogleAuthCallback/OAuthCallback.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage.jsx"));
-const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage.jsx"));
+const TrackerPage = lazy(() =>
+  import("../../pages/TrackerPage/TrackerPage.jsx")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +40,7 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route path="/confirm-google-oauth" element={<OAuthCallback />} />
             <Route index element={<HomePage />} />
             <Route
               path="/signup"
@@ -54,7 +58,7 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
         </Routes>
-        <Toaster/>
+        <Toaster />
       </Suspense>
     </>
   );
