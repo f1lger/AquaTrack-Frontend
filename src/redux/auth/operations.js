@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrack-back-end.onrender.com/";
 
@@ -64,7 +63,6 @@ export const login = createAsyncThunk(
       const { data } = await requestSignIn(formData);
       return data;
     } catch (err) {
-      toast.error("Please sign up");
       return thunkAPI.rejectWithValue(err.message);
     }
   }

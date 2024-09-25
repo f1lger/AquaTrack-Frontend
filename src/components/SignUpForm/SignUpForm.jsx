@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register, login } from "../../redux/auth/operations";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import iconSprite from "../../icons/symbol-defs.svg";
 import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn";
 import styles from "./SignUpForm.module.css";
@@ -15,6 +15,7 @@ function SignUpForm() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   const initialValues = {
     email: "",
@@ -48,22 +49,26 @@ function SignUpForm() {
         const loginResult = await dispatch(login({ email, password }));
         if (login.fulfilled.match(loginResult)) {
           navigate("/tracker");
+          resetForm();
         } else {
-          setError("login failed");
+          setError("Login failed");
           toast.error("Login error, try again");
         }
       } else {
-        setError("registration failed");
-        toast.error("Registration error, try again");
+        setError("Registration failed");
+        toast.error("Registration error. Email already in use");
       }
-
-      resetForm();
-      setError("");
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message;
+      const status = err.response?.data?.message;
 
-      setError(errorMessage);
-      toast.error(`Registration failed: ${errorMessage}`);
+      if (status === "409 Conflict") {
+        setEmailError("Email already in use");
+        console.log(emailError);
+      } else {
+        const errorMessage = err.response?.data?.message || err.message;
+        setError(errorMessage);
+        toast.error(`Registration failed: ${errorMessage}`);
+      }
     }
   };
 
@@ -103,6 +108,9 @@ function SignUpForm() {
                 component="div"
                 className={styles.errorMessage}
               />
+              {emailError && (
+                <div className={styles.errorMessage}>{emailError}</div>
+              )}
             </div>
             <div className={styles.inputWrapper}>
               <label htmlFor="password" className={styles.label}>

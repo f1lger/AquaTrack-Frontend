@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/operations.js";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import * as Yup from "yup";
 import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn.jsx";
 import { selectAuthError } from "../../redux/auth/selectors.js";
@@ -52,15 +52,7 @@ const SignInForm = () => {
         navigate("/tracker");
         reset();
       } else {
-        if (
-          reduxError === "Request failed with status code 400" ||
-          reduxError === "Request failed with status code 404" ||
-          reduxError === "Request failed with status code 401"
-        ) {
-          toast.error("Invalid email or password");
-        } else {
-          toast.error("Failed to login: " + (reduxError || "Unknown error"));
-        }
+        toast.error("Failed to login, please sign up");
       }
     } catch (error) {
       toast.error("Failed to login: " + (error.message || "Unknown error"));
@@ -123,7 +115,9 @@ const SignInForm = () => {
         </label>
 
         {reduxError ? (
-          <div className={css.errorMessage}>Invalid email or password, try again</div>
+          <div className={css.errorMessage}>
+            Invalid email or password, try again
+          </div>
         ) : (
           ""
         )}
@@ -133,7 +127,7 @@ const SignInForm = () => {
         </button>
 
         <p className={css.questionText}>or</p>
-          <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn>
+        <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn>
       </form>
       <div className={css.questionOnLogIn}>
         <p className={css.questionText}>
