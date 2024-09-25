@@ -17,7 +17,7 @@ function GoogleAuthBtn({ children }) {
 
   return (
     <>
-      <button onClick={handleLogin} className={styles.googleBtn}>
+      <button type="button" onClick={handleLogin} className={styles.googleBtn}>
         <FcGoogle className={styles.icon_google} />
         {children}
       </button>
