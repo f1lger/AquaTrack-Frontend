@@ -1,21 +1,46 @@
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, formatDate, parseISO } from "date-fns";
 import iconSprite from "../../icons/symbol-defs.svg";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
+import DenyUpdateModal from "./DenyUpdateModal/DenyUpdateModal";
 
 import css from "./WaterItem.module.css";
 import Modal from "../Modal/Modal";
+import { useSelector } from "react-redux";
+import { selectSelectedDate } from "../../redux/water/selectors";
 
 const WaterItem = ({ data }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDenyUpdateModalOpen, setIsDenyUpdateModalOpen] = useState(false);
 
   const handleEdit = () => setIsEditModalOpen(true);
   const handleCloseEditModal = () => setIsEditModalOpen(false);
 
   const handleDelete = () => setIsDeleteModalOpen(true);
   const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const handleDenyUpdate = ({}) => setIsDenyUpdateModalOpen(true);
+  const handleCloseDenyUpdateModal = () => setIsDenyUpdateModalOpen(false);
+
+  // Function to check if the selected date is the current date
+  const selectedDate = useSelector(selectSelectedDate);
+  const checkDate = () => {
+    // console.log("selected", selectedDate);
+    const today = new Date().toISOString().split("T")[0];
+    // console.log("today: ", today);
+
+    const allowedDay = today === selectedDate;
+
+    if (allowedDay) {
+      setIsDenyUpdateModalOpen(false); // Show modal if the date is not the current date
+    } else {
+      setIsDenyUpdateModalOpen(true); // Do nothing if the date is today
+    }
+
+    return;
+  };
 
   return (
     <>
@@ -31,12 +56,20 @@ const WaterItem = ({ data }) => {
           )}`}</p>
         </div>
         <div className={css.edit}>
-          <button type="button" onClick={handleEdit} className={css.btnEdit}>
+          <button
+            type="button"
+            onClick={(handleEdit, checkDate)}
+            className={css.btnEdit}
+          >
             <svg className={css.iconEdit}>
               <use href={`${iconSprite}#icon-pen`}></use>
             </svg>
           </button>
-          <button type="button" onClick={handleDelete} className={css.btnTrash}>
+          <button
+            type="button"
+            onClick={(handleDelete, checkDate)}
+            className={css.btnTrash}
+          >
             <svg className={css.iconTrash}>
               <use href={`${iconSprite}#icon-trash`}></use>
             </svg>
@@ -57,6 +90,13 @@ const WaterItem = ({ data }) => {
             isAddWater={false}
             item={data}
           />
+        </Modal>
+
+        <Modal
+          isOpen={isDenyUpdateModalOpen}
+          onClose={handleCloseDenyUpdateModal}
+        >
+          <DenyUpdateModal onClose={handleCloseDenyUpdateModal} />
         </Modal>
       </div>
     </>

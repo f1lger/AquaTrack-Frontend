@@ -40,8 +40,7 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, waterRejected)
       .addCase(waterPerDay.pending, waterPending)
       .addCase(waterPerDay.fulfilled, (state, { payload }) => {
-        state.selectedDate = payload.date;
-        // console.log("waterPerDay payload", payload.date);
+        state.selectedDate = payload.date; //щоб дістати дату обраного дня
         state.waterInfo.dailyRecords = payload.data;
         state.waterInfo.total = payload.data.reduce(
           (total, record) => total + record.amount,
@@ -50,6 +49,7 @@ const waterSlice = createSlice({
         state.loading = false;
       })
       .addCase(waterPerDay.rejected, (state, action) => {
+        state.selectedDate = action.meta.arg; //щоб дістати дату обраного дня
         state.loading = false;
         state.error = action.message;
         state.waterInfo.dailyRecords = [];

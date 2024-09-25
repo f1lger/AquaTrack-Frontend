@@ -17,7 +17,6 @@ export const fetchWater = createAsyncThunk(
   "water/fetchWater",
   async (date, thunkAPI) => {
     try {
-      console.log("fetchWater date: ", date);
       const response = await axios.get(`/water/${date}`);
       return response.data;
     } catch (e) {

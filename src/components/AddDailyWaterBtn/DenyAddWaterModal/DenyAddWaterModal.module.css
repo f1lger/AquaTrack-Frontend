@@ -4,7 +4,7 @@
 }
 
 .modalHead {
-  color: #323f47;
+  color: var(--main-gray);
   text-align: center;
   font-weight: 700;
   font-size: 20px;
@@ -34,33 +34,19 @@
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.btnColor {
-  color: #323f47;
-  background-color: #9be1a0;
-}
-
-.btnColor:hover {
-  background-color: #87d28d;
-}
-
-.btnColor:active {
+.buttonClose {
   color: #bcbcbc;
-  background-color: transparent;
+  background-color: var(--background);
 }
 
-.btnCancel {
-  color: #bcbcbc;
-  background-color: #f0eff4;
+.buttonClose:hover {
+  color: var(--main-gray);
 }
 
-.btnCancel:hover {
-  color: #323f47;
-}
-
-.logOutButtons {
+.closeBtn {
   display: flex;
-  flex-direction: column;
-  gap: 9px;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* TABLET STYLES */

@@ -6,7 +6,7 @@ import css from "./ChooseDate.module.css";
 
 const ChooseDate = () => {
   const chosenDate = useSelector(selectSelectedDate);
-  // console.log(chosenDate);
+  // console.log("chosenDate: ", chosenDate);
   const currentDate = new Date().toISOString().split("T")[0]; // Поточна дата
 
   const selectedDateObj = parseISO(chosenDate); // Перетворення обраної дати на об'єкт Date
@@ -21,9 +21,7 @@ const ChooseDate = () => {
 
   return (
     <h2 className={css.date}>
-      {isToday(currentDate, selectedDateObj)
-        ? "Today"
-        : formatDate(selectedDateObj)}
+      {isToday(currentDate, chosenDate) ? "Today" : formatDate(selectedDateObj)}
     </h2>
   );
 };

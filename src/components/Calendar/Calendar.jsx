@@ -16,7 +16,8 @@ const Calendar = ({ daysInMonth, year, month }) => {
   const handleButtonClick = (index) => {
     setActiveIndex(index);
     const formattedMonth = String(month).padStart(2, "0");
-    const date = `${year}-${formattedMonth}-${index + 1}`;
+    const formattedDay = index + 1 > 9 ? index + 1 : `0${index + 1}`; //щоб відтворювати дату від 1 до 9
+    const date = `${year}-${formattedMonth}-${formattedDay}`;
 
     dispatch(waterPerDay(date));
   };
