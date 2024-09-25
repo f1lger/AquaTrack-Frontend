@@ -17,6 +17,11 @@
   height: 38px;
   border-radius: 50%;
 }
+
+.avatar {
+  object-fit: cover;
+}
+
 @media only screen and (min-width: 786px) {
   .UserBar > img {
     width: 44px;

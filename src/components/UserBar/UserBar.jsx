@@ -53,6 +53,7 @@ export default function UserBar({ userName }) {
           src={userAvatar ? userAvatar : defaultAvatar}
           alt="avatar"
           loading="lazy"
+          className={css.avatar}
         />
         <IoIosArrowDown
           size={16}
