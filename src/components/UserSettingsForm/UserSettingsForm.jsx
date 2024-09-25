@@ -13,7 +13,6 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-// import { ModalBtn } from "../ModalBtn/Modalbtn";
 import photo from "../../photo/mob/woman-avatar@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
@@ -27,7 +26,7 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
-    .max(13, "Name must be no more than 13 characters")
+    .max(64, "Name must be no more than 64 characters")
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value)), // Перетворення порожнього рядка
   email: yup.string().email("Invalid email format").nullable(),
@@ -163,13 +162,17 @@ const UserSettingsForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
-        {avatarPreview && (
+        {isAvatarSelected || avatarPreview ? (
           <div className={css.avatarBox}>
             <img
-              src={isAvatarSelected ? avatarPreview : avatarPhoto}
+              src={avatarPreview}
               alt="Avatar Preview"
               className={css.avatar}
             />
+          </div>
+        ) : (
+          <div className={css.avatarBox}>
+            <img src={photo} alt="Avatar Preview" className={css.avatar} />
           </div>
         )}
         <input
@@ -321,7 +324,6 @@ const UserSettingsForm = ({ onClose }) => {
       <button type="submit" className={css.saveBtn}>
         Save
       </button>
-      {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
 };

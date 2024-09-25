@@ -5,8 +5,8 @@ import * as yup from "yup";
 import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { resetPassword } from "../../redux/auth/operations.js";
-import { toast } from "react-toastify";
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 
@@ -24,7 +24,8 @@ const resetPasswordSchema = yup.object().shape({
 const ResetPasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = useParams(); // токен із URL
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -38,9 +39,9 @@ const ResetPasswordForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      await dispatch(resetPassword({ token, password: data.password }));
+      dispatch(resetPassword({ token, password: data.password }));
       toast.success("Password reset successful!");
-      navigate("/login");
+      navigate("/signin");
     } catch (error) {
       toast.error("Failed to reset password: " + error.message);
     }
@@ -54,7 +55,6 @@ const ResetPasswordForm = () => {
     <div className={css.container}>
       <h2 className={css.title}>Reset Password</h2>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        
         <label className={css.field}>
           <span className={css.label}>New Password: </span>
           <div className={css.inputField}>
@@ -113,27 +113,25 @@ const ResetPasswordForm = () => {
             </button>
           </div>
           <p className={css.errorMessage}>{errors.confirmPassword?.message}</p>
-        </label>       
+        </label>
         <button type="submit" className={css.submitbtn}>
           Reset Password
         </button>
       </form>
       <div className={css.questionOnLogIn}>
-          <p className={css.questionText}>
-            Don`t have an account?{" "}
-            <NavLink to="/signup" className={css.signUpLink}>
-              Sign Up
-            </NavLink>
-          </p>
-        </div>
-        <div className={css.questionOnLogIn}>
-          <p className={css.questionText}>
-            Have you got an account?
-          </p>
-            <NavLink to="/signin" className={css.signUpLink}>
-              Sign in
-            </NavLink>
-          </div>
+        <p className={css.questionText}>
+          Don`t have an account?{" "}
+          <NavLink to="/signup" className={css.signUpLink}>
+            Sign Up
+          </NavLink>
+        </p>
+      </div>
+      <div className={css.questionOnLogIn}>
+        <p className={css.questionText}>Already have an account?</p>
+        <NavLink to="/signin" className={css.signUpLink}>
+          Sign in
+        </NavLink>
+      </div>
     </div>
   );
 };

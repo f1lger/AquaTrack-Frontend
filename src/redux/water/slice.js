@@ -26,7 +26,7 @@ const waterSlice = createSlice({
     },
     monthlyRecords: [],
     currentDay: new Date().toISOString().split("T")[0],
-    selectedDate: null,
+    selectedDate: new Date().toISOString().split("T")[0],
     currentMonth: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
     loading: false,
     error: null,

@@ -2,9 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import SharedLayout from "../SharedLayout/SharedLayout";
 
-import ForgotPasswordPage from "../../pages/ForgotPasswordPage/ForgotPasswordPage";
-import ResetPasswordPage from "../../pages/ResetPasswordPage/ResetPasswordPage";
-
 import { lazy, Suspense, useEffect } from "react";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
@@ -14,11 +11,20 @@ import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
 import { waterPerDay } from "../../redux/water/operations.js";
 import { Toaster } from "react-hot-toast";
+import OAuthCallback from "../GoogleAuthCallback/OAuthCallback.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage.jsx"));
-const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage.jsx"));
+const ForgotPasswordPage = lazy(() =>
+  import("../../pages/ForgotPasswordPage/ForgotPasswordPage")
+);
+const ResetPasswordPage = lazy(() =>
+  import("../../pages/ResetPasswordPage/ResetPasswordPage")
+);
+const TrackerPage = lazy(() =>
+  import("../../pages/TrackerPage/TrackerPage.jsx")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +43,7 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route path="/confirm-oauth" element={<OAuthCallback />} />
             <Route index element={<HomePage />} />
             <Route
               path="/signup"
@@ -50,11 +57,17 @@ function App() {
               path="/tracker"
               element={<PrivateRoute component={<TrackerPage />} />}
             />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route
+              path="/forgot-password"
+              element={<RestrictedRoute component={<ForgotPasswordPage />} />}
+            />
+            <Route
+              path="/reset-password"
+              element={<RestrictedRoute component={<ResetPasswordPage />} />}
+            />
           </Route>
         </Routes>
-        <Toaster/>
+        <Toaster />
       </Suspense>
     </>
   );

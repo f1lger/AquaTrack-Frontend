@@ -1,7 +1,7 @@
 import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
 import Logo from "../../components/Logo/Logo";
 import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
-import css from "./ResetPasswordPage.module.css"
+import css from "./ResetPasswordPage.module.css";
 
 const ResetPasswordPage = () => {
   return (
