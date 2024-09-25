@@ -9,7 +9,7 @@ import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 import { toast } from "react-hot-toast";
 import * as Yup from "yup";
-import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn.jsx";
+// import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn.jsx";
 import { selectAuthError } from "../../redux/auth/selectors.js";
 
 const signInFormSchema = Yup.object({
@@ -126,8 +126,8 @@ const SignInForm = () => {
           {loading ? "Signing in..." : "Sign in"}
         </button>
 
-        <p className={css.questionText}>or</p>
-        <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn>
+        {/* <p className={css.questionText}>or</p>
+        <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn> */}
       </form>
       <div className={css.questionOnLogIn}>
         <p className={css.questionText}>

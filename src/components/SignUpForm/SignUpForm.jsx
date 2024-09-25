@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { register, login } from "../../redux/auth/operations";
 import { toast } from "react-hot-toast";
 import iconSprite from "../../icons/symbol-defs.svg";
-import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn";
+// import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn";
 import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
@@ -190,8 +190,8 @@ function SignUpForm() {
             <button type="submit" className={styles.submitButton}>
               Sign up
             </button>
-            <p> or </p>
-            <GoogleAuthBtn>Sign up with Google</GoogleAuthBtn>
+            {/* <p> or </p>
+            <GoogleAuthBtn>Sign up with Google</GoogleAuthBtn> */}
           </Form>
         )}
       </Formik>

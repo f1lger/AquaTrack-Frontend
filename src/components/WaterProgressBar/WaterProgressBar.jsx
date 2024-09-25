@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { selectTotalWater } from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
 import styles from "./WaterProgressBar.module.css";
+import ChooseDate from "../ChooseDate/ChooseDate";
 
 const WaterProgressBar = () => {
   const total = useSelector(selectTotalWater);
@@ -41,7 +42,9 @@ const WaterProgressBar = () => {
 
   return (
     <div className={styles.sliderContainer}>
-      <h2 className={styles.sliderTitle}>Today</h2>
+      <h2 className={styles.sliderTitle}>
+        <ChooseDate />
+      </h2>
       <div className={styles.sliderWrapper}>
         <div className={styles.sliderProgressWrapper}>
           <input
