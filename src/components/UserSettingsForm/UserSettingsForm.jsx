@@ -64,6 +64,7 @@ const UserSettingsForm = ({ onClose }) => {
   const [avatarPreview, setAvatarPreview] = useState(
     avatarPhoto ? avatarPhoto : photo
   );
+  console.log(avatarPreview);
   const {
     register,
     handleSubmit,
@@ -163,13 +164,17 @@ const UserSettingsForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
-        {avatarPreview && (
+        {isAvatarSelected ? (
           <div className={css.avatarBox}>
             <img
-              src={isAvatarSelected ? avatarPreview : avatarPhoto}
+              src={avatarPreview}
               alt="Avatar Preview"
               className={css.avatar}
             />
+          </div>
+        ) : (
+          <div className={css.avatarBox}>
+            <img src={photo} alt="Avatar Preview" className={css.avatar} />
           </div>
         )}
         <input
