@@ -27,7 +27,7 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .min(3, "Name must be at least 3 characters")
-    .max(13, "Name must be no more than 13 characters")
+    .max(64, "Name must be no more than 64 characters")
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value)), // Перетворення порожнього рядка
   email: yup.string().email("Invalid email format").nullable(),
