@@ -196,12 +196,12 @@ function SignUpForm() {
           </Form>
         )}
       </Formik>
-      <h3 className={styles.redirectTitle}>
-        Already have an account?{" "}
-        <NavLink to="/signin" className={styles.accent}>
-          Sign In
+      <h2 className={styles.redirectTitle}>
+        Already have an account? {" "}
+         <NavLink to="/signin" className={styles.accent}>
+           Sign In
         </NavLink>
-      </h3>
+      </h2>
     </div>
   );
 }

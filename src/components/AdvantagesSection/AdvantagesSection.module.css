@@ -17,10 +17,7 @@
   margin: 0 auto 20px auto;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (min--moz-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
+@media only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .mainImg {
     background-image: url("../../photo/mob/hero-mob@2x.webp");
@@ -170,10 +167,7 @@
     background-image: url("../../photo/tab/hero-tab@1x.webp");
   }
 
-  @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
-    only screen and (min-resolution: 192dpi),
+  @media only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .mainImg {
       background-image: url("../../photo/tab/hero-tab@2x.webp");
@@ -256,10 +250,7 @@
     background-image: url("../../photo/desk/hero-desk@1x.webp");
   }
 
-  @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
-    only screen and (min-resolution: 192dpi),
+  @media only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .mainImg {
       background-image: url("../../photo/desk/hero-desk@2x.webp");
