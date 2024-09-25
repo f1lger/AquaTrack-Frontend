@@ -154,30 +154,32 @@ export const logout = createAsyncThunk("users/logout", async (_, thunkAPI) => {
 });
 
 // Log in with Google
-export const loginWithGoogle = createAsyncThunk(
-  "auth/loginWithGoogle",
-  async (tokenId, thunkAPI) => {
-    try {
-      const response = await axios.post("/api/auth/google-login", { tokenId });
-      if (response.data) {
-        return response.data;
-      }
+// export const loginWithGoogle = createAsyncThunk(
+//   "auth/loginWithGoogle",
+//   async (tokenId, thunkAPI) => {
+//     try {
+//       const response = await axios.post("/api/auth/google-login", { tokenId });
+//       if (response.data) {
+//         return response.data;
+//       }
 
-      return thunkAPI.rejectWithValue("No data returned from server.");
-    } catch (error) {
-      console.error("Login error:", error);
-      return thunkAPI.rejectWithValue(error.response?.data || "Login failed.");
-    }
-  }
-);
+//       return thunkAPI.rejectWithValue("No data returned from server.");
+//     } catch (error) {
+//       console.error("Login error:", error);
+//       return thunkAPI.rejectWithValue(error.response?.data || "Login failed.");
+//     }
+//   }
+// );
 
 export const fetchGoogleOAuthUrl = createAsyncThunk(
   "auth/fetchGoogleOAuthUrl",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/users/oauth-url");
+      console.log(response.data);
       return response.data.data.url;
     } catch (error) {
+      console.log(error);
       console.log("failed fetch google url");
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -189,8 +191,12 @@ export const confirmOAuth = createAsyncThunk(
   async (code, thunkAPI) => {
     try {
       const response = await axios.post("/users/confirm-oauth", code);
+      console.log(code);
+      
       return response.data.data;
     } catch (error) {
+      console.log(error);
+      
       return thunkAPI.rejectWithValue(error.message);
     }
   }
