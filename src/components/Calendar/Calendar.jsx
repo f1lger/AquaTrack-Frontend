@@ -1,6 +1,9 @@
 import css from "./Calendar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMonthlyRecords } from "../../redux/water/selectors";
+import {
+  selectedDate,
+  selectMonthlyRecords,
+} from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
 import { useMemo, useState } from "react";
 import CalendarItem from "../CalendarItem/CalendarItem";
@@ -11,11 +14,19 @@ const Calendar = ({ daysInMonth, year, month }) => {
   const dispatch = useDispatch();
   const monthlyRecords = useSelector(selectMonthlyRecords);
   const dailyTarget = useSelector(selectDailyNorma);
+  const chosenDate = useSelector(selectedDate);
+  let selectedMonth = null;
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeBtnIndex, setActiveBtnIndex] = useState(null);
+
+  if (chosenDate !== null) {
+    const month = chosenDate.split("-")[1];
+
+    selectedMonth = parseInt(month, 10);
+  }
 
   const handleButtonClick = (index) => {
-    setActiveIndex(index);
+    setActiveBtnIndex(index);
     const formattedDay = String(index + 1).padStart(2, "0");
     const formattedMonth = String(month).padStart(2, "0");
     const date = `${year}-${formattedMonth}-${formattedDay}`;
@@ -42,7 +53,7 @@ const Calendar = ({ daysInMonth, year, month }) => {
             <CalendarItem
               index={index}
               percentage={percentage}
-              isActive={activeIndex === index}
+              isActive={activeBtnIndex === index && month === selectedMonth}
               onClick={() => handleButtonClick(index)}
             />
           </li>
