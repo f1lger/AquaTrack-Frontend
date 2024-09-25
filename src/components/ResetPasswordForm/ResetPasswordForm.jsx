@@ -127,7 +127,7 @@ const ResetPasswordForm = () => {
         </p>
       </div>
       <div className={css.questionOnLogIn}>
-        <p className={css.questionText}>Have you got an account?</p>
+        <p className={css.questionText}>Already have an account?</p>
         <NavLink to="/signin" className={css.signUpLink}>
           Sign in
         </NavLink>
