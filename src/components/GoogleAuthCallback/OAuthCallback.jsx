@@ -17,8 +17,6 @@ function OAuthCallback() {
         try {
           const resultAction = await dispatch(confirmOAuth(code));
           if (confirmOAuth.fulfilled.match(resultAction)) {
-            console.log('login +', resultAction);
-            
             navigate("/tracker");
           } else {
             toast.error("Error during OAuth. Please try again.");

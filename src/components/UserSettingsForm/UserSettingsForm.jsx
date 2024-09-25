@@ -13,7 +13,6 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-// import { ModalBtn } from "../ModalBtn/Modalbtn";
 import photo from "../../photo/mob/woman-avatar@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/auth/operations";
@@ -64,7 +63,6 @@ const UserSettingsForm = ({ onClose }) => {
   const [avatarPreview, setAvatarPreview] = useState(
     avatarPhoto ? avatarPhoto : photo
   );
-  console.log(avatarPreview);
   const {
     register,
     handleSubmit,
@@ -326,7 +324,6 @@ const UserSettingsForm = ({ onClose }) => {
       <button type="submit" className={css.saveBtn}>
         Save
       </button>
-      {/* <ModalBtn text={"Save"} onClick={handleSubmit(onSubmit)} /> */}
     </form>
   );
 };

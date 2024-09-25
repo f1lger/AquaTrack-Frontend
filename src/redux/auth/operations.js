@@ -84,38 +84,6 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-/*
-export const updateUser = createAsyncThunk(
-  "auth/update",
-  async (formData, thunkAPI) => {
-    try {
-      console.log("Update user function called");
-      const token = thunkAPI.getState().auth.token;
-
-      console.log("Token:", token);
-
-      if (!token) {
-        throw new Error("No authorization token available");
-      }
-
-      console.log('Token is valid, setting auth header...');
-      setAuthHeader(token);
-
-      const res = await axios.patch("/users/profile", formData, { 
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      
-      console.log("Response from server:", res.data);
-      return res.data;
-    } catch (error) {
-      console.error("Error updating user:", error);
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
-    }
-  }
-); */
-
 // Надсилання email для скидання пароля
 export const sendPasswordResetEmail = createAsyncThunk(
   "auth/sendPasswordResetEmail",
@@ -177,11 +145,8 @@ export const fetchGoogleOAuthUrl = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/users/oauth-url");
-      console.log(response.data);
       return response.data.data.url;
     } catch (error) {
-      console.log(error);
-      console.log("failed fetch google url");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -192,12 +157,8 @@ export const confirmOAuth = createAsyncThunk(
   async (code, thunkAPI) => {
     try {
       const response = await axios.post("/users/confirm-oauth", code);
-      console.log(code);
-      
       return response.data.data;
     } catch (error) {
-      console.log(error);
-      
       return thunkAPI.rejectWithValue(error.message);
     }
   }

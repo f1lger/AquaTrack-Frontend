@@ -63,7 +63,6 @@ function SignUpForm() {
 
       if (status === "409 Conflict") {
         setEmailError("Email already in use");
-        console.log(emailError);
       } else {
         const errorMessage = err.response?.data?.message || err.message;
         setError(errorMessage);

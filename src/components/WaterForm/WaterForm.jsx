@@ -7,9 +7,14 @@ import {
   addWater,
   updateWater,
   waterPerDay,
+  waterPerMonth,
 } from "../../redux/water/operations";
 import css from "./WaterForm.module.css";
-import { selectWaterLoading } from "../../redux/water/selectors";
+import {
+  selectCurrentMonth,
+  selectedDate,
+  selectWaterLoading,
+} from "../../redux/water/selectors";
 import toast from "react-hot-toast";
 import { useState } from "react";
 
@@ -28,6 +33,8 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   const isLoading = useSelector(selectWaterLoading);
   const [plusError, setPlusError] = useState("");
   const [minusError, setMinusError] = useState("");
+  const currentMonth = useSelector(selectCurrentMonth);
+
   const defaultValues = !isAddWater
     ? {
         date: item.date,
@@ -69,12 +76,19 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
 
       const water = {
         amount: data.waterVolume,
-        date: date.toISOString(),
+        date: `${date.toISOString().split("T")[0]}T${data.time}`,
       };
 
       let response;
       if (isAddWater) {
         response = await dispatch(addWater(water));
+        dispatch(
+          waterPerMonth(
+            `${currentMonth.split("-")[0]}-${currentMonth
+              .split("-")[1]
+              .padStart(2, "0")}`
+          )
+        );
       } else {
         response = await dispatch(updateWater({ waterId: item._id, ...water }));
       }
@@ -96,7 +110,6 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       closeWaterModal();
     }
   };
-
 
   const plusWaterVolume = () => {
     const currentAmount = parseInt(getValues("waterVolume"), 10);
