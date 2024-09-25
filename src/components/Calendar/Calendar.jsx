@@ -31,8 +31,10 @@ const Calendar = ({ daysInMonth, year, month }) => {
     const formattedMonth = String(month).padStart(2, "0");
     const date = `${year}-${formattedMonth}-${formattedDay}`;
 
-    dispatch(waterPerDay(date));
-    dispatch(setSelectedDate(date));
+    if (chosenDate !== date) {
+      dispatch(waterPerDay(date));
+      dispatch(setSelectedDate(date));
+    }
   };
 
   const daysArray = useMemo(() => {
