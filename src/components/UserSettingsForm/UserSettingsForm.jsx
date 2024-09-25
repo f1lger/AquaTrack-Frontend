@@ -164,7 +164,7 @@ const UserSettingsForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="user-settings-form">
       <div className="form-group">
-        {isAvatarSelected ? (
+        {isAvatarSelected || avatarPreview ? (
           <div className={css.avatarBox}>
             <img
               src={avatarPreview}
