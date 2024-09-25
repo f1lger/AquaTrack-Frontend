@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import css from "./ForgotPasswordForm.module.css";
 import clsx from "clsx";
 import { sendPasswordResetEmail } from "../../redux/auth/operations.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const forgotPasswordSchema = yup.object().shape({
   email: yup

@@ -5,7 +5,7 @@ import * as yup from "yup";
 import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { resetPassword } from "../../redux/auth/operations.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
