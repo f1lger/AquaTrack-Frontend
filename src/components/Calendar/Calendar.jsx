@@ -31,7 +31,7 @@ const Calendar = ({ daysInMonth, year, month }) => {
     const formattedMonth = String(month).padStart(2, "0");
     const date = `${year}-${formattedMonth}-${formattedDay}`;
 
-    if (date !== chosenDate) {
+    if (chosenDate !== date) {
       dispatch(waterPerDay(date));
       dispatch(setSelectedDate(date));
     }
