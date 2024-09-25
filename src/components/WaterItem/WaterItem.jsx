@@ -15,10 +15,22 @@ const WaterItem = ({ data }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDenyUpdateModalOpen, setIsDenyUpdateModalOpen] = useState(false);
 
-  const handleEdit = () => setIsEditModalOpen(true);
+  const handleEdit = () => {
+    if (isAllowedDate()) {
+      setIsEditModalOpen(true);
+    } else {
+      setIsDenyUpdateModalOpen(true);
+    }
+  };
   const handleCloseEditModal = () => setIsEditModalOpen(false);
 
-  const handleDelete = () => setIsDeleteModalOpen(true);
+  const handleDelete = () => {
+    if (isAllowedDate()) {
+      setIsDeleteModalOpen(true);
+    } else {
+      setIsDenyUpdateModalOpen(true);
+    }
+  };
   const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
 
   const handleDenyUpdate = ({}) => setIsDenyUpdateModalOpen(true);
@@ -26,20 +38,11 @@ const WaterItem = ({ data }) => {
 
   // Function to check if the selected date is the current date
   const selectedDate = useSelector(selectSelectedDate);
-  const checkDate = () => {
-    // console.log("selected", selectedDate);
+  const isAllowedDate = () => {
     const today = new Date().toISOString().split("T")[0];
-    // console.log("today: ", today);
-
     const allowedDay = today === selectedDate;
 
-    if (allowedDay) {
-      setIsDenyUpdateModalOpen(false); // Show modal if the date is not the current date
-    } else {
-      setIsDenyUpdateModalOpen(true); // Do nothing if the date is today
-    }
-
-    return;
+    return allowedDay;
   };
 
   return (
@@ -56,20 +59,13 @@ const WaterItem = ({ data }) => {
           )}`}</p>
         </div>
         <div className={css.edit}>
-          <button
-            type="button"
-            onClick={(handleEdit, checkDate)}
-            className={css.btnEdit}
-          >
+          <button type="button" onClick={handleEdit} className={css.btnEdit}>
             <svg className={css.iconEdit}>
               <use href={`${iconSprite}#icon-pen`}></use>
             </svg>
           </button>
-          <button
-            type="button"
-            onClick={(handleDelete, checkDate)}
-            className={css.btnTrash}
-          >
+
+          <button type="button" onClick={handleDelete} className={css.btnTrash}>
             <svg className={css.iconTrash}>
               <use href={`${iconSprite}#icon-trash`}></use>
             </svg>
