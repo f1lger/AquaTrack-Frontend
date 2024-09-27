@@ -9,13 +9,24 @@
   font-style: "Gilroy";
   font-weight: normal;
   margin-bottom: 20px;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .welcomeTitle > span {
   font-weight: 700;
+}
+@media only screen and (min-width: 365px) {
+  .welcomeTitle {
+    max-width: 290px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .userPanelCont {
     flex-direction: row;
     justify-content: space-between;
+  }
+  .welcomeTitle {
+    max-width: 320px;
   }
 }

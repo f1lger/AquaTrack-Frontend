@@ -48,7 +48,7 @@ export default function UserBar({ userName }) {
         className={css.UserBar}
         onClick={changePopoverBarModal}
       >
-        {userName ? userName : "user"}
+        <p className={css.userName}> {userName ? userName : "user"}</p>
         <img
           src={userAvatar ? userAvatar : defaultAvatar}
           alt="avatar"

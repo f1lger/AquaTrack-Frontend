@@ -16,10 +16,13 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.avatar {
-  object-fit: cover;
+.userName {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media only screen and (min-width: 786px) {
