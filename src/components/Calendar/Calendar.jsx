@@ -15,19 +15,24 @@ const Calendar = ({ daysInMonth, year, month }) => {
   const monthlyRecords = useSelector(selectMonthlyRecords);
   const dailyTarget = useSelector(selectDailyNorma);
   const chosenDate = useSelector(selectedDate);
+
+  let currentDay = null;
   let selectedMonth = null;
 
-  const [activeBtnIndex, setActiveBtnIndex] = useState(null);
-
   if (chosenDate !== null) {
+    const day = chosenDate.split("-")[2];
     const month = chosenDate.split("-")[1];
 
+    currentDay = parseInt(day, 10);
     selectedMonth = parseInt(month, 10);
   }
 
+  const [activeBtnIndex, setActiveBtnIndex] = useState(currentDay);
+
   const handleButtonClick = (index) => {
-    setActiveBtnIndex(index);
-    const formattedDay = String(index + 1).padStart(2, "0");
+    const day = index + 1;
+    setActiveBtnIndex(day);
+    const formattedDay = String(day).padStart(2, "0");
     const formattedMonth = String(month).padStart(2, "0");
     const date = `${year}-${formattedMonth}-${formattedDay}`;
 
@@ -55,7 +60,7 @@ const Calendar = ({ daysInMonth, year, month }) => {
             <CalendarItem
               index={index}
               percentage={percentage}
-              isActive={activeBtnIndex === index && month === selectedMonth}
+              isActive={activeBtnIndex === index + 1 && month === selectedMonth}
               onClick={() => handleButtonClick(index)}
             />
           </li>
