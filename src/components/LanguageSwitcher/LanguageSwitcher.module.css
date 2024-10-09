@@ -1,0 +1,16 @@
+.switcherContainer {
+   display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.radioBtnLabel {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.languageInput {
+    display: none;
+}

@@ -3,15 +3,20 @@ import clsx from "clsx";
 import Logo from "../Logo/Logo";
 import styles from "./WelcomeSection.module.css";
 
+import { useTranslation } from 'react-i18next';
+
 function WelcomeSection() {
+  const { t } = useTranslation();
+  
   const isSignUpDisabled = false;
   const isSignInDisabled = false;
 
   return (
     <div className={styles.wrapper}>
       <Logo className={styles.logo} />
-      <h2 className={styles.subTitle}>Record daily water intake and track</h2>
-      <h1 className={styles.mainTitle}>Water consumption tracker</h1>
+      
+      <h2 className={styles.subTitle}>{t("welcome.description")}</h2>
+      <h1 className={styles.mainTitle}>{t("welcome.title")}</h1>
       <ul className={styles.btnGroup}>
         <li>
           <Link
@@ -23,7 +28,7 @@ function WelcomeSection() {
               isSignUpDisabled && styles.signUpDisabled
             )}
           >
-            Try tracker
+          {t("welcome.try_tracker")}
           </Link>
         </li>
         <li>
@@ -36,7 +41,7 @@ function WelcomeSection() {
               isSignInDisabled && styles.signInDisabled
             )}
           >
-            Sign in
+          {t("welcome.sign_in")}
           </Link>
         </li>
       </ul>

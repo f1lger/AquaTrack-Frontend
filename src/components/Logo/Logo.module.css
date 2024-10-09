@@ -11,6 +11,10 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 @media only screen and (min-width: 768px) {
   .logo {

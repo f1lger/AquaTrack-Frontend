@@ -6,10 +6,12 @@ import * as Yup from "yup";
 import { register, login } from "../../redux/auth/operations";
 import { toast } from "react-hot-toast";
 import iconSprite from "../../icons/symbol-defs.svg";
-// import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn";
 import styles from "./SignUpForm.module.css";
+import { useTranslation } from "react-i18next";
 
 function SignUpForm() {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -25,14 +27,14 @@ function SignUpForm() {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required!"),
+      .email(t("auth_valid.invalid_email"))
+      .required(t("auth_valid.required_email")),
     password: Yup.string()
-      .min(6, "Must contain at least 6 characters")
-      .required("Password is required!"),
+      .min(6, t("auth_valid.password_min"))
+      .required(t("auth_valid.password_required")),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Please, repeat your password"),
+      .oneOf([Yup.ref("password"), null], t("auth_valid.passwords_must_match"))
+      .required(t("auth_valid.password_required")),
   });
 
   const handleSignUp = async (values, { resetForm }) => {
@@ -51,37 +53,37 @@ function SignUpForm() {
           navigate("/tracker");
           resetForm();
         } else {
-          setError("Login failed");
-          toast.error("Login error, try again");
+          setError(t("login_failed"));
+          toast.error(t("login_error"));
         }
       } else {
-        setError("Registration failed");
-        toast.error("Registration error. Email already in use");
+        setError(t("registration_failed"));
+        toast.error(t("registration_error_email_in_use"));
       }
     } catch (err) {
       const status = err.response?.data?.message;
 
       if (status === "409 Conflict") {
-        setEmailError("Email already in use");
+        setEmailError(t("email_already_in_use"));
       } else {
         const errorMessage = err.response?.data?.message || err.message;
         setError(errorMessage);
-        toast.error(`Registration failed: ${errorMessage}`);
+        toast.error(`${t("registration_failed")}: ${errorMessage}`);
       }
     }
   };
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   };
 
   const handleClickShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+    setShowConfirmPassword((prev) => !prev);
   };
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>Sign up</h1>
+      <h1 className={styles.title}>{t('sign_up.sign_up')}</h1>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
@@ -91,13 +93,13 @@ function SignUpForm() {
           <Form className={styles.formContainer}>
             <div>
               <label htmlFor="email" className={styles.label}>
-                Email
+                {t("sign_up.email")}
               </label>
               <Field
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Enter your email"
+                placeholder={t("sign_up.enter_email")}
                 className={`${styles.inputField} ${
                   errors.email && touched.email ? styles.inputError : ""
                 }`}
@@ -113,14 +115,14 @@ function SignUpForm() {
             </div>
             <div className={styles.inputWrapper}>
               <label htmlFor="password" className={styles.label}>
-                Password
+                {t("sign_up.enter_password")}
               </label>
               <div className={styles.inputContainer}>
                 <Field
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
-                  placeholder="Enter your password"
+                  placeholder={t("sign_up.enter_password")}
                   className={`${styles.inputField} ${
                     errors.password && touched.password ? styles.inputError : ""
                   }`}
@@ -129,7 +131,7 @@ function SignUpForm() {
                   className={`${styles.showPasswordBtn} ${styles.showPasswordTablet}`}
                   type="button"
                   onClick={handleClickShowPassword}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? t("sign_up.hide_password") : t("sign_up.show_password")}
                 >
                   {showPassword ? (
                     <svg className={styles.icon}>
@@ -142,7 +144,6 @@ function SignUpForm() {
                   )}
                 </button>
               </div>
-
               <ErrorMessage
                 name="password"
                 component="div"
@@ -151,14 +152,14 @@ function SignUpForm() {
             </div>
             <div className={styles.inputWrapper}>
               <label htmlFor="confirmPassword" className={styles.label}>
-                Repeat password
+                {t("sign_up.confirm_password")}
               </label>
               <div className={styles.inputContainer}>
                 <Field
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
                   name="confirmPassword"
-                  placeholder="Repeat password"
+                  placeholder={t("sign_up.repeat_password")}
                   className={`${styles.inputLastField} ${
                     errors.confirmPassword ? styles.inputError : ""
                   }`}
@@ -168,7 +169,7 @@ function SignUpForm() {
                   type="button"
                   onClick={handleClickShowConfirmPassword}
                   aria-label={
-                    showConfirmPassword ? "Hide password" : "Show password"
+                    showConfirmPassword ? t("sign_up.hide_password") : t("sign_up.show_password")
                   }
                 >
                   {showConfirmPassword ? (
@@ -184,21 +185,19 @@ function SignUpForm() {
               </div>
             </div>
             {values.password !== values.confirmPassword && (
-              <div className={styles.errorMessage}>Passwords do not match</div>
+              <div className={styles.errorMessage}>{t("sign_up.passwords_do_not_match")}</div>
             )}
             {error && <div className={styles.error}>{error}</div>}
             <button type="submit" className={styles.submitButton}>
-              Sign up
+              {t('sign_up.sign_up')}
             </button>
-            {/* <p> or </p>
-            <GoogleAuthBtn>Sign up with Google</GoogleAuthBtn> */}
           </Form>
         )}
       </Formik>
       <h2 className={styles.redirectTitle}>
-        Already have an account? {" "}
-         <NavLink to="/signin" className={styles.accent}>
-           Sign In
+        {t('sign_up.already_have_account')}{" "}
+        <NavLink to="/signin" className={styles.accent}>
+          {t('sign_up.sign_in')}
         </NavLink>
       </h2>
     </div>

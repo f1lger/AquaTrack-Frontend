@@ -11,6 +11,7 @@ import { fetchUser } from "../../redux/auth/operations";
 import Loader from "../Loader/Loader.jsx";
 import { waterPerDay } from "../../redux/water/operations.js";
 import { Toaster } from "react-hot-toast";
+
 // import OAuthCallback from "../GoogleAuthCallback/OAuthCallback.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
@@ -40,7 +41,7 @@ function App() {
     <Loader />
   ) : (
     <>
-      <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             {/* <Route path="/confirm-oauth" element={<OAuthCallback />} /> */}

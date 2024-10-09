@@ -102,6 +102,11 @@
     margin-left: 32px;
   }
 
+  .lang_switch {
+    margin-top: 12px;
+    margin-right: 0;
+  }
+
   .subTitle {
     font-size: 16px;
     line-height: 24px;
@@ -131,6 +136,11 @@
     margin-top: 32px;
     margin-left: 33px;
   }
+
+  .lang_switch {
+    margin-top: 32px;
+  }
+
   .subTitle {
     font-size: 16px;
     line-height: 24px;

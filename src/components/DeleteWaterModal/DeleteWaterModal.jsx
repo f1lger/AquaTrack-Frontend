@@ -3,22 +3,25 @@ import { deleteWater, waterPerMonth } from "../../redux/water/operations";
 import { selectedDate, selectWaterLoading } from "../../redux/water/selectors";
 import css from "./DeleteWaterModal.module.css";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const DeleteWaterModal = ({ closeModal, waterId }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectWaterLoading);
   const selectedDay = useSelector(selectedDate);
   const selectedMonth = selectedDay.split("-");
+
   const handleDelete = () => {
     dispatch(deleteWater(waterId))
       .unwrap()
       .then(() => {
         dispatch(waterPerMonth(`${selectedMonth[0]}-${selectedMonth[1]}`));
-        toast.success("The water record was successfully deleted!");
+        toast.success(t("delete_water_modal.successfully_deleted"));
         closeModal();
       })
       .catch((error) => {
-        toast.error(`Failed to delete the water record: ${error.message}`);
+        toast.error(`${t("delete_water_modal.something_wrong")}: ${error.message}`);
       });
   };
 
@@ -27,9 +30,9 @@ const DeleteWaterModal = ({ closeModal, waterId }) => {
 
   return (
     <div className={css.modal}>
-      <h3 className={css.modalHead}>Delete entry</h3>
+      <h3 className={css.modalHead}>{t("delete_water_modal.delete_entry")}</h3>
       <p className={css.modalText}>
-        Are you sure you want to delete the entry?
+        {t("delete_water_modal.delete_confirmation")}
       </p>
       <div className={css.logOutButtons}>
         <button
@@ -37,10 +40,10 @@ const DeleteWaterModal = ({ closeModal, waterId }) => {
           onClick={handleDelete}
           disabled={isLoading}
         >
-          {isLoading ? "Deleting..." : "Delete"}
+          {isLoading ? t("delete_water_modal.deleting") : t("delete_water_modal.delete")}
         </button>
         <button className={buttonCancelClass} onClick={closeModal}>
-          Cancel
+          {t("delete_water_modal.cancel")}
         </button>
       </div>
     </div>
