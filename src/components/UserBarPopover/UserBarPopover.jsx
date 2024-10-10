@@ -4,9 +4,11 @@ import { FiSettings, FiLogOut } from "react-icons/fi";
 import { useState, forwardRef } from "react";
 import Modal from "../Modal/Modal";
 import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
+import { useTranslation } from "react-i18next";
 
 const UserBarPopover = forwardRef(
   ({ openModal, openLoguotModal, closeUserBarPopover }, ref) => {
+    const { t } = useTranslation();
     const [settingModal, setSettingModal] = useState(false);
 
     const openSettingModal = () => setSettingModal(true);
@@ -24,7 +26,7 @@ const UserBarPopover = forwardRef(
             className={css.settingBtn}
           >
             <FiSettings />
-            Setting
+            {t("settings.header")}
           </button>
           <button
             type="button"
@@ -32,7 +34,7 @@ const UserBarPopover = forwardRef(
             className={css.logoutBtn}
           >
             <FiLogOut />
-            Log out
+            {t("logout_modal.log_out")}
           </button>
         </div>
         <Modal isOpen={settingModal} onClose={closeSettingModal}>

@@ -8,8 +8,10 @@ import { useRef, useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import LogOutModal from "../LogOutModal/LogOutModal";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 export default function UserBar({ userName }) {
+  const { t } = useTranslation();
   const userAvatar = useSelector(selectAvatar);
   const userBarRef = useRef();
   const popoverRef = useRef();
@@ -48,7 +50,7 @@ export default function UserBar({ userName }) {
         className={css.UserBar}
         onClick={changePopoverBarModal}
       >
-        <p className={css.userName}> {userName ? userName : "user"}</p>
+        <p className={css.userName}> {userName ? userName : t("user_greeting")}</p>
         <img
           src={userAvatar ? userAvatar : defaultAvatar}
           alt="avatar"

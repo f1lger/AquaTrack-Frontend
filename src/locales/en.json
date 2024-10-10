@@ -1,0 +1,210 @@
+{
+  "add_water": "Add water",
+  "today": "Today",
+  "user": "user",
+  "welcome": {
+    "description": "Record daily water intake and track your habits",
+    "title": "Water Consumption Tracker",
+    "try_tracker": "Try Tracker",
+    "sign_in": "Sign In" 
+  },
+  "advantages": {
+    "our": "Our",
+    "happy": "happy",
+    "customers": "customers",
+    "habit_drive": "Habit drive",
+    "view_statistics": "View statistics",
+    "personal_rate": "Personal rate setting"
+  },
+  "loading_message": "Loading, please wait...",
+  "add_water_modal": {
+    "add_water": "Add water",
+    "choose_value": "Choose a value:",
+    "ml": "ml",
+    "amount_water": "Amount of water",
+    "recording_time": "Recording time:",
+    "enter_water": "Enter the value of the water used",
+    "saving": "Saving",
+    "save": "Save",
+    "add_successfully": "Add data successfully!",
+    "something_wrong": "Something went wrong",
+    "time_required": "Recording time is required",
+    "time_format": "Please enter time in format HH:MM",
+    "water_required": "Water usage is required",
+    "valid_number": "Please enter a valid number",
+    "water_must": "Water usage must be greater than 0"
+  },
+  "delete_water_modal": {
+    "delete_entry": "Delete entry",
+    "delete_confirmation": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "successfully_deleted": "The item has been successfully deleted",
+    "something_wrong": "Oops, something went wrong. Please try again"
+  },
+  "edit_water_modal": {
+    "edit_amount": "Edit the entered amount of water",
+    "correct_data": "Correct entered data:",
+    "data_successfully": "Data updated successfully!",
+    "amount_required": "Water amount is required",
+    "water_must": "Water amount must be greater than 0"
+  },
+  "logout_modal": {
+    "log_out": "Log out",
+    "confirm_leave": "Do you really want to leave?",
+    "log_out_error": "Logout failed. Please try again",
+    "cancel": "Cancel"
+  },
+  "statistics": "Statistics",
+  "reset_password": {
+    "change_password": "Change your password",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "enter_new_password": "Enter new password",
+    "error_password": "Please enter a password",
+    "error_confirm_password": "Please confirm your password"
+  },
+  "not_found": {
+    "title": "OOOOPS!!! Page not found",
+    "linkText": "Return to Homepage"
+  },
+  "sign_in": {
+    "title": "Sign In",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "or": "or",
+    "google_signup": "Sign Up with Google",
+    "forgot_password": "Forgot password?",
+    "invite_text": "Don't have an account?",
+    "sign_up": "Sign Up",
+    "login_success": "Logged in successfully!",
+    "user_exists": "User already exists",
+    "generic_error": "Login failed. Please try again"
+  },
+  "forgot_password": {
+    "title": "Reset Password",
+    "email_placeholder": "Enter your email",
+    "instruction": "Enter your email and we'll send you a link to reset your password",
+    "success_message": "Check your email for the reset link",
+    "error_message": "Something went wrong. Try again!",
+    "send_email": "Send email"
+  },
+  "sign_up": {
+   
+    "confirm_password_required": "Please, repeat your password",
+    "email_already_in_use": "Email already in use",
+    "registration_failed": "Registration failed",
+    "login_failed": "Login failed",
+    "login_error": "Login error, try again",
+    "registration_error_email_in_use": "Registration error. Email already in use",
+    "sign_up": "Sign Up",
+    "sign_in": "Sign In",
+    "already_have_account": "Already have an account?",
+    "email": "Email",
+    "enter_email": "Enter your email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "enter_password": "Enter your password",
+    "repeat_password": "Repeat your password",
+    "passwords_do_not_match": "Passwords do not match",
+    "show_password": "Show password",
+    "hide_password": "Hide password"
+  },
+  "user_bar": {
+    "settings": "Settings",
+    "log_out": "Log out"
+  },
+  "user_greeting": "Hello",
+  "settings": {
+    "header": "Settings",
+    "upload_photo": "Upload a photo",
+    "gender": "Your gender identity",
+    "man": "Man",
+    "woman": "Woman",
+    "name": "Your name",
+    "email": "Email",
+    "daily_norm": "My daily norm",
+    "active_time_hours": "Active time in hours",
+    "weight": "Your weight in kilograms:",
+    "active_time": "The time of active participation in sports:",
+    "water_norm": "The required amount of water in liters per day:",
+    "user_norm": "Write down how much water you will drink:",
+    "save": "Save",
+    "error_messages": {
+      "name": "Please enter your name",
+      "email": "Please enter a valid email",
+      "weight": "Please enter your weight",
+      "active_time": "Please enter your activity time",
+      "daily_norm": "Please enter your water intake norm"
+    },
+    "formulas": {
+      "for_woman": "For woman:",
+      "for_man": "For man:"
+    },
+    "notes": {
+      "description": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)"
+    }
+  },
+  "no_records": "No records about water consumption",
+  "auth_valid": {
+    "invalid_email": "Please enter a valid email address",
+    "required_email": "Email is required",
+    "password_min": "Must contain at least 6 characters",
+    "password_max": "Password cannot exceed 64 characters",
+    "password_required": "Password is required",
+    "passwords_must_match": "Passwords must match",
+    "incorrect_password": "Incorrect password"
+  },
+  "user_valid": {
+    "gender_required": "Gender should be required",
+    "name_required": "Name should be required",
+    "name_too_short": "Too Short!",
+    "name_too_long": "Too Long!",
+    "email_required": "Email should be required",
+    "email_invalid": "Must be a valid email",
+    "weight_type_error": "Weight should be a number",
+    "weight_required": "Weight should be required",
+    "weight_positive": "Weight should be a positive number",
+    "weight_min": "Weight should be more than 0 kg",
+    "weight_max": "Weight should be less than 350 kg",
+    "active_time_type_error": "Active Time should be a number",
+    "active_time_required": "Active time should be required",
+    "active_time_positive": "Active Time should be a positive number",
+    "active_time_min": "Active Time should be more than 0 hours",
+    "active_time_max": "Active Time should be less than 24 hours",
+    "daily_norm_type_error": "Daily norm should be a number",
+    "daily_norm_required": "Daily norm should be required",
+    "daily_norm_positive": "Daily norm should be a positive number",
+    "daily_norm_min": "Daily norm should be more than 1 l",
+    "daily_norm_max": "Daily norm should be less than 15 l",
+    "decimal_error": "Daily norm should have up to two decimal places"
+  },
+  "reset_pwd": {
+    "passwords_do_not_match": "Passwords do not match",
+    "password_reset_successful": "Password reset successful!",
+    "password_reset_failed": "Password reset failed",
+    "failed_to_reset_password": "Failed to reset password. Please try again",
+    "change_password": "Change your password",
+    "password": "Password",
+    "enter_new_password": "Enter new password",
+    "confirm_password": "Confirm password"
+  },
+  "month": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "month": "Month",
+    "today": "Today"
+  }
+}

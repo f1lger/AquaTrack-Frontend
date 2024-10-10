@@ -1,26 +1,28 @@
 import { useSelector } from "react-redux";
 import { selectCurrentDay, selectedDate } from "../../redux/water/selectors";
 import css from "./ChooseDate.module.css";
+import { useTranslation } from "react-i18next";
 
 const ChooseDate = () => {
+  const { t } = useTranslation();
   const today = useSelector(selectCurrentDay);
   const chosenDate = useSelector(selectedDate);
   let month = null;
   let day = null;
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    t("month.january"),
+    t("month.february"),
+    t("month.march"),
+    t("month.april"),
+    t("month.may"),
+    t("month.june"),
+    t("month.july"),
+    t("month.august"),
+    t("month.september"),
+    t("month.october"),
+    t("month.november"),
+    t("month.december"),
   ];
 
   if (chosenDate !== null) {
@@ -36,12 +38,12 @@ const ChooseDate = () => {
   const date = () => {
     if (chosenDate !== null) {
       if (today === chosenDate) {
-        return "Today";
+        return t("month.today");
       } else {
         return `${day}, ${month}`;
       }
     } else {
-      return "Today";
+      return t("month.today");
     }
   };
 

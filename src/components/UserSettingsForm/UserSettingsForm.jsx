@@ -20,40 +20,43 @@ import { selectAvatar, selectUser, selectUserAvatar } from "../../redux/auth/sel
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
+import { useTranslation } from "react-i18next";
+
 const schema = yup.object().shape({
   avatar: yup.mixed().nullable(),
   gender: yup.string().oneOf(["man", "woman"]).nullable(),
   name: yup
     .string()
-    .min(3, "Name must be at least 3 characters")
-    .max(64, "Name must be no more than 64 characters")
+    .min(3, "user_valid.name_too_short")
+    .max(64, "user_valid.name_too_long")
     .nullable()
-    .transform((value, originalValue) => (originalValue === "" ? null : value)), // Перетворення порожнього рядка
-  email: yup.string().email("Invalid email format").nullable(),
+    .transform((value, originalValue) => (originalValue === "" ? null : value)),
+  email: yup.string().email("auth_valid.invalid_email").nullable(),
   weight: yup
     .number()
-    .typeError("Weight must be a number")
-    .positive("Weight must be a positive number")
-    .min(5, "Weight must be at least 5 kg")
+    .typeError("user_valid.weight_type_error")
+    .positive("user_valid.weight_positive")
+    .min(5, "user_valid.weight_min")
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value)),
   sportTime: yup
     .number()
-    .typeError("Active minutes must be a number")
-    .positive("Active minutes must be a positive number")
-    .min(0, "Sport time must be at least 0 minutes")
+    .typeError("user_valid.active_time_type_error")
+    .positive("user_valid.active_time_positive")
+    .min(0, "user_valid.active_time_min")
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value)),
   dailyWater: yup
     .number()
-    .typeError("Water consumption must be a number")
-    .positive("Water consumption must be a positive number")
-    .min(1000, "Water consumption must be at least 1000 ml")
+    .typeError("user_valid.daily_norm_type_error")
+    .positive("user_valid.daily_norm_positive")
+    .min(1000, "user_valid.daily_norm_min")
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? 1000 : value)),
 });
 
 const UserSettingsForm = ({ onClose }) => {
+  const { t } = useTranslation(); // Initialize localization
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const avatarPhoto = useSelector(selectAvatar);
@@ -146,14 +149,14 @@ const UserSettingsForm = ({ onClose }) => {
       hasChanged("sportTime")
     ) {
       try {
-        dispatch(updateUser(formData));
-        toast.success("The settings have been updated successfully!");
+        await dispatch(updateUser(formData)).unwrap();
+        toast.success(t("settings.save"));
         onClose();
       } catch (error) {
         if (error instanceof Error) {
           toast.error(error.message);
         } else {
-          toast.error("Something went wrong. Please try again.");
+          toast.error(t("something_wrong")); 
         }
       }
     }
@@ -190,7 +193,7 @@ const UserSettingsForm = ({ onClose }) => {
         <label htmlFor="avatar" className={css.fileLabel}>
           <div className={css.uploadBox}>
             <MdOutlineFileUpload className="upload-icon" />
-            <p className={css.uploadBoxText}> Upload a photo</p>
+            <p className={css.uploadBoxText}>{t("settings.upload_photo")}</p> 
           </div>
         </label>
         {errors.avatar && (
@@ -198,7 +201,7 @@ const UserSettingsForm = ({ onClose }) => {
         )}
       </div>
       <FormControl component="fieldset" className={css.formGroup}>
-        <p className={css.titleText}> Your gender identity</p>
+        <p className={css.titleText}>{t("settings.gender")}</p>
         <RadioGroup
           row
           value={genderLocal}
@@ -211,14 +214,14 @@ const UserSettingsForm = ({ onClose }) => {
           <FormControlLabel
             value="woman"
             control={<Radio style={{ color: "#9BE1A0" }} />}
-            label={<p className={css.radioText}>Woman</p>}
+            label={<p className={css.radioText}>{t("settings.woman")}</p>}
             className={css.radioLabel}
             checked={genderLocal === "woman"}
           />
           <FormControlLabel
             value="man"
             control={<Radio style={{ color: "#9BE1A0" }} />}
-            label={<p className={css.radioText}>Man</p>}
+            label={<p className={css.radioText}>{t("settings.man")}</p>}
             className={css.radioLabel}
             checked={genderLocal === "man"}
           />
@@ -230,71 +233,61 @@ const UserSettingsForm = ({ onClose }) => {
       <div className={css.contentBox}>
         <div className={css.smallBox}>
           <div className={css.formGroup}>
-            <label className={css.titleText}>Your name</label>
+            <label className={css.titleText}>{t("settings.name")}</label>
             <input className={css.input} type="text" {...register("name")} />
             {errors.name && (
               <span className={css.error}>{errors.name.message}</span>
             )}
           </div>
           <div className={css.formGroup}>
-            <label className={css.titleText}>Email</label>
+            <label className={css.titleText}>{t("settings.email")}</label>
             <input type="email" {...register("email")} />
             {errors.email && (
               <span className={css.error}>{errors.email.message}</span>
             )}
           </div>
           <div className={css.dataBox}>
-            <p className={css.titleText}>My daily norma</p>
+            <p className={css.titleText}>{t("settings.daily_norm")}</p>
             <div className={css.dataBoxGender}>
               <div className={css.dataBoxGenderText}>
-                <p className={css.radioText}>For woman:</p>
+                <p className={css.radioText}>{t("settings.for_woman")}:</p>
                 <p className={css.formulaText}>V=(M*0,03) + (T*0,4)</p>
               </div>
               <div className={css.dataBoxGenderText}>
-                <p className={css.radioText}>For man:</p>
+                <p className={css.radioText}>{t("settings.for_man")}:</p>
                 <p className={css.formulaText}>V=(M*0,04) + (T*0,6)</p>
               </div>
             </div>
           </div>
           <div className={css.explainBox}>
             <p className={css.explainText}>
-              <span className={css.explainAccent}>* </span>V is the volume of
-              the water norm in liters per day, M is your body weight, T is the
-              time of active sports, or another type of activity commensurate in
-              terms of loads (in the absence of these, you must set 0)
+              <span className={css.explainAccent}>* </span>{t("settings.notes.description")}
             </p>
           </div>
           <div className={css.warningBox}>
-            {/* <img src={svg} alt="banner" className={css.banner} /> */}
-
             <svg className={css.banner}>
               <use href={`${sprite}#icon-exclamation`} />
             </svg>
-
-            <p className={css.radioText}>Active time in hours</p>
+            <p className={css.radioText}>{t("settings.active_time_hours")}</p>
           </div>
         </div>
         <div>
           <div className={css.formGroup}>
-            <label className={css.radioText}>Your weight in kilograms:</label>
+            <label className={css.radioText}>{t("settings.weight")}</label>
             <input type="text" {...register("weight")} />
             {errors.weight && (
               <span className={css.error}>{errors.weight.message}</span>
             )}
           </div>
           <div className={css.formGroup}>
-            <label className={css.radioText}>
-              The time of active participation in sports:
-            </label>
+            <label className={css.radioText}>{t("settings.active_time")}</label>
             <input type="text" {...register("sportTime")} />
             {errors.sportTime && (
               <span className={css.error}>{errors.sportTime.message}</span>
             )}
           </div>
           <div className={css.box}>
-            <p className={css.radioText1}>
-              The required amount of water in liters per day:
-            </p>
+            <p className={css.radioText1}>{t("settings.water_norm")}</p>
             <p className={css.recWater}>
               {genderLocal && watchWeight
                 ? calculateRecommendedWaterIntake(
@@ -308,7 +301,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
           <div className={css.formGroup}>
             <label id="dailyWater" className={css.titleText}>
-              Write down how much water you will drink:
+              {t("settings.user_norm")}
             </label>
             <input
               type="text"
@@ -322,7 +315,7 @@ const UserSettingsForm = ({ onClose }) => {
         </div>
       </div>
       <button type="submit" className={css.saveBtn}>
-        Save
+        {t("settings.save")}
       </button>
     </form>
   );

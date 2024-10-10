@@ -18,7 +18,11 @@ import girlAvatar2x from "../../photo/mob/girl-avatar@2x.webp";
 
 import styles from "./AdvantagesSection.module.css";
 
+import { useTranslation } from 'react-i18next';
+
 function AdvantagesSection() {
+  const { t, i18n } = useTranslation();
+
   const dispatch = useDispatch();
   const totalUsers = useSelector(selectTotalUsers);
   const loading = useSelector(selectAuthLoading);
@@ -61,9 +65,10 @@ function AdvantagesSection() {
           />
         </div>
         <p>
-          {" "}
-          {totalUsers}+ <span className={styles.accent}>happy </span>
-          customers
+          {i18n.language === 'en' ? t("advantages.our") : null}
+          {i18n.language === 'en' ? <br /> : null}
+          <span className={styles.accent}>{totalUsers} {t("advantages.happy")} </span>
+           {t("advantages.customers")}
         </p>
       </div>
       <ul className={styles.infoContainer}>
@@ -77,10 +82,10 @@ function AdvantagesSection() {
           >
             <circle cx="4" cy="4" r="4" fill="#9BE1A0" />
           </svg>
-          Habit drive
+          {t("advantages.habit_drive")}
         </li>
-        <li className={styles.statistics}>View statistics</li>
-        <li className={styles.rate}>Personal rate setting</li>
+        <li className={styles.statistics}>{t("advantages.view_statistics")}</li>
+        <li className={styles.rate}>{t("advantages.personal_rate")}</li>
       </ul>
     </div>
   );

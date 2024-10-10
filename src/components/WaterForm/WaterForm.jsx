@@ -17,6 +17,7 @@ import {
 } from "../../redux/water/selectors";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   waterVolume: yup
@@ -29,6 +30,7 @@ const schema = yup.object().shape({
 });
 
 export default function WaterForm({ closeWaterModal, isAddWater, item }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectWaterLoading);
   const [plusError, setPlusError] = useState("");
@@ -97,16 +99,16 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
         const today = new Date().toISOString().split("T")[0];
         await dispatch(waterPerDay(today));
         toast.success(
-          `Water record ${isAddWater ? "added" : "updated"} successfully!`
+          `${t("water_record")} ${isAddWater ? t("successfully_added") : t("successfully_updated")}!`
         );
         closeWaterModal();
       } else {
-        toast.error("Failed to add or update water record!");
+        toast.error(t("failed_to_add_or_update_water_record"));
         closeWaterModal();
       }
     } catch (error) {
       console.error("Error submitting water form:", error);
-      toast.error("An error occurred!");
+      toast.error(t("an_error_occurred"));
       closeWaterModal();
     }
   };
@@ -116,7 +118,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     const newAmount = currentAmount + 50;
 
     if (newAmount > 500) {
-      setPlusError("Maximum amount is 500 ml");
+      setPlusError(t("maximum_amount_is_500_ml"));
       return;
     } else {
       setPlusError("");
@@ -134,7 +136,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     const newAmount = Math.max(0, currentAmount - 50);
 
     if (newAmount < 50) {
-      setMinusError("Minimum amount is 50 ml");
+      setMinusError(t("minimum_amount_is_50_ml"));
       return;
     } else {
       setMinusError("");
@@ -147,7 +149,8 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       setPlusError("");
     }
   };
-  // const plusWaterVolume = () => {
+
+// const plusWaterVolume = () => {
   //   const currentAmount = parseInt(getValues("waterVolume"), 10);
   //   setValue("waterVolume", currentAmount + 50);
   //   clearErrors("waterVolume");
@@ -167,6 +170,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
   //   }
   // };
 
+
   const handleFocus = (e) => {
     if (isAddWater) {
       if (e.target.value === "50") {
@@ -176,6 +180,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
       setValue("waterVolume", "");
     }
   };
+
   const handleBlur = (e) => {
     if (e.target.value === "") {
       setValue("waterVolume", isAddWater ? 50 : item.amount);
@@ -186,7 +191,7 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
     <>
       <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <p className={css.text}>Amount of water:</p>
+          <p className={css.text}>{t("add_water_modal.amount_water")}:</p>
           <div className={css.waterCounter}>
             <button
               type="button"
@@ -206,18 +211,15 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
               <CiCirclePlus size={42} />
             </button>
           </div>
-          {/* {errors.waterVolume && (
-            <p className={css.error}>{errors.waterVolume.message}</p>
-          )} */}
           {minusError && <p className={css.error}>{minusError}</p>}
           {plusError && <p className={css.error}>{plusError}</p>}
         </div>
 
-        <p className={css.text}>Recording time</p>
+        <p className={css.text}>{t("add_water_modal.recording_time")}</p>
         <input type="time" className={css.timeInput} {...register("time")} />
         {errors.time && <p className={css.error}>{errors.time.message}</p>}
 
-        <p className={css.waterInput}>Enter the value of the water used:</p>
+        <p className={css.waterInput}>{t("add_water_modal.enter_water")}:</p>
         <input
           type="number"
           step={1}
@@ -226,14 +228,13 @@ export default function WaterForm({ closeWaterModal, isAddWater, item }) {
           {...register("waterVolume")}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          // onChange={handleWaterVolumeChange}
         />
         {errors.waterVolume && (
           <p className={css.error}>{errors.waterVolume.message}</p>
         )}
 
         <button className={css.saveBtn} type="submit" disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save"}
+          {isLoading ? t("add_water_modal.saving") : t("add_water_modal.save")}
         </button>
       </form>
     </>

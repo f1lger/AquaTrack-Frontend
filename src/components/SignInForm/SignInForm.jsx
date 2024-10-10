@@ -9,20 +9,21 @@ import { useState } from "react";
 import iconSprite from "../../icons/symbol-defs.svg";
 import { toast } from "react-hot-toast";
 import * as Yup from "yup";
-// import GoogleAuthBtn from "../GoogleLoginButton/GoogleAuthBtn.jsx";
 import { selectAuthError } from "../../redux/auth/selectors.js";
+import { useTranslation } from "react-i18next";
 
 const signInFormSchema = Yup.object({
   email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
+    .email("auth_valid.invalid_email") 
+    .required("auth_valid.required_email"),
   password: Yup.string()
-    .min(6, "Must contain at least 6 characters")
-    .max(64, "Password can't be longer than 64 characters")
-    .required("Password is required"),
+    .min(6, "auth_valid.password_min")
+    .max(64, "auth_valid.password_max")
+    .required("auth_valid.password_required"),
 });
 
 const SignInForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const reduxError = useSelector(selectAuthError);
   const [showPassword, setShowPassword] = useState(false);
@@ -52,10 +53,10 @@ const SignInForm = () => {
         navigate("/tracker");
         reset();
       } else {
-        toast.error("Failed to login, please sign up");
+        toast.error(t("login_failed"));
       }
     } catch (error) {
-      toast.error("Failed to login: " + (error.message || "Unknown error"));
+      toast.error(t("login_error") + ": " + (error.message || t("generic_error")));
     } finally {
       setLoading(false);
     }
@@ -67,38 +68,32 @@ const SignInForm = () => {
 
   return (
     <div className={css.signInContainer}>
-      <h2 className={css.title}>Sign In</h2>
+      <h2 className={css.title}>{t('sign_in.title')}</h2>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={css.field}>
-          <span className={css.label}>Email: </span>
+          <span className={css.label}>{t('sign_in.email')}: </span>
           <input
             type="email"
             {...register("email")}
-            placeholder={
-              errors.email ? errors.email.message : "Enter your email"
-            }
+            placeholder={errors.email ? t(errors.email.message) : t("sign_in.email_placeholder")}
             className={clsx(css.input, { [css.inputError]: errors.email })}
           />
-          <p className={css.errorMessage}>{errors.email?.message}</p>
+          <p className={css.errorMessage}>{errors.email?.message && t(errors.email.message)}</p>
         </label>
         <label className={css.field}>
-          <span className={css.label}>Password: </span>
+          <span className={css.label}>{t('sign_in.password')}: </span>
           <div className={css.inputField}>
             <input
               type={showPassword ? "text" : "password"}
               {...register("password")}
-              placeholder={
-                errors.password
-                  ? errors.password.message
-                  : "Enter your password"
-              }
+              placeholder={errors.password ? t(errors.password.message) : t("sign_in.password_placeholder")}
               className={clsx(css.input, { [css.inputError]: errors.password })}
             />
             <button
               className={css.showPasswordBtn}
               type="button"
               onClick={handleClickShowPassword}
-              aria-label={showPassword ? "Hide password" : "Show password"}
+              aria-label={showPassword ? t("sign_up.hide_password") : t("sign_up.show_password")}
             >
               {showPassword ? (
                 <svg className={css.icon}>
@@ -111,36 +106,34 @@ const SignInForm = () => {
               )}
             </button>
           </div>
-          <p className={css.errorMessage}>{errors.password?.message}</p>
+          <p className={css.errorMessage}>{errors.password?.message && t(errors.password.message)}</p>
         </label>
 
         {reduxError ? (
           <div className={css.errorMessage}>
-            Invalid email or password, try again
+            {t("login_failed")}
           </div>
         ) : (
           ""
         )}
 
         <button type="submit" className={css.submit} disabled={loading}>
-          {loading ? "Signing in..." : "Sign in"}
+          {loading ? t("sign_in.login_success") : t("sign_up.sign_in")}
         </button>
 
-        {/* <p className={css.questionText}>or</p>
-        <GoogleAuthBtn>Sign In with Google</GoogleAuthBtn> */}
       </form>
       <div className={css.questionOnLogIn}>
         <p className={css.questionText}>
-          Don’t have an account?{" "}
+          {t("sign_up.already_have_account")}{" "}
           <NavLink to="/signup" className={css.signUpLink}>
-            Sign Up
+            {t("sign_up.sign_up")}
           </NavLink>
         </p>
       </div>
       <div className={css.forgotPasswordContainer}>
-        <p className={css.questionText}>Forgot Password?</p>
+        <p className={css.questionText}>{t("forgot_password.title")}</p>
         <NavLink to="/forgot-password" className={css.forgotPasswordLink}>
-          Reset
+          {t("forgot_password.send_email")}
         </NavLink>
       </div>
     </div>

@@ -4,8 +4,10 @@ import { selectTotalWater } from "../../redux/water/selectors";
 import { selectDailyNorma } from "../../redux/auth/selectors";
 import styles from "./WaterProgressBar.module.css";
 import ChooseDate from "../ChooseDate/ChooseDate";
+import { useTranslation } from "react-i18next";
 
 const WaterProgressBar = () => {
+  const { t } = useTranslation();
   const total = useSelector(selectTotalWater);
   const dailyNorma = useSelector(selectDailyNorma);
 
@@ -97,6 +99,7 @@ const WaterProgressBar = () => {
           </span>
         </div>
       </div>
+      <p className={styles.normaDesc}>{t("settings.daily_norm")}</p>
     </div>
   );
 };
